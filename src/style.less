@@ -1,0 +1,146 @@
+@border-color: #767171;
+@hi-color: #00c08e;
+@text-color: #181717;
+@light-text-color: #181717;
+@default-spacing: 1em;
+
+@resume-top-padding: 3 * @default-spacing;
+@resume-side-padding: 2 * @default-spacing;
+
+@font-weight-normal: 400;
+@font-weight-bold: 700;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #eee;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: @font-weight-normal;
+  color: @text-color;
+}
+
+.resume {
+  position: relative;
+  padding: @resume-top-padding @resume-side-padding;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc;
+  transition: all .3s ease;
+  
+  .tag {
+    display: inline-block;
+    border: 1px solid currentcolor;
+    padding: .1em .5em;
+    margin: 0 .06em .06em;
+    border-radius: .3em;
+    font-size: .9rem;
+  }
+  
+  p {
+    line-height: 1.33;
+  }
+
+  h1, h2, h3 {
+    font-weight: @font-weight-bold;
+  }
+  
+  h1 {
+    margin-top: 0;
+    margin-bottom: @default-spacing / 2;
+    padding-bottom: @default-spacing / 2;
+    border-bottom: 3px solid @border-color;
+    
+    span {
+      white-space: nowrap;
+    }
+    
+    .role {
+      font-weight: @font-weight-normal;
+    }
+  }
+  
+  header {
+    a {
+      text-decoration: none;
+      color: @light-text-color;
+      padding: .3rem .5rem;
+      border-radius: .3rem;
+      transition: all .3s ease;
+      white-space: nowrap;
+      
+      &:hover {
+        color: #fff;
+        background-color: @hi-color;
+      }
+    }
+    
+    .social {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: @default-spacing;
+    }
+  }
+  
+  section {
+    display: grid;
+    margin-bottom: @default-spacing;
+
+    h2 {
+      border-bottom: 2px solid @border-color;
+      margin: 0 0 @default-spacing;
+      padding-bottom: @default-spacing / 2;
+    }
+    
+    h3 {
+      margin: 0;
+    }
+    
+    a {
+      text-decoration: none;
+      color: @hi-color;
+    }
+    
+    .subsection {
+      margin-bottom: 2 * @default-spacing;
+
+      &:nth-last-child(-n+2) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  @media (min-width: 1000px) {
+    margin: 50px auto 200px;
+    max-width: 900px;
+
+    section {
+      grid-template-columns: ~"calc(50% - @{default-spacing}) calc(50% - @{default-spacing})";
+      justify-content: space-between;
+
+      & > h2 {
+        grid-column: 1 / span 2;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    &:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: @resume-side-padding;
+      right: @resume-side-padding;
+      width: 90px;
+      height: 90px;
+      border-radius: 100%;
+      background-image: url('./valentin-radulescu.jpg');
+      background-size: cover;
+    }
+  }
+}
