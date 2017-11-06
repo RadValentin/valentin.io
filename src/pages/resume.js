@@ -44,12 +44,11 @@ const Resume = () => (
           </p>
           <p>
             I love to work with:
-            <span className="tag">React</span>
-            <span className="tag">Redux</span>
-            <span className="tag">Webpack</span>
-            <span className="tag">LESS</span>
-            <span className="tag">SASS</span>
-            <span className="tag">WebVR</span>
+            <span className="tag">React</span>{' '}
+            <span className="tag">Redux</span>{' '}
+            <span className="tag">Webpack</span>{' '}
+            <span className="tag">LESS</span> <span className="tag">SASS</span>{' '}
+            <span className="tag">WebVR</span>{' '}
           </p>
         </div>
       </header>
@@ -57,18 +56,17 @@ const Resume = () => (
         <h2>Experience</h2>
         <div className="subsection">
           <h3>
-            Front-End Developer at
+            Front-End Developer at{' '}
             <a href="https://hootsuite.com/">Hootsuite</a>
           </h3>
           <p className="subsection-period">
             May 2014 → Jul 2017 (3 years, 3 months)
           </p>
           <p className="subsection-tags">
-            <span className="tag">React</span>
-            <span className="tag">Redux</span>
-            <span className="tag">Webpack</span>
-            <span className="tag">LESS</span>
-            <span className="tag">Jest</span>
+            <span className="tag">React</span>{' '}
+            <span className="tag">Redux</span>{' '}
+            <span className="tag">Webpack</span>{' '}
+            <span className="tag">LESS</span> <span className="tag">Jest</span>{' '}
           </p>
           <p>
             As part of the Bucharest team I helped build the UI for{' '}
@@ -88,18 +86,17 @@ const Resume = () => (
         </div>
         <div className="subsection">
           <h3>
-            Freelance Front-End Developer at
+            Freelance Front-End Developer at{' '}
             <a href="https://www.upwork.com/">Upwork</a>
           </h3>
           <p className="subsection-period">
             Jan 2013 → May 2014 (1 year, 5 months)
           </p>
           <p className="subsection-tags">
-            <span className="tag">ASP.NET</span>
-            <span className="tag">Wordpress</span>
-            <span className="tag">jQuery</span>
-            <span className="tag">HTML5</span>
-            <span className="tag">SASS</span>
+            <span className="tag">ASP.NET</span>{' '}
+            <span className="tag">Wordpress</span>{' '}
+            <span className="tag">jQuery</span>{' '}
+            <span className="tag">HTML5</span> <span className="tag">SASS</span>{' '}
           </p>
           <p>
             Worked with international clients and gained a good reputation as a
@@ -115,17 +112,16 @@ const Resume = () => (
         </div>
         <div className="subsection">
           <h3>
-            Front-End Developer at
+            Front-End Developer at{' '}
             <a href="http://www.winarrow.com/">Winarrow</a>
           </h3>
           <p className="subsection-period">
             Jan 2012 → Jan 2013 (1 year, 1 month)
           </p>
           <p className="subsection-tags">
-            <span className="tag">Wordpress</span>
-            <span className="tag">jQuery</span>
-            <span className="tag">HTML5</span>
-            <span className="tag">CSS3</span>
+            <span className="tag">Wordpress</span>{' '}
+            <span className="tag">jQuery</span>{' '}
+            <span className="tag">HTML5</span> <span className="tag">CSS3</span>{' '}
           </p>
           <p>
             I was tasked with writing standards compliant, cross-browser
@@ -143,7 +139,7 @@ const Resume = () => (
         <h2>Freelance Projects</h2>
         <div className="subsection">
           <h3>
-            A Watch by You
+            A Watch by You{' '}
             <a
               href="http://designawatch.okmylo.com/"
               className="freelance-link"
@@ -153,9 +149,9 @@ const Resume = () => (
           </h3>
           <p className="subsection-period">Apr 2014</p>
           <p className="subsection-tags">
-            <span className="tag">JavaScript</span>
-            <span className="tag">SASS</span>
-            <span className="tag">Responsive Design</span>
+            <span className="tag">JavaScript</span>{' '}
+            <span className="tag">SASS</span>{' '}
+            <span className="tag">Responsive Design</span>{' '}
           </p>
           <p>
             A microsite built to get user feedback for an upcoming Kickstarter
@@ -165,16 +161,16 @@ const Resume = () => (
         </div>
         <div className="subsection">
           <h3>
-            MYLO: Essentials x A Better Backpack
+            MYLO: Essentials x A Better Backpack{' '}
             <a href="http://essentials.okmylo.com/" className="freelance-link">
               <i className="fa fa-link" />
             </a>
           </h3>
           <p className="subsection-period">Nov 2013</p>
           <p className="subsection-tags">
-            <span className="tag">JavaScript</span>
-            <span className="tag">SASS</span>
-            <span className="tag">Responsive Design</span>
+            <span className="tag">JavaScript</span>{' '}
+            <span className="tag">SASS</span>{' '}
+            <span className="tag">Responsive Design</span>{' '}
           </p>
           <p>
             A microsite showcasing essential items for designers and creatives.
@@ -186,16 +182,15 @@ const Resume = () => (
         <div className="subsection">
           <h2>Location</h2>
           <p>
-            Currently located in
-            <b>Bucharest, Romania</b> but I tend to move around. Only interested
-            in
-            <b>remote work</b> opportunities for the foreseeable future.
+            Currently located in <b>Bucharest, Romania</b> but I tend to move
+            around. Only interested in <b>remote work</b> opportunities for the
+            foreseeable future.
           </p>
         </div>
         <div className="subsection">
           <h2>Contact</h2>
           <p>
-            Want to build the next big thing or just chat? Drop me an email at
+            Want to build the next big thing or just chat? Drop me an email at{' '}
             <b>
               <a href="mailto:hi@valentin.io">hi@valentin.io</a>
             </b>
