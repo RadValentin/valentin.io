@@ -1,32 +1,4 @@
-@border-color: #767171;
-@hi-color: #00c08e;
-@text-color: #181717;
-@light-text-color: #6a737d;
-@default-spacing: 1em;
-
-@resume-top-padding: 3 * @default-spacing;
-@resume-side-padding: 2 * @default-spacing;
-
-@font-weight-normal: 400;
-@font-weight-bold: 700;
-
-@medium-font-size: 0.9rem;
-@small-font-size: 0.8rem;
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  background: #eee;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  font-weight: @font-weight-normal;
-  color: @text-color;
-}
+@import '../layouts/global.less';
 
 .resume {
   position: relative;
@@ -118,12 +90,12 @@ body {
       }
     }
 
-    .experience-period,
-    .experience-tags {
+    .subsection-period,
+    .subsection-tags {
       margin: @default-spacing / 2 0;
     }
 
-    .experience-period {
+    .subsection-period {
       font-size: @medium-font-size;
       color: @light-text-color;
     }
@@ -153,7 +125,7 @@ body {
       width: 90px;
       height: 90px;
       border-radius: 100%;
-      background-image: url('./valentin-radulescu.jpg');
+      background-image: url('../assets/valentin-radulescu.jpg');
       background-size: cover;
     }
 
