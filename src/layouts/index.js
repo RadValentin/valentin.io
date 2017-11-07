@@ -29,7 +29,6 @@ const TemplateWrapper = ({ children, data }) => {
         />
         <link rel="canonical" href={url} />
         <link rel="shortcut icon" href={favicon} />
-        <meta name="theme-color" content="#00c08e" />
         <meta name="description" content={description} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
