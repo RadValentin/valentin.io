@@ -1,7 +1,7 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import resumePdf from '../assets/valentin-radulescu-resume.pdf';
-import './resume.less';
+import React from 'react'
+import Helmet from 'react-helmet'
+import resumePdf from '../assets/valentin-radulescu-resume.pdf'
+import './resume.less'
 
 const Resume = () => (
   <div>
@@ -45,8 +45,7 @@ const Resume = () => (
               my will.
             </p>
             <p>
-              I love to work with:{' '}
-              <span className="tag">React</span>{' '}
+              I love to work with: <span className="tag">React</span>{' '}
               <span className="tag">Redux</span>{' '}
               <span className="tag">Webpack</span>{' '}
               <span className="tag">LESS</span>{' '}
@@ -148,7 +147,8 @@ const Resume = () => (
               A Watch by You{' '}
               <a
                 href="http://designawatch.okmylo.com/"
-                className="freelance-link">
+                className="freelance-link"
+              >
                 <i className="fa fa-link" />
               </a>
             </h3>
@@ -169,7 +169,8 @@ const Resume = () => (
               MYLO: Essentials x A Better Backpack{' '}
               <a
                 href="http://essentials.okmylo.com/"
-                className="freelance-link">
+                className="freelance-link"
+              >
                 <i className="fa fa-link" />
               </a>
             </h3>
@@ -207,6 +208,6 @@ const Resume = () => (
       </div>
     </div>
   </div>
-);
+)
 
-export default Resume;
+export default Resume

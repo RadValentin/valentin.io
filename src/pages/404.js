@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
-import './404.less';
+import './404.less'
 
 const NotFoundPage = () => (
   <div className="not-found">
@@ -11,4 +11,3 @@ const NotFoundPage = () => (
 )
 
 export default NotFoundPage
- 
