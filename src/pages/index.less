@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
 
     img {
       border-radius: 50%;
@@ -38,7 +39,8 @@
 
   [class^=intro-link] {
     display: block;
-    width: ~'calc(50% - 2 * @{default-spacing})';
+    width: 100%;
+    margin: @default-spacing;
     height: @intro-link-height;
     line-height: @intro-link-height;
     font-size: 2rem;
@@ -48,11 +50,10 @@
     border-radius: 5px;
     padding: 0 0 0 @default-spacing * 2;
     border-left: 8px solid black;
-    margin: @default-spacing;
     transition: transform .3s;
 
     &:hover {
-      transform: scale(1.1)
+      transform: scale(1.05)
     }
 
     i {
@@ -75,23 +76,31 @@
   @media (min-width: @screen-min-md) {
     flex-direction: row;
 
-    .intro-right {
-      background: linear-gradient(to bottom right, #8BC6EC, @hi-color);
-    }
-
     .intro-left,
     .intro-right {
       width: 50vw;
       height: 100vh;
     }
 
+    .intro-left {
+      text-align: left;
+    }
+
     .intro-right {
       flex-direction: column;
+      background: linear-gradient(to bottom right, #8BC6EC, @hi-color);
     }
 
     [class^=intro-link] {
       width: 60%;
       margin: @default-spacing auto;
+    }
+  }
+
+  @media (min-width: @screen-min-sm) and (max-width: @screen-min-md) {
+    [class^=intro-link] {
+      width: ~'calc(50% - 2 * @{default-spacing})';
+      margin: @default-spacing;
     }
   }
 }
