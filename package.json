@@ -4,6 +4,7 @@
   "description": "Personal portfolio of Valentin Radulescu",
   "author": "Valentin Radulescu <hi@valentin.io>",
   "dependencies": {
+    "ftp-deploy": "^1.2.2",
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
     "gatsby-plugin-google-analytics": "^1.0.11",
@@ -20,7 +21,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"src/**/*.js\"",
-    "deploy": "echo \"Error: no deploy method specified\" && exit 1"
+    "deploy": "npm run build && node tools/deploy.js"
   },
   "devDependencies": {
     "prettier": "^1.7.4"
