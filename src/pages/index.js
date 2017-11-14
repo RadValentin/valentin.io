@@ -21,14 +21,20 @@ const IndexPage = ({ data }) => {
         </div>
       </div>
       <div className="intro-right">
+        <a className="intro-link-github" href="https://github.com/RadValentin">
+          <i className="fa fa-github" /> Github
+        </a>
         <a
           className="intro-link-twitter"
           href="https://twitter.com/RadValentin"
         >
           <i className="fa fa-twitter" /> Twitter
         </a>
-        <a className="intro-link-github" href="https://github.com/RadValentin">
-          <i className="fa fa-github" /> Github
+        <a
+          className="intro-link-linkedin"
+          href="https://www.linkedin.com/in/valentinrad/"
+        >
+          <i className="fa fa-linkedin" /> LinkedIn
         </a>
         <a className="intro-link-codepen" href="https://codepen.io/valentin/">
           <i className="fa fa-codepen" /> Codepen
