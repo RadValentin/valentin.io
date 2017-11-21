@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import avatar from '../assets/valentin-radulescu.jpg'
+import resumePdf from '../assets/valentin-radulescu-resume.pdf'
 import './index.less'
 
 const IndexPage = ({ data }) => {
@@ -39,9 +40,9 @@ const IndexPage = ({ data }) => {
         <a className="intro-link-codepen" href="https://codepen.io/valentin/">
           <i className="fa fa-codepen" /> Codepen
         </a>
-        <Link className="intro-link-resume" to="/resume/">
+        <a className="intro-link-resume" href={resumePdf}>
           <i className="fa fa-file-pdf-o" /> Résumé
-        </Link>
+        </a>
       </div>
     </div>
   )
