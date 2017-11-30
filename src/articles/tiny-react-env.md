@@ -27,8 +27,8 @@ cd react-boilerplate
 # enter as much or as little info as you want
 npm init
 
-npm install react
-npm install react-dom
+npm install --save react
+npm install --save react-dom
 ```
 
 We'll also need some sort of component, let's add it in `src/components/App.js`.
@@ -58,7 +58,7 @@ More importantly, if we point it at a root component it will in turn build an in
 Let's install Webpack and give it a simple config.
 
 ```sh
-npm install webpack
+npm install --save webpack
 touch webpack.config.js
 ```
 
@@ -82,17 +82,17 @@ Cool, now our imports will work beautifully but we still need to figure out a wa
 ```sh
 # base of the Babel ecosystem, parses JS code,
 # very powerful with the right plugins
-npm install babel-core
+npm install --save babel-core
 
 # allows Webpack to transpile JS code via Babel
-npm install babel-loader
+npm install --save babel-loader
 
 # allows transpilation from latest ES2015+ 
 # features to ES5
-npm install babel-preset-env
+npm install --save babel-preset-env
 
 # and finally, JSX to ES5 transpilation
-npm install babel-preset-react
+npm install --save babel-preset-react
 ``` 
 
 Now we can update our `webpack.config.js` with a `module` field. This tells Webpack that any files with the `js` or `jsx` extensions should be parsed with Babel.  
@@ -171,7 +171,7 @@ First let's add a basic template in `public/index.html`.
 Next we'll add and configure a plugin that loads this template and outputs it a build time.
 
 ```sh
-npm install html-webpack-plugin
+npm install --save html-webpack-plugin
 ```
 
 ```js
@@ -211,7 +211,7 @@ npm start -- --watch
 Not bad. We can can make this whole process even smoother by having the page reload itself. So instead of watch let's use [`webpack-dev-server`](https://webpack.js.org/configuration/dev-server/).
 
 ```sh
-npm install webpack-dev-server
+npm install --save webpack-dev-server
 ```
 
 Let's change the start script so that it calls the dev server. It will now be the server's responsibility to manage webpack and load our app.
@@ -247,16 +247,16 @@ Webpack has been a good friend so far so, of course we'll be using it to load ou
 
 ```sh
 # creates style tags from JS strings
-npm install style-loader 
+npm install --save style-loader 
 
 # translates CSS into JS strings
-npm install css-loader
+npm install --save css-loader
 
 # translates Sass into CSS
-npm install sass-loader
+npm install --save sass-loader
 
 # Sass compiler used by the loader above
-npm install node-sass
+npm install --save node-sass
 ```
 
 As you can see multiple loaders are required here and it's actually kind of awesome that you can chain them together to create a style pipeline. To do this, just add the following rule to `webpack.config.js`.
@@ -324,11 +324,11 @@ We don't have any loaders for image assets so let's install some.
 
 ```
 # adds an asset to the output directory
-npm install file-loader
+npm install --save file-loader
 
 # loads small assets as dataURIs
 # large assets get handled by file-loader
-npm install url-loader
+npm install --save url-loader
 ```
 These two loaders serve the same purpose, they allow us to reference an asset in our code and add it to the bundle. As the name implies `file-loader` loads assets as files and `url-loader` tries to inline them as [dataURIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
 
@@ -395,7 +395,7 @@ class App extends Component {
 The last thing we'll do today is to deploy our app. Surge makes this process super easy so let's add it to our project.
 
 ```
-npm install surge
+npm install --save surge
 ```
 
 All that's left is to add a script to our `package.json` that will build the bundle and call the Surge CLI to upload it.
