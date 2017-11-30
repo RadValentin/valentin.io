@@ -1,18 +1,17 @@
-# How to roll your own React, Babel and Webpack boilerplate
-# Setup a React Environment Using webpack and Babel
+# Roll your own tiny React environment using Webpack, Babel and Sass
 
 The complexity of building even the simplest "Hello World" app with React used to be a constant source of frustration for developers. Luckily [someone eventually listened](https://reactjs.org/blog/2016/07/22/create-apps-with-no-configuration.html) and gave us an alternative: [`create-react-app`](https://github.com/facebookincubator/create-react-app).
 If you just need to get up and running quickly without any headaches then this is the tool for you.
 
 There are a few caveats though. One of them is that no matter how well this tool is put together it can never hope to cover every possible use case out there.  
-If you're big into preprocessors like SASS or LESS, well, they're not supported out of the box and the [provided alternative](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc) doesn't play to the strengths of Webpack.
+If you're big into preprocessors like Sass or LESS, well, they're not supported out of the box and the [provided alternative](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc) doesn't play to the strengths of Webpack.
 
-Let's take this scenario and roll with it. We're DIY developers that love getting their hands dirty, we want to build something with React and SASS so we'll set up a super barebones way to:
+Let's take this scenario and roll with it. We're DIY developers that love getting their hands dirty, we want to build something with React and Sass so we'll set up a super barebones way to:
 
-1. Build a bundle for a React component with SASS styles
+1. Build a bundle for a React component with Sass styles
 1. Make sure our JSX and ES6+ code gets compiled to ES5 so it runs in any browser
 1. Allow us to locally preview changes through hot reloading
-1. Be ready to deploy to Heroku
+1. Be ready to deploy with [Surge](http://surge.sh/)
 
 > Note: This article tries to cover the basics of setting up a React + Webpack project. If this is your first time, then you're in the right place. If you've done this before there may still be something you can learn from it, just don't expect all the intricate details to be covered.
 
@@ -32,7 +31,7 @@ npm install react
 npm install react-dom
 ```
 
-We'll also need some sort of component, let's add it in `src/App.js`.
+We'll also need some sort of component, let's add it in `src/components/App.js`.
 
 ```jsx
 /* src/App.js */
@@ -54,7 +53,7 @@ ReactDOM.render(
 Pretty simple but sadly our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won't know what `import` is referring nor can it understand JSX syntax.
 
 This is where a tool like [Webpack](https://webpack.js.org/) comes in. It can combine all our source files into a single bundle that can be loaded in a browser.  
-More importantly, if we point it at a root component it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either an `npm` package or another asset in our project (component, library, image, etc). And we can use *loaders* Webpack can parse additional syntax types like JSX or SASS.
+More importantly, if we point it at a root component it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either an `npm` package or another asset in our project (component, library, image, etc). And we can use *loaders* Webpack can parse additional syntax types like JSX or Sass.
 
 Let's install Webpack and give it a simple config.
 
@@ -70,7 +69,7 @@ const path = require('path');
 module.exports = {
   // Tell webpack to begin building its 
   // dependency graph from this file.
-  entry: path.join(__dirname, 'src', 'App.js'),
+  entry: path.join(__dirname, 'src', 'components', 'App.js'),
   // And to place the output in the `build` directory
   output: {
     path: path.join(__dirname, 'build'),
@@ -159,7 +158,7 @@ First let's add a basic template in `public/index.html`.
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>React Starter Project</title>
+  <title>Tiny React Environment Tutorial</title>
 </head>
 
 <body>
@@ -177,7 +176,6 @@ npm install html-webpack-plugin
 
 ```js
 /* webpack.config.js */
-/* ... */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -245,7 +243,7 @@ Time to fire it up and witness the magic at [`http://localhost:8080/`](http://lo
 
 We've made good progress so far, in the current state someone could build a decent app by just crafting a few components and integrating a database service like [Firebase](https://firebase.google.com/). Let's give them the power to make their app shine!
 
-Webpack has been a good friend so far so, of course we'll be using it to load our styles as well. Let's first add the SASS compiler and a couple of loaders.
+Webpack has been a good friend so far so, of course we'll be using it to load our styles as well. Let's first add the Sass compiler and a couple of loaders.
 
 ```sh
 # creates style tags from JS strings
@@ -254,10 +252,10 @@ npm install style-loader
 # translates CSS into JS strings
 npm install css-loader
 
-# translates SASS into CSS
+# translates Sass into CSS
 npm install sass-loader
 
-# SASS compiler used by the loader above
+# Sass compiler used by the loader above
 npm install node-sass
 ```
 
@@ -270,36 +268,152 @@ As you can see multiple loaders are required here and it's actually kind of awes
 }
 ```
 
-Now we can begin adding our styles so create an `App.scss` file in `/src`.
+Now we can begin adding our styles. Create an `App.scss` file in `src/components/` and add some styles that will take advantage of the power that Sass provides.
 
 ```scss
+$navy: #001e38;
+$green: #15b78f;
 
+html {
+  background-color: $navy;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+}
+
+h1 {
+  color: $green;
+  font-weight: bold;
+  font-size: 3.5rem;
+
+  &:after {
+    content: '👋';
+    display: inline-block;
+    transform: rotate(-20deg);
+    animation: wave .75s infinite linear alternate;
+  }
+}
+
+@keyframes wave {
+  100% {
+    transform: rotate(20deg);
+  }
+}
 ```
 
-For the styles to take effect, We'll also need to import our SASS in `App.js`
+In order for them to take effect we'll need to import new newly created styles in `App.js`.
 
 ```jsx
 import './App.scss';
-````
-
-```sh
-npm install normalize.css
 ```
+
+Our Style Pipeline™ should be working nicely now. Even better, unlike JS there's no need to worry about `module.hot` because [`style-loader`](https://github.com/webpack-contrib/style-loader) supports Hot Module Replacement out of the box. So cool!
+
+![styles hot reload](assets/style-reload.gif)
+
+That hand emoji is nice but it might look a bit different when viewed on another OS. Consistency is key so we'll substitute it for an image (and learn how to load assets in the process).
+
+We don't have any loaders for image assets so let's install some.
+
+```
+# adds an asset to the output directory
+npm install file-loader
+
+# loads small assets as dataURIs
+# large assets get handled by file-loader
+npm install url-loader
+```
+These two loaders serve the same purpose, they allow us to reference an asset in our code and add it to the bundle. As the name implies `file-loader` loads assets as files and `url-loader` tries to inline them as [dataURIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
+
+You could just use `file-loader` for everything but inlining can mean less HTTP requests. The best approach is to use both, let's see how the config looks for a bunch of commonly used file types.
 
 ```js
 /* webpack.config.js */
 module.exports = {
   /* ... */
-  devServer: {
-    /* Tell the server where to serve static content from. 
-       We'll need this later on when adding assets. */
-    contentBase: path.join(__dirname, 'build')
+  module: {
+    rules: [
+      /* ... */
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        use: [{
+          /* inline if smaller than 10kb, otherwise load as a file */
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }]
+      },
+      { 
+        test: /\.(eot|svg|ttf|woff2?|otf)$/,
+        use: 'file-loader'
+      }
+    ]
+  }
+};
+
+```
+If we add an image in `src/assets` it should now be possible to reference it in `App.scss`...
+
+```scss
+h1 {
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url('../assets/waving-hand-sign.png')
+                center/100%
+                no-repeat;
+}
+```
+
+...or in `App.js`.
+
+```jsx
+import handWave from '../assets/waving-hand-sign.png';
+
+class App extends Component {
+  render() {
+    return <h1>
+      Hello World!
+      <img src={handWave} />
+    </h1>;
   }
 }
 ```
 
-## Linting
-
-## Tests
-
 ## Ship it!
+
+The last thing we'll do today is to deploy our app. Surge makes this process super easy so let's add it to our project.
+
+```
+npm install surge
+```
+
+All that's left is to add a script to our `package.json` that will build the bundle and call the Surge CLI to upload it.
+
+```js
+"scripts": {
+  "deploy": "webpack && surge -p ./build/ -d tiny-react-env.surge.sh"
+}
+```
+
+Wohoo we're not up and running at [http://tiny-react-env.surge.sh/](http://tiny-react-env.surge.sh/). Good job!
+
+## What's next?
+
+It wasn't easy but we've managed to set up a decent workspace for our future project.
+
+- Our code is transpiled with Babel and we can use the latest ES2015+ features.
+- We use Webpack to build our bundle and Webpack Dev Server to develop locally with hot reloading.
+- We have a style pipeline that compiles our Sass code and we're also bundling our assets.
+
+This is a good foundation that you can and should expand upon. Good luck!
