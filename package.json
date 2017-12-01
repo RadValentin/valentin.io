@@ -27,10 +27,10 @@
     "prettier": "^1.7.4"
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingComma": "none",
     "jsxBracketSameLine": false,
-    "bracketSpacing": true
+    "bracketSpacing": false
   }
 }

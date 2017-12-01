@@ -1,12 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import logo from '../assets/valentin-radulescu.jpg'
-import favicon from '../assets/favicon.ico'
-import './index.less'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
+import logo from '../assets/valentin-radulescu.jpg';
+import favicon from '../assets/favicon.ico';
+import 'prismjs/themes/prism-tomorrow.css';
+import './index.less';
 
-const TemplateWrapper = ({ children, data }) => {
-  const { author, title, description, url } = data.site.siteMetadata
+const TemplateWrapper = ({children, data}) => {
+  const {author, title, description, url} = data.site.siteMetadata;
 
   return (
     <div>
@@ -48,14 +49,14 @@ const TemplateWrapper = ({ children, data }) => {
 
       {children()}
     </div>
-  )
-}
+  );
+};
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
-}
+  children: PropTypes.func
+};
 
-export default TemplateWrapper
+export default TemplateWrapper;
 
 export const pageQuery = graphql`
   query SiteMetadataLookup {
@@ -68,4 +69,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

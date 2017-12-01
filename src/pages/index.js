@@ -1,11 +1,11 @@
-import React from 'react'
-import Link from 'gatsby-link'
-import avatar from '../assets/valentin-radulescu.jpg'
-import resumePdf from '../assets/valentin-radulescu-resume.pdf'
-import './index.less'
+import React from 'react';
+import Link from 'gatsby-link';
+import avatar from '../assets/valentin-radulescu.jpg';
+import resumePdf from '../assets/valentin-radulescu-resume.pdf';
+import './index.less';
 
-const IndexPage = ({ data }) => {
-  const { author, description } = data.site.siteMetadata
+const IndexPage = ({data}) => {
+  const {author, description} = data.site.siteMetadata;
 
   return (
     <div className="index">
@@ -45,10 +45,10 @@ const IndexPage = ({ data }) => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexMetadataLookup {
@@ -59,4 +59,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

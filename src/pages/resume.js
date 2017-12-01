@@ -1,7 +1,7 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import resumePdf from '../assets/valentin-radulescu-resume.pdf'
-import './resume.less'
+import React from 'react';
+import Helmet from 'react-helmet';
+import resumePdf from '../assets/valentin-radulescu-resume.pdf';
+import './resume.less';
 
 const Resume = () => (
   <div>
@@ -210,6 +210,6 @@ const Resume = () => (
       </div>
     </div>
   </div>
-)
+);
 
-export default Resume
+export default Resume;
