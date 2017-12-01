@@ -44,18 +44,46 @@ const IndexPage = ({data}) => {
           <i className="fa fa-file-pdf-o" /> Résumé
         </a>
       </div>
+      <div>
+        <h2>Posts</h2>
+        {data.allMarkdownRemark.edges.map(({node}) => (
+          <div key={node.frontmatter.title}>
+            <h3>
+              <Link to={node.fields.slug}>{node.frontmatter.title}</Link> -{' '}
+              {node.frontmatter.date}
+            </h3>
+            <p>{node.excerpt}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default IndexPage;
 
-export const pageQuery = graphql`
-  query IndexMetadataLookup {
+export const indexQuery = graphql`
+  query IndexQuery {
     site {
       siteMetadata {
         author
         description
+      }
+    }
+    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
       }
     }
   }
