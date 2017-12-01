@@ -1,4 +1,7 @@
-# Roll your own tiny React environment using Webpack, Babel and Sass
+---
+title: "Roll your own tiny React environment using Webpack, Babel and Sass"
+date: "2017-12-01"
+---
 
 The complexity of building even the simplest "Hello World" app with React used to be a constant source of frustration for developers. Luckily [someone eventually listened](https://reactjs.org/blog/2016/07/22/create-apps-with-no-configuration.html) and gave us an alternative: [`create-react-app`](https://github.com/facebookincubator/create-react-app).
 If you just need to get up and running quickly without any headaches then this is the tool for you.
