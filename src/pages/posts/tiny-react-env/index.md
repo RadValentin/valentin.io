@@ -209,7 +209,7 @@ An easy fix for this is to tell Webpack to continue running in watch mode after 
 npm start -- --watch
 ```
 
-![cold reload](assets/cold-reload.gif)
+![cold reload](./cold-reload.gif)
 
 Not bad. We can can make this whole process even smoother by having the page reload itself. So instead of watch let's use [`webpack-dev-server`](https://webpack.js.org/configuration/dev-server/).
 
@@ -238,7 +238,7 @@ if (module.hot) {
 
 Time to fire it up and witness the magic at [`http://localhost:8080/`](http://localhost:8080/) 👌
 
-![hot reload](assets/hot-reload.gif)
+![hot reload](./hot-reload.gif)
 
 
 
@@ -319,7 +319,7 @@ import './App.scss';
 
 Our Style Pipeline™ should be working nicely now. Even better, unlike JS there's no need to worry about `module.hot` because [`style-loader`](https://github.com/webpack-contrib/style-loader) supports Hot Module Replacement out of the box. So cool!
 
-![styles hot reload](assets/style-reload.gif)
+![styles hot reload](./style-reload.gif)
 
 That hand emoji is nice but it might look a bit different when viewed on another OS. Consistency is key so we'll substitute it for an image (and learn how to load assets in the process).
 
