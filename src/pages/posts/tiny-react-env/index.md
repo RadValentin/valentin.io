@@ -12,9 +12,11 @@ If you're big into preprocessors like Sass or LESS, well, they're not supported 
 Let's take this scenario and roll with it. We're DIY developers that love getting their hands dirty, we want to build something with React and Sass so we'll set up a super barebones way to:
 
 1. Build a bundle for a React component with Sass styles
-1. Make sure our JSX and ES6+ code gets compiled to ES5 so it runs in any browser
-1. Allow us to locally preview changes through hot reloading
-1. Be ready to deploy with [Surge](http://surge.sh/)
+2. Make sure our JSX and ES6+ code gets compiled to ES5 so it runs in any browser
+3. Allow us to locally preview changes through hot reloading
+4. Be ready to deploy with [Surge](http://surge.sh/)
+
+The source code for this article can be found here at [github.com/RadValentin/tiny-react-env](https://github.com/RadValentin/tiny-react-env).
 
 > Note: This article tries to cover the basics of setting up a React + Webpack project. If this is your first time, then you're in the right place. If you've done this before there may still be something you can learn from it, just don't expect all the intricate details to be covered.
 
@@ -56,7 +58,7 @@ ReactDOM.render(
 Pretty simple but sadly our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won't know what `import` is referring nor can it understand JSX syntax.
 
 This is where a tool like [Webpack](https://webpack.js.org/) comes in. It can combine all our source files into a single bundle that can be loaded in a browser.  
-More importantly, if we point it at a root component it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either an `npm` package or another asset in our project (component, library, image, etc). And we can use *loaders* Webpack can parse additional syntax types like JSX or Sass.
+More importantly, if we point it at a root component it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either an `npm` package or another asset in our project (component, library, image, etc). And we can use _loaders_ Webpack can parse additional syntax types like JSX or Sass.
 
 Let's install Webpack and give it a simple config.
 
@@ -80,6 +82,7 @@ module.exports = {
   }
 }
 ```
+
 Cool, now our imports will work beautifully but we still need to figure out a way to parse JSX. For this we need [Babel](https://babeljs.io/), let's add it to our project.
 
 ```sh
@@ -96,7 +99,7 @@ npm install --save babel-preset-env
 
 # and finally, JSX to ES5 transpilation
 npm install --save babel-preset-react
-``` 
+```
 
 Now we can update our `webpack.config.js` with a `module` field. This tells Webpack that any files with the `js` or `jsx` extensions should be parsed with Babel.  
 Pay very close attention to the `exclude` option, any npm package imported from `node_modules` will be left as-is. This is generally ok since most packages are already pre-transpiled.
@@ -240,8 +243,6 @@ Time to fire it up and witness the magic at [`http://localhost:8080/`](http://lo
 
 ![hot reload](./hot-reload.gif)
 
-
-
 ## Styles and assets
 
 We've made good progress so far, in the current state someone could build a decent app by just crafting a few components and integrating a database service like [Firebase](https://firebase.google.com/). Let's give them the power to make their app shine!
@@ -325,14 +326,13 @@ That hand emoji is nice but it might look a bit different when viewed on another
 
 We don't have any loaders for image assets so let's install some.
 
-```
-# adds an asset to the output directory
-npm install --save file-loader
+    # adds an asset to the output directory
+    npm install --save file-loader
 
-# loads small assets as dataURIs
-# large assets get handled by file-loader
-npm install --save url-loader
-```
+    # loads small assets as dataURIs
+    # large assets get handled by file-loader
+    npm install --save url-loader
+
 These two loaders serve the same purpose, they allow us to reference an asset in our code and add it to the bundle. As the name implies `file-loader` loads assets as files and `url-loader` tries to inline them as [dataURIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
 
 You could just use `file-loader` for everything but inlining can mean less HTTP requests. The best approach is to use both, let's see how the config looks for a bunch of commonly used file types.
@@ -361,8 +361,8 @@ module.exports = {
     ]
   }
 };
-
 ```
+
 If we add an image in `src/assets` it should now be possible to reference it in `App.scss`...
 
 ```scss
@@ -397,9 +397,7 @@ class App extends Component {
 
 The last thing we'll do today is to deploy our app. Surge makes this process super easy so let's add it to our project.
 
-```
-npm install --save surge
-```
+    npm install --save surge
 
 All that's left is to add a script to our `package.json` that will build the bundle and call the Surge CLI to upload it.
 
@@ -409,7 +407,7 @@ All that's left is to add a script to our `package.json` that will build the bun
 }
 ```
 
-Wohoo we're not up and running at [http://tiny-react-env.surge.sh/](http://tiny-react-env.surge.sh/). Good job!
+Wohoo we're not up and running at <http://tiny-react-env.surge.sh/>. Good job!
 
 ## What's next?
 
