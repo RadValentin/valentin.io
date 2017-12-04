@@ -16,7 +16,11 @@
     "gatsby-remark-prismjs": "^1.2.10",
     "gatsby-source-filesystem": "^1.5.9",
     "gatsby-transformer-remark": "^1.7.23",
-    "prismjs": "^1.8.4"
+    "prismjs": "^1.8.4",
+    "remark-cli": "^4.0.0",
+    "remark-lint": "^6.0.1",
+    "remark-lint-write-good": "^1.0.1",
+    "remark-preset-lint-recommended": "^3.0.1"
   },
   "keywords": [
     "gatsby"
@@ -27,6 +31,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "format": "prettier --write \"src/**/*.js\"",
+    "lint-md": "remark .",
     "deploy": "npm run build && node tools/deploy.js"
   },
   "devDependencies": {
@@ -38,5 +43,12 @@
     "trailingComma": "none",
     "jsxBracketSameLine": false,
     "bracketSpacing": false
+  },
+  "remarkConfig": {
+    "plugins": {
+      "remark-preset-lint-recommended": true,
+      "remark-lint-list-item-indent": "space",
+      "remark-lint-write-good": true
+    }
   }
 }
