@@ -107,12 +107,15 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        /* we'll leave npm packages as-is and not parse them with Babel since most of them are already pre-transpiled anyway. */
+        /* We'll leave npm packages as-is and not 
+           parse them with Babel since most of them 
+           are already pre-transpiled anyway. */
         exclude: /node_modules/,
         use: 'babel-loader'
       }
     ]
   }
+}
 ```
 
 The last part of setting up Babel is telling it to use the presets we installed earlier. All you need to do is add a `babel` field to your `package.json`.
