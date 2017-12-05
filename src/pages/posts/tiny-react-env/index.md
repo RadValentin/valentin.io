@@ -3,18 +3,18 @@ title: "Roll your own tiny React environment using Webpack, Babel and Sass"
 date: "2017-12-01"
 ---
 
-React has become an industry standard, it's the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones. 
+React has become an industry standard at this point, it's the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones. 
 
-It's also extremely easy to get familiar with. A vibrant community has produced tons of material on how to get up and running. Beginners can write and display their first component within minutes by using a tool like [CodeSandbox](https://codesandbox.io/).
+It's also easy to get familiar with. A vibrant community has produced tons of material on how to get up and running. Beginners can write and display their first component within minutes by using a tool like [CodeSandbox](https://codesandbox.io/).
 
-In this article we'll take a look at the next step in the process: __local development__. We'll take a stab at building our own tiny React development environment and by the end we should have a setup that:
+In this article we'll take a look at the next step in the process: **local development**. We'll take a stab at building our own React development environment and by the end we should have a setup that:
 
 1. Compiles JSX into a JS, Sass into CSS and include both in a bundle.
 2. Makes sure our code runs in any modern browser.
 3. Allows us to locally preview changes through hot reloading.
 4. Is ready to deploy with [Surge](http://surge.sh/).
 
-> If you want to follow along, all the code presented here can also be found at [github.com/RadValentin/tiny-react-env](https://github.com/RadValentin/tiny-react-env)
+> If you want to follow along, all the code presented here can be found at [github.com/RadValentin/tiny-react-env](https://github.com/RadValentin/tiny-react-env)
 
 ## Creating a React Bundle
 
@@ -51,7 +51,7 @@ ReactDOM.render(
 );
 ```
 
-Pretty simple but sadly our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won't know what `import` is referring to nor can it understand JSX syntax.
+Our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won't know what `import` is referring to nor can it understand JSX syntax.
 
 This is where a tool like [Webpack](https://webpack.js.org/) comes in. It can combine all our source files into a single bundle that can be loaded in a browser.  
 More importantly, if we point it at a root component it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either an `npm` package or another asset in our project (component, library, image, etc). And we can use _loaders_ Webpack can parse additional syntax types like JSX or Sass.
@@ -174,6 +174,7 @@ var App = function (_Component) {
   return App;
 }(_react.Component);
 ```
+
 The next step is to run our code in a browser. On every build we'll create a HTML file from a template and automatically add the relevant `<script>` tag pointing to the new bundle.
 
 First let's add a basic template in `public/index.html`.
@@ -225,7 +226,7 @@ If you inspect it you'll notice that it loads `bundle.js` even though we didn't 
 
 We've set up a way to bundle a bunch of scripts and load them in a webpage. It's not bad but it also doesn't set the world on fire. Also it's kind of a pain to manually run the build command every time we make a change.
 
-An easy fix for this is to tell Webpack to continue running in watch mode after finishing the build (just pass `--watch` when calling it). Now after every change to our code the bundle will be rebuilt and we can refresh the page to see the changes.
+An easy fix for this is to tell Webpack to continue running in watch mode after finishing the build (pass `--watch` when calling it). Now after every change to our code the bundle will be rebuilt and we can refresh the page to see the changes.
 
 ```sh
 ./node_modules/.bin/webpack --watch
@@ -434,7 +435,7 @@ Wohoo we're now up and running at <http://tiny-react-env.surge.sh/>. Good job!
 
 ## What's next?
 
-It wasn't easy but we've managed to set up a tiny workspace for our future project. Let's do a quick recap:
+It wasn't easy but we've managed to set up a workspace for our future project. Let's do a quick recap:
 
 - Our code is transpiled with Babel and we can use the latest ES2015+ features.
 - We use Webpack to build our bundle and Webpack Dev Server to develop locally with hot reloading.
@@ -443,7 +444,7 @@ It wasn't easy but we've managed to set up a tiny workspace for our future proje
 This is just the tip of the iceberg though, there're a lot more you can do to expand this setup. Here are some ideas for what to try next:
 
 1. Enable source maps by setting a [`devtool`](https://webpack.js.org/configuration/devtool/) field in the webpack config.
-1. Create a separate __production__ config to be used when deploying, disable source maps for it and minify the bundle with [`babel-minify-webpack-plugin`](https://webpack.js.org/plugins/babel-minify-webpack-plugin/).
-1. Use [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to output your style bundle as a separate file from the js bundle.
+2. Create a separate **production** config to be used when deploying, disable source maps for it and minify the bundle with [`babel-minify-webpack-plugin`](https://webpack.js.org/plugins/babel-minify-webpack-plugin/).
+3. Use [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to output your style bundle as a separate file from the js bundle.
 
 Good luck!
