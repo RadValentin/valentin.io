@@ -31,7 +31,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "format": "prettier --write \"src/**/*.js\"",
-    "lint-md": "remark .",
+    "lint:md": "remark .",
     "deploy": "npm run build && node tools/deploy.js"
   },
   "devDependencies": {
