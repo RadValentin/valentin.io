@@ -3,6 +3,8 @@ title: "Roll your own tiny React environment using Webpack, Babel and Sass"
 date: "2017-12-01"
 ---
 
+![Local development with React and Webpack](./tiny-react-env-header.png)
+
 React has become an industry standard at this point, it's the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones. 
 
 It's also easy to get familiar with. A vibrant community has produced tons of material on how to get up and running. Beginners can write and display their first component within minutes by using a tool like [CodeSandbox](https://codesandbox.io/).
