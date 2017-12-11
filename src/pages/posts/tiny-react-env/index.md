@@ -451,3 +451,5 @@ This is just the tip of the iceberg though, there're a lot more you can do to ex
 3. Use [`extract-text-webpack-plugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to output your style bundle as a separate file from the js bundle.
 
 Good luck!
+
+> This article was originally published on [Codementor](https://www.codementor.io/valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl).
