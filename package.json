@@ -33,7 +33,7 @@
     "build": "gatsby build",
     "format": "prettier --write \"src/**/*.js\"",
     "lint:md": "remark .",
-    "deploy": "npm run build && node tools/deploy.js"
+    "deploy": "yarn build && node tools/deploy.js"
   },
   "devDependencies": {
     "prettier": "^1.7.4"
