@@ -4,7 +4,6 @@
   "description": "Personal portfolio of Valentin Radulescu",
   "author": "Valentin Radulescu <hi@valentin.io>",
   "dependencies": {
-    "ftp-deploy": "^1.2.2",
     "gatsby": "^1.9.99",
     "gatsby-link": "^1.6.24",
     "gatsby-plugin-google-analytics": "^1.0.11",
@@ -15,7 +14,8 @@
     "gatsby-remark-images": "^1.5.33",
     "gatsby-remark-prismjs": "^1.2.10",
     "gatsby-source-filesystem": "^1.5.9",
-    "gatsby-transformer-remark": "^1.7.23",
+    "gatsby-transformer-remark": "1.7.9",
+    "gh-pages": "^1.2.0",
     "prismjs": "^1.8.4",
     "progress": "^2.0.0",
     "remark-cli": "^4.0.0",
@@ -33,7 +33,7 @@
     "build": "gatsby build",
     "format": "prettier --write \"src/**/*.js\"",
     "lint:md": "remark .",
-    "deploy": "yarn build && node tools/deploy.js"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
     "prettier": "^1.7.4"
