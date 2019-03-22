@@ -1,0 +1,2 @@
+webpackJsonp([60335399758886],{107:function(e,t){e.exports={data:{site:{siteMetadata:{author:"Valentin Radulescu",title:"Valentin Radulescu - Front-End Developer",description:"Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.",url:"https://valentin.io/"}}},layoutContext:{}}}});
+//# sourceMappingURL=path----5fc309a876c582f7c4a4.js.map
