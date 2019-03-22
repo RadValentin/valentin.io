@@ -20,7 +20,6 @@
     "progress": "^2.0.0",
     "remark-cli": "^4.0.0",
     "remark-lint": "^6.0.1",
-    "remark-lint-write-good": "^1.0.1",
     "remark-preset-lint-recommended": "^3.0.1"
   },
   "keywords": [
@@ -48,8 +47,7 @@
   "remarkConfig": {
     "plugins": {
       "remark-preset-lint-recommended": true,
-      "remark-lint-list-item-indent": "space",
-      "remark-lint-write-good": true
+      "remark-lint-list-item-indent": "space"
     }
   }
 }
