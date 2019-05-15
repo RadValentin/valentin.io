@@ -15,7 +15,7 @@
     "gatsby-remark-prismjs": "^1.2.10",
     "gatsby-source-filesystem": "^1.5.9",
     "gatsby-transformer-remark": "1.7.9",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^2.0.1",
     "prismjs": "^1.8.4",
     "progress": "^2.0.0",
     "remark-cli": "^4.0.0",
