@@ -29,7 +29,7 @@ class IndexPage extends Component {
       <div className="index">
         <div className="intro-left">
           <div className="intro-left-inner">
-            <img src={avatar} alt={author} />
+            <img src={avatar} alt={author} width="200" height="200" />
             <h1>{description}</h1>
             <h2>
               👉{' '}
