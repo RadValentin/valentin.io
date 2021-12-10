@@ -40,6 +40,12 @@ class IndexPage extends Component {
           </div>
         </div>
         <div className="intro-right">
+          <a 
+            className="intro-link-youtube"
+            href="https://www.youtube.com/c/ValentinRadulescuDev"
+          >
+            <i className="fa fa-youtube-play" /> YouTube
+          </a>
           <a
             className="intro-link-github"
             href="https://github.com/RadValentin"
