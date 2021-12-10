@@ -17,6 +17,9 @@ const Resume = () => (
         </h1>
         <header>
           <div className="social">
+            <a href="https://www.youtube.com/c/ValentinRad">
+              <i className="fa fa-youtube-play" /> @ValentinRad
+            </a>
             <a href="https://twitter.com/RadValentin">
               <i className="fa fa-twitter" /> @RadValentin
             </a>
