@@ -56,6 +56,9 @@
     padding: 0 0 0 @default-spacing * 2;
     border-left: 8px solid black;
     transition: transform .3s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &:hover {
       transform: scale(1.05)
@@ -96,6 +99,14 @@
 
   .intro-link-resume {
     border-left-color: coral;
+  }
+
+  .intro-link-airbnb {
+    border-left-color: #FF5A5F;
+
+    i {
+      color: #FF5A5F;
+    }
   }
 
   @media (min-width: @screen-min-md) {
