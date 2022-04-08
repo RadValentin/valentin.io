@@ -53,12 +53,6 @@ class IndexPage extends Component {
             <i className="fa fa-github" /> Github
           </a>
           <a
-            className="intro-link-twitter"
-            href="https://twitter.com/RadValentin"
-          >
-            <i className="fa fa-twitter" /> Twitter
-          </a>
-          <a
             className="intro-link-linkedin"
             href="https://www.linkedin.com/in/valentinrad/"
           >
@@ -69,10 +63,6 @@ class IndexPage extends Component {
           </a>
           <a className="intro-link-resume" href={resumePdf}>
             <i className="fa fa-file-pdf-o" /> Résumé
-          </a>
-
-          <a className="intro-link-airbnb" href="https://airbnb.com/h/cosy-and-quiet" title="A cosy and quiet place to work from or relax in while you're visiting Bucharest">
-            <i className="fa fa-home" /> Book My Apartment
           </a>
         </div>
         {/* {this.renderPosts()} */}
