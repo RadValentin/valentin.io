@@ -1,4 +1,0 @@
-image: node:10.24.0
-tasks:
-  - init: yarn install && yarn run build
-    command: yarn run build
