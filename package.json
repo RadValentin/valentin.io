@@ -1,14 +1,28 @@
 {
-  "name": "valentin.io",
-  "version": "1.0.0",
+  "name": "blog",
+  "type": "module",
+  "version": "0.0.1",
   "description": "Personal portfolio of Valentin Radulescu",
   "author": "Valentin Radulescu <hi@valentin.io>",
-  "dependencies": {
-  },
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "MIT",
-  "main": "n/a",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.2.10",
+    "sharp": "^0.35.0"
+  },
+  "allowScripts": {
+    "esbuild": true
   }
 }
