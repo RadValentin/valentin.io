@@ -1,0 +1,146 @@
+@import './variables.less';
+
+@intro-link-height: 5rem;
+
+.index {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  .intro-left {
+    display: flex;
+    flex: 0 1 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: @default-spacing;
+    text-align: center;
+
+    img {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 5px 15px 0 rgba(127,127,127,0.50);
+      border: 8px solid white;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 a {
+      display: inline-block;
+      vertical-align: text-bottom;
+    }
+  }
+
+  .intro-right {
+    display: flex;
+    flex: 0 1 50%;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  [class^=intro-link] {
+    display: block;
+    width: 100%;
+    margin: @default-spacing;
+    height: @intro-link-height;
+    line-height: @intro-link-height;
+    font-size: 2rem;
+    color: @text-color;
+    background-color: #fff;
+    box-shadow: 0 5px 15px 0 rgba(127,127,127,0.50);
+    border-radius: 5px;
+    padding: 0 0 0 @default-spacing * 2;
+    border-left: 8px solid black;
+    transition: transform .3s;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &:hover {
+      transform: scale(1.05)
+    }
+
+    .link-icon {
+      margin-right: @default-spacing;
+    }
+  }
+
+  .intro-link-youtube {
+    border-left-color: #ff0000;
+
+    .link-icon {
+      color: #ff0000;
+    }
+  }
+
+  .intro-link-twitter {
+    border-left-color: #1da1f2;
+
+    .link-icon {
+      color: #1da1f2;
+    }
+  }
+
+  .intro-link-linkedin {
+    border-left-color: #0077b5;
+
+    .link-icon {
+      color: #0077b5;
+    }
+  }
+
+  .intro-link-codepen {
+    border-left-color: #00c08e;
+  }
+
+  .intro-link-resume {
+    border-left-color: coral;
+  }
+
+  .intro-link-airbnb {
+    border-left-color: #FF5A5F;
+
+    .link-icon {
+      color: #FF5A5F;
+    }
+  }
+
+  @media (min-width: @screen-min-md) {
+    flex-direction: row;
+
+    .intro-left,
+    .intro-right {
+      width: 50vw;
+      height: 100vh;
+    }
+
+    .intro-left {
+      text-align: left;
+    }
+
+    .intro-left-inner {
+      max-width: 700px;
+    }
+
+    .intro-right {
+      flex-direction: column;
+      background: linear-gradient(to bottom right, #8BC6EC, @hi-color);
+    }
+
+    [class^=intro-link] {
+      width: 60%;
+      margin: @default-spacing auto;
+    }
+  }
+
+  @media (min-width: @screen-min-sm) and (max-width: @screen-min-md) {
+    [class^=intro-link] {
+      width: ~'calc(50% - 2 * @{default-spacing})';
+      margin: @default-spacing;
+    }
+  }
+}

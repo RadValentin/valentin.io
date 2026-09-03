@@ -3,46 +3,52 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import avatar from '../assets/valentin-radulescu.jpg';
+import resume from '../assets/valentin-radulescu-resume.pdf';
+import '../styles/index.less';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+		/>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main class="index">
+			<section class="intro-left" aria-labelledby="intro-title">
+				<div class="intro-left-inner">
+					<img
+						src={avatar.src}
+						alt="Valentin Radulescu"
+						width="200"
+						height="200"
+					/>
+					<h1 id="intro-title">Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.</h1>
+					<h2><span aria-hidden="true">👉</span> <a href="mailto:hi@valentin.io">Get in touch</a></h2>
+				</div>
+			</section>
+
+			<nav class="intro-right" aria-label="Social links">
+				<a class="intro-link intro-link-youtube" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
+					<span class="link-icon" aria-hidden="true">▶</span> YouTube
+				</a>
+				<a class="intro-link intro-link-github" href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
+					<span class="link-icon" aria-hidden="true">◖</span> Github
+				</a>
+				<a class="intro-link intro-link-linkedin" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer">
+					<span class="link-icon" aria-hidden="true">in</span> LinkedIn
+				</a>
+				<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
+					<span class="link-icon" aria-hidden="true">&lt;/&gt;</span> Codepen
+				</a>
+				<a class="intro-link intro-link-resume" href={resume} target="_blank" rel="noreferrer">
+					<span class="link-icon" aria-hidden="true">PDF</span> Résumé
+				</a>
+			</nav>
 		</main>
 		<Footer />
 	</body>
