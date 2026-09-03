@@ -1,0 +1,136 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import resumePdf from '../assets/valentin-radulescu-resume.pdf';
+import '../styles/resume.less';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Valentin Radulescu - Resume" description="Resume of Valentin Radulescu, Front-End Developer." />
+	</head>
+	<body class="resume-overlay">
+		<main class="resume">
+			<h1>
+				<span>Valentin Radulescu</span><br />
+				<span class="role">Front-End Developer</span>
+			</h1>
+
+			<header>
+				<nav class="social" aria-label="Resume links">
+					<a href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-youtube" aria-hidden="true"></i> @ValentinRad
+					</a>
+					<a href="https://twitter.com/RadValentin" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-twitter" aria-hidden="true"></i> @RadValentin
+					</a>
+					<a href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-github" aria-hidden="true"></i> RadValentin
+					</a>
+					<a href="https://codepen.io/valentin" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-codepen" aria-hidden="true"></i> @valentin
+					</a>
+					<a href="https://stackoverflow.com/users/1333383/valentin" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-stack-overflow" aria-hidden="true"></i> Valentin
+					</a>
+					<a href={resumePdf} target="_blank" rel="noreferrer">
+						<i class="fa-solid fa-file-pdf" aria-hidden="true"></i> PDF version
+					</a>
+				</nav>
+
+				<div class="summary">
+					<p>Experienced front-end developer searching for an awesome remote team.</p>
+					<p>
+						Driven by curiosity I spend my time between working on large scale web applications or building
+						smaller personal projects, often trying out new APIs or emerging libraries, eager to bind them to
+						my will.
+					</p>
+					<p>
+						I love to work with:
+						<span class="tag">React</span>
+						<span class="tag">Redux</span>
+						<span class="tag">JavaScript</span>
+						<span class="tag">HTML5</span>
+						<span class="tag">CSS3</span>
+						<span class="tag">Webpack</span>
+						<span class="tag">LESS</span>
+						<span class="tag">SASS</span>
+						<span class="tag">WebVR</span>
+					</p>
+				</div>
+			</header>
+
+			<section class="experience">
+				<h2>Experience</h2>
+				<div class="subsection">
+					<h3>Front-End Developer at <a href="https://hootsuite.com/" target="_blank" rel="noreferrer">Hootsuite</a></h3>
+					<p class="subsection-period">May 2014 -> Jul 2017 (3 years, 3 months)</p>
+					<p class="subsection-tags"><span class="tag">React</span> <span class="tag">Redux</span> <span class="tag">Webpack</span> <span class="tag">LESS</span> <span class="tag">Jest</span></p>
+					<p>
+						As part of the Bucharest team I helped build the UI for
+						<a href="https://hootsuite.com/pages/analytics" target="_blank" rel="noreferrer">Hootsuite's Analytics app</a>
+						from scratch using React, Redux and LESS. My main focus outside day-to-day tasks was on improving
+						developer experience through documentation and better tooling. I was also involved with organizing
+						a biannual React Meetup.
+					</p>
+					<p><b>Achievements:</b> Kickstarted an internal repo of shared React components during a hackathon that ended up being used across the company.</p>
+				</div>
+
+				<div class="subsection">
+					<h3>Freelance Front-End Developer at <a href="https://www.upwork.com/" target="_blank" rel="noreferrer">Upwork</a></h3>
+					<p class="subsection-period">Jan 2013 -> May 2014 (1 year, 5 months)</p>
+					<p class="subsection-tags"><span class="tag">ASP.NET</span> <span class="tag">Wordpress</span> <span class="tag">jQuery</span> <span class="tag">HTML5</span> <span class="tag">SASS</span></p>
+					<p>Worked with international clients and gained a good reputation as a freelance front-end developer. Successfully completed multiple projects for both large and small businesses and gained consistent positive feedback.</p>
+					<p><b>Achievements:</b> Many happy customers and a total rating of 4.97 out of 5.</p>
+				</div>
+
+				<div class="subsection">
+					<h3>Front-End Developer at <a href="http://www.winarrow.com/" target="_blank" rel="noreferrer">Winarrow</a></h3>
+					<p class="subsection-period">Jan 2012 -> Jan 2013 (1 year, 1 month)</p>
+					<p class="subsection-tags"><span class="tag">Wordpress</span> <span class="tag">jQuery</span> <span class="tag">HTML5</span> <span class="tag">CSS3</span></p>
+					<p>I was tasked with writing standards compliant, cross-browser compatible HTML and CSS for a large number of niche e-commerce websites.</p>
+					<p><b>Responsibilities:</b> PSD to HTML slicing, convert sliced designs to Wordpress themes, SEO, A/B testing.</p>
+				</div>
+			</section>
+
+			<section>
+				<h2>Freelance Projects</h2>
+				<div class="subsection">
+					<h3>
+						A Watch by You
+						<a class="freelance-link" href="http://designawatch.okmylo.com/" target="_blank" rel="noreferrer" aria-label="View A Watch by You">
+							<i class="fa-solid fa-link" aria-hidden="true"></i>
+						</a>
+					</h3>
+					<p class="subsection-period">Apr 2014</p>
+					<p class="subsection-tags"><span class="tag">JavaScript</span> <span class="tag">SASS</span> <span class="tag">Responsive Design</span></p>
+					<p>A microsite built to get user feedback for an upcoming Kickstarter campaign. The gathered feedback was used to dictate what the final product, a set of watches, looked like.</p>
+				</div>
+				<div class="subsection">
+					<h3>
+						MYLO: Essentials x A Better Backpack
+						<a class="freelance-link" href="http://essentials.okmylo.com/" target="_blank" rel="noreferrer" aria-label="View MYLO: Essentials x A Better Backpack">
+							<i class="fa-solid fa-link" aria-hidden="true"></i>
+						</a>
+					</h3>
+					<p class="subsection-period">Nov 2013</p>
+					<p class="subsection-tags"><span class="tag">JavaScript</span> <span class="tag">SASS</span> <span class="tag">Responsive Design</span></p>
+					<p>A microsite showcasing essential items for designers and creatives. Built to work flawlessly on desktop, tablet and mobile.</p>
+				</div>
+			</section>
+
+			<section>
+				<div class="subsection">
+					<h2>Location</h2>
+					<p>Currently located in <b>Bucharest, Romania</b> but I tend to move around. Only interested in <b>remote work</b> opportunities for the foreseeable future.</p>
+				</div>
+				<div class="subsection">
+					<h2>Contact</h2>
+					<p>Want to build the next big thing or just chat? Drop me an email at <b><a href="mailto:hi@valentin.io">hi@valentin.io</a></b></p>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
