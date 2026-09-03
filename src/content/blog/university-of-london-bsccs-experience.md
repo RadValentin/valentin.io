@@ -1,4 +1,9 @@
-# Pursuing a Computer Science degree with ~10 year of development experience
+---
+title: 'Pursuing a Computer Science degree with ~10 years of development experience'
+description: 'What I learned from completing a Computer Science degree while working as a developer.'
+pubDate: 'Sep 03 2026'
+heroImage: '../../assets/blog-placeholder-2.jpg'
+---
 
 ## Sustained, structured, motivated learning in adult life
 
@@ -8,7 +13,7 @@ With time I realised that what was bothering me was that I didn't have a good fr
 
 Before my first job in the industry, learning was easy. I knew I had some talent for web development from school and wanted to work in the industry so I spent every day practicing HTML, CSS and JavaScript which lead to building a portfolio of work and to my first interviews. But once work started, learning became a chore. I was tied into whatever tech the current company was using and after 8 hours of work I could barely justify spending time keeping up with what was relevant in the industry.
 
-Ten years down the line, even staying relevant was starting to seem impossible. Days spent stuck in meetings, weeks eaten up by Agile dogma (standups, planning, grooming, reviews, recaps) made my skills rusty. How could I stay up to date when whatever I learned would rarely be put to use? And how could the new information get a chance to sediment?
+Ten years down the line, even staying relevant was starting to seem impossible. Days spent stuck in meetings, weeks eaten up by Agile dogma (stand-up, planning, grooming, reviews, recaps) made my skills rusty. How could I stay up to date when whatever I learned would rarely be put to use? And how could the new information get a chance to sediment?
 
 While this frustration was building up, I happened to stumble upon an add for Computer Science courses offered by the University of London. What stood out to me was the breadth of topics covered: Virtual Reality with Unity, Mobile Development with React Native, 3D Graphics and Animation, Advanced Web Development with Django. It was a mix of stuff I was interested in pursuing but never had the time and things I'd used but only at a beginner level. Having a guided experience through these topics meant there was less of a chance of starting without having the right foundation and a I hoped that having deadlines and grades would help stave off procrastination.
 
@@ -26,7 +31,7 @@ Signing up for the degree was a simple matter of filling out forms and submittin
 In April 2021, I started taking my first modules: "Introduction to Programming I" and "Algorithms and Data Structures I". Back then, I was living in Prague, having relocated from Bucharest in order to join the Skype team. Studying took place for 1-2h after work and on the weekends. The courses were easy to follow as I was very familiar with what was being taught. At the same time it didn't feel like I was wasting my time because there was always some deliverable you had to produce which provided a decent challenge, even for an experienced programmer.
 
 <figure>
-  <img alt="ITP1 Game Demo" src="assets/super-robbie-world.gif" />
+  <img alt="ITP1 Game Demo" src="/assets/blog/super-robbie-world.gif" />
   <figcaption>Assignment for ITP1: A simple 2D platformer game</figcaption>
 </figure>
 
