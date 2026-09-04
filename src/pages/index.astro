@@ -1,0 +1,61 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import avatar from '../assets/valentin-radulescu.jpg';
+import resume from '../assets/valentin-radulescu-resume.pdf';
+import '../styles/index.less';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={SITE_TITLE}
+			description={SITE_DESCRIPTION}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main class="index">
+			<section class="intro-left" aria-labelledby="intro-title">
+				<div class="intro-left-inner">
+					<img
+						src={avatar.src}
+						alt="Valentin Radulescu"
+						width="200"
+						height="200"
+					/>
+					<h1 id="intro-title">Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.</h1>
+					<h2><span aria-hidden="true">👉</span> <a href="mailto:hi@valentin.io">Get in touch</a></h2>
+				</div>
+			</section>
+
+			<nav class="intro-right" aria-label="Social links">
+				<!-- TODO: Enable the Blog link after the site reskin is complete: https://github.com/RadValentin/valentin.io/issues/11 -->
+				<!--
+				<a class="intro-link intro-link-blog" href="/blog/">
+					<i class="fa-solid fa-blog" aria-hidden="true"></i> Blog
+				</a>
+				-->
+				<a class="intro-link intro-link-youtube" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
+					<i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube
+				</a>
+				<a class="intro-link intro-link-github" href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
+					<i class="fa-brands fa-github" aria-hidden="true"></i> Github
+				</a>
+				<a class="intro-link intro-link-linkedin" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer">
+					<i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
+				</a>
+				<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
+					<i class="fa-brands fa-codepen" aria-hidden="true"></i> Codepen
+				</a>
+				<a class="intro-link intro-link-resume" href={resume}>
+					<i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Résumé
+				</a>
+			</nav>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,11 +1,13 @@
 ---
-title: "Roll your own tiny React environment using Webpack, Babel and Sass"
-date: "2017-12-01"
+title: 'Roll your own tiny React environment using Webpack, Babel and Sass'
+description: 'A practical walkthrough of building a front-end workflow with bundling, transpilation, live updates, and deployment.'
+pubDate: '2017-12-11'
+canonicalURL: 'https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl'
+heroImage: './tiny-react-env-header.png'
+draft: false
 ---
 
-![Local development with React and Webpack](./tiny-react-env-header.png)
-
-React has become an industry standard at this point. It's the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones. 
+React has become an industry standard at this point. It's the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones.
 
 It's also easy to get familiar with. A vibrant community has produced tons of material on how to get up and running. Beginners can write and display their first component within minutes by using a tool like [CodeSandbox](https://codesandbox.io/).
 
@@ -48,14 +50,14 @@ class App extends Component {
 }
 
 ReactDOM.render(
-  <App />, 
+  <App />,
   document.getElementById('root')
 );
 ```
 
 Our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won't know what `import` is referring to, nor can it understand JSX syntax.
 
-This is where a tool like [Webpack](https://webpack.js.org/) comes in. It can combine all of our source files into a single bundle that can be loaded in a browser.  
+This is where a tool like [Webpack](https://webpack.js.org/) comes in. It can combine all of our source files into a single bundle that can be loaded in a browser.
 
 More importantly, if we point it at a root component, it will in turn build an internal dependency graph. Every `import` in our code will be mapped to either a `npm` package or another asset in our project (component, library, image, etc). We can use [loaders](https://webpack.js.org/loaders/) to parse additional syntax types like JSX or Sass.
 
@@ -71,7 +73,7 @@ touch webpack.config.js
 const path = require('path');
 
 module.exports = {
-  // Tell webpack to begin building its 
+  // Tell webpack to begin building its
   // dependency graph from this file.
   entry: path.join(__dirname, 'src', 'components', 'App.js'),
   // And to place the output in the `build` directory
@@ -92,7 +94,7 @@ npm install --save babel-core
 # allows Webpack to transpile JS code via Babel
 npm install --save babel-loader
 
-# allows transpilation from latest ES2015+ 
+# allows transpilation from latest ES2015+
 # features to ES5
 npm install --save babel-preset-env
 
@@ -110,8 +112,8 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        /* We'll leave npm packages as is and not 
-           parse them with Babel since most of them 
+        /* We'll leave npm packages as is and not
+           parse them with Babel since most of them
            are already pre-transpiled anyway. */
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -140,7 +142,7 @@ Now that that's done, we can finally compile our code into a bundle. To do this,
 }
 ```
 
-All that's left to do is run `npm run start`, or even better, `npm start`, and voilà, a success message and the compiled bundle can be found in `build/bundle.js`. 
+All that's left to do is run `npm run start`, or even better, `npm start`, and voilà, a success message and the compiled bundle can be found in `build/bundle.js`.
 
 ```sh
 Hash: b5a8448c403cf555a5de
@@ -224,7 +226,7 @@ module.exports = {
 }
 ```
 
-Perfect! Now you can start a new build with `npm start` and you should see an `index.html` file in your build directory. Open it and enjoy the fruits of your labor 🎉 
+Perfect! Now you can start a new build with `npm start` and you should see an `index.html` file in your build directory. Open it and enjoy the fruits of your labor 🎉
 
 If you inspect it, you'll notice that it loads `bundle.js`, even though we didn't have any `<script>` tags in our template — `html-webpack-plugin` did it for us, what a nice fellow!
 
@@ -237,8 +239,8 @@ An easy fix for this is to tell Webpack to continue running in watch mode after 
 ```sh
 ./node_modules/.bin/webpack --watch
 
-# Don't mind the first -- it's just a way to pass arguments to 
-# scripts from package.json 
+# Don't mind the first -- it's just a way to pass arguments to
+# scripts from package.json
 npm start -- --watch
 ```
 
@@ -283,7 +285,7 @@ Webpack has been a good friend so far, so of course we'll be using it to load ou
 
 ```sh
 # creates style tags from JS strings
-npm install --save style-loader 
+npm install --save style-loader
 
 # translates CSS into JS strings
 npm install --save css-loader
@@ -387,7 +389,7 @@ module.exports = {
           }
         }]
       },
-      { 
+      {
         test: /\.(eot|svg|ttf|woff2?|otf)$/,
         use: 'file-loader'
       }
@@ -458,4 +460,4 @@ This is just the tip of the iceberg though — there is a lot more you can do to
 
 Good luck!
 
-> This article was originally published on [Codementor](https://www.codementor.io/valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl).
+> **Attribution:** This article was written by Valentin Radulescu and originally published on [Codementor](https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl). This page is maintained as an archival copy.

@@ -1,53 +1,30 @@
 {
-  "name": "valentin.io",
-  "version": "1.0.0",
+  "name": "blog",
+  "type": "module",
+  "version": "0.0.1",
   "description": "Personal portfolio of Valentin Radulescu",
   "author": "Valentin Radulescu <hi@valentin.io>",
-  "dependencies": {
-    "gatsby": "^1.9.99",
-    "gatsby-link": "^1.6.24",
-    "gatsby-plugin-google-analytics": "^1.0.11",
-    "gatsby-plugin-less": "^1.0.5",
-    "gatsby-plugin-react-helmet": "^1.0.8",
-    "gatsby-remark-autolink-headers": "^1.4.9",
-    "gatsby-remark-copy-linked-files": "^1.5.22",
-    "gatsby-remark-images": "^1.5.33",
-    "gatsby-remark-prismjs": "^1.2.10",
-    "gatsby-source-filesystem": "^1.5.9",
-    "gatsby-transformer-remark": "1.7.9",
-    "gh-pages": "^2.0.1",
-    "prismjs": "^1.8.4",
-    "progress": "^2.0.0",
-    "remark-cli": "^4.0.0",
-    "remark-lint": "^6.0.1",
-    "remark-preset-lint-recommended": "^3.0.1"
-  },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": [],
   "license": "MIT",
-  "main": "n/a",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "format": "prettier --write \"src/**/*.js\"",
-    "lint:md": "remark .",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "devDependencies": {
-    "prettier": "^1.7.4"
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "astro": "^7.2.10",
+    "less": "^4.9.1",
+    "sharp": "^0.35.0"
   },
-  "prettier": {
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "jsxBracketSameLine": false,
-    "bracketSpacing": false
-  },
-  "remarkConfig": {
-    "plugins": {
-      "remark-preset-lint-recommended": true,
-      "remark-lint-list-item-indent": "space"
-    }
+  "allowScripts": {
+    "esbuild": true
   }
 }
