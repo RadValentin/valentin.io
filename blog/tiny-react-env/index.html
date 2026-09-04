@@ -1,0 +1,349 @@
+<!DOCTYPE html><html lang="en"><head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Valentin Radulescu - Front-End Developer" href="https://valentin.io/rss.xml"><meta name="generator" content="Astro v7.2.10"><style>@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/_astro/fonts/89758defcfa85239.woff") format("woff");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:Atkinson-c7f4c4e8b285552f;src:url("/_astro/fonts/14aa8dd5744dd4bc.woff") format("woff");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial";src:local("Arial");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.3717%;ascent-override:80.1033%;descent-override:25.2587%;line-gap-override:0%;}@font-face{font-family:"Atkinson-c7f4c4e8b285552f fallback: Arial Bold";src:local("Arial Bold");font-display:swap;font-weight:700;font-style:normal;size-adjust:92.2954%;ascent-override:86.2448%;descent-override:27.1953%;line-gap-override:0%;}:root{--font-atkinson:Atkinson-c7f4c4e8b285552f,"Atkinson-c7f4c4e8b285552f fallback: Arial","Atkinson-c7f4c4e8b285552f fallback: Arial Bold",sans-serif;}</style><link rel="preload" href="/_astro/fonts/89758defcfa85239.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/_astro/fonts/14aa8dd5744dd4bc.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl"><!-- Primary Meta Tags --><title>Roll your own tiny React environment using Webpack, Babel and Sass</title><meta name="description" content="A practical walkthrough of building a front-end workflow with bundling, transpilation, live updates, and deployment."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://valentin.io/blog/tiny-react-env/"><meta property="og:title" content="Roll your own tiny React environment using Webpack, Babel and Sass"><meta property="og:description" content="A practical walkthrough of building a front-end workflow with bundling, transpilation, live updates, and deployment."><meta property="og:image" content="https://valentin.io/_astro/valentin-og-placeholder.84Pw0p_S.jpg"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-W429060K20"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W429060K20');
+</script><link rel="stylesheet" href="/_astro/Footer.B-BxTXde.css"><style>main{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image{width:100%}.hero-image img{max-width:100%;height:auto;box-shadow:var(--box-shadow);border-radius:12px;margin:0 auto;display:block}.prose{width:720px;max-width:calc(100% - 2em);color:rgb(var(--gray-dark));margin:auto;padding:1em}.prose img{max-width:100%;height:auto}.title{text-align:center;margin-bottom:1em;padding:1em 0;line-height:1}.title h1{margin:0 0 .5em}.date{color:rgb(var(--gray));margin-bottom:.5em}.last-updated-on{font-style:italic}
+</style></head><body><!-- <header>
+	<nav>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+		</div>
+	</nav>
+</header> --><main><article><div class="hero-image"><img src="/_astro/tiny-react-env-header.BBllPJFq_10oEXH.webp" alt loading="lazy" decoding="async" width="1020" height="510"></div><div class="prose"><div class="title"><div class="date"><time datetime="2017-12-11T00:00:00.000Z">Dec 11, 2017</time></div><h1>Roll your own tiny React environment using Webpack, Babel and Sass</h1><hr></div><p>React has become an industry standard at this point. It’s the first JavaScript framework that a lot of new developers will learn and the default option for many other experienced ones.</p>
+<p>It’s also easy to get familiar with. A vibrant community has produced tons of material on how to get up and running. Beginners can write and display their first component within minutes by using a tool like <a href="https://codesandbox.io/">CodeSandbox</a>.</p>
+<p>In this article, we’ll take a look at the next step in the process: <strong>local development</strong>. We’ll take a stab at building our own React development environment and, by the end, we should have a setup that:</p>
+<ol>
+<li>Compiles <a href="https://reactjs.org/docs/jsx-in-depth.html">JSX</a> into JS, Sass into CSS, and outputs them as a single file (bundle).</li>
+<li>Makes sure our code runs in any modern browser.</li>
+<li>Allows us to locally preview changes through hot reloading.</li>
+<li>Is ready to deploy with <a href="http://surge.sh/">Surge</a>.</li>
+</ol>
+<blockquote>
+<p>If you want to follow along, all the code presented here can also be found at <a href="https://github.com/RadValentin/tiny-react-env">github.com/RadValentin/tiny-react-env</a></p>
+</blockquote>
+<h2 id="creating-a-react-bundle">Creating a React Bundle</h2>
+<p>Let’s create a folder to house our future project and initialize it with a <code>package.json</code> file. We’ll also add React, since we know we’re going to need it later.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> tiny-react-env</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> tiny-react-env</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># this will ask you a bunch of questions</span></span>
+<span class="line"><span style="color:#6A737D"># enter as much or as little info as you want</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> init</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> react</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> react-dom</span></span></code></pre>
+<p>We’ll also need some sort of component — let’s add it in<code>src/components/App.js</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">/* src/components/App.js */</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> React, {Component} </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'react'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> ReactDOM </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'react-dom'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> App</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  render</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> &lt;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;Hello World!&lt;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ReactDOM.</span><span style="color:#B392F0">render</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#79B8FF">App</span><span style="color:#E1E4E8"> /&gt;,</span></span>
+<span class="line"><span style="color:#E1E4E8">  document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'root'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Our component is just a bunch of text at the moment. If we run it through Node (or Chrome) it won’t know what <code>import</code> is referring to, nor can it understand JSX syntax.</p>
+<p>This is where a tool like <a href="https://webpack.js.org/">Webpack</a> comes in. It can combine all of our source files into a single bundle that can be loaded in a browser.</p>
+<p>More importantly, if we point it at a root component, it will in turn build an internal dependency graph. Every <code>import</code> in our code will be mapped to either a <code>npm</code> package or another asset in our project (component, library, image, etc). We can use <a href="https://webpack.js.org/loaders/">loaders</a> to parse additional syntax types like JSX or Sass.</p>
+<p>Let’s install Webpack and give it a simple config.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> webpack</span></span>
+<span class="line"><span style="color:#B392F0">touch</span><span style="color:#9ECBFF"> webpack.config.js</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">/* webpack.config.js */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> path</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'path'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">exports</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // Tell webpack to begin building its</span></span>
+<span class="line"><span style="color:#6A737D">  // dependency graph from this file.</span></span>
+<span class="line"><span style="color:#E1E4E8">  entry: path.</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">(__dirname, </span><span style="color:#9ECBFF">'src'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'components'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'App.js'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#6A737D">  // And to place the output in the `build` directory</span></span>
+<span class="line"><span style="color:#E1E4E8">  output: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    path: path.</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">(__dirname, </span><span style="color:#9ECBFF">'build'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">    filename: </span><span style="color:#9ECBFF">'bundle.js'</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Cool, now our imports will work beautifully, but we still need to figure out a way to parse JSX. For this, we need <a href="https://babeljs.io/">Babel</a> — let’s add it to our project.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6A737D"># base of the Babel ecosystem, parses JS code,</span></span>
+<span class="line"><span style="color:#6A737D"># very powerful with the right plugins</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> babel-core</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># allows Webpack to transpile JS code via Babel</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> babel-loader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># allows transpilation from latest ES2015+</span></span>
+<span class="line"><span style="color:#6A737D"># features to ES5</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> babel-preset-env</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># and finally, JSX to ES5 transpilation</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> babel-preset-react</span></span></code></pre>
+<p>Now we can update our <code>webpack.config.js</code> with a <code>module</code> field. This tells Webpack that any files with the <code>js</code> or <code>jsx</code> extensions should be parsed with Babel.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">/* webpack.config.js */</span></span>
+<span class="line"><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">exports</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">  module: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    rules: [</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#E1E4E8">        test:</span><span style="color:#9ECBFF"> /</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">jsx</span><span style="color:#F97583">?$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#6A737D">        /* We'll leave npm packages as is and not</span></span>
+<span class="line"><span style="color:#6A737D">           parse them with Babel since most of them</span></span>
+<span class="line"><span style="color:#6A737D">           are already pre-transpiled anyway. */</span></span>
+<span class="line"><span style="color:#E1E4E8">        exclude:</span><span style="color:#9ECBFF"> /</span><span style="color:#DBEDFF">node_modules</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        use: </span><span style="color:#9ECBFF">'babel-loader'</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>The last part of setting up Babel is telling it to use the presets we installed earlier. All you need to do is add a <code>babel</code> field to your <code>package.json</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#9ECBFF">"babel"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#9ECBFF">  "presets"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#9ECBFF">    "env"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    "react"</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Now that that’s done, we can finally compile our code into a bundle. To do this, you could run Webpack from the <code>node_modules</code> directory <code>./node_modules/.bin/webpack</code>. However, that’s a bit of a pain to type out and we’ll be running it <strong>a lot</strong>. Instead, we’re going to add a shortcut for it in <code>package.json</code> under <code>scripts</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#9ECBFF">"scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#9ECBFF">  "start"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"webpack"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>All that’s left to do is run <code>npm run start</code>, or even better, <code>npm start</code>, and voilà, a success message and the compiled bundle can be found in <code>build/bundle.js</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">Hash:</span><span style="color:#9ECBFF"> b5a8448c403cf555a5de</span></span>
+<span class="line"><span style="color:#B392F0">Version:</span><span style="color:#9ECBFF"> webpack</span><span style="color:#79B8FF"> 3.8.1</span></span>
+<span class="line"><span style="color:#B392F0">Time:</span><span style="color:#9ECBFF"> 1033ms</span></span>
+<span class="line"><span style="color:#B392F0">    Asset</span><span style="color:#9ECBFF">    Size</span><span style="color:#9ECBFF">  Chunks</span><span style="color:#9ECBFF">                    Chunk</span><span style="color:#9ECBFF"> Names</span></span>
+<span class="line"><span style="color:#B392F0">bundle.js</span><span style="color:#79B8FF">  729</span><span style="color:#9ECBFF"> KB</span><span style="color:#79B8FF">       0</span><span style="color:#E1E4E8">  [emitted]  [big]  main</span></span>
+<span class="line"><span style="color:#E1E4E8">  [14] </span><span style="color:#B392F0">./src/App.js</span><span style="color:#79B8FF"> 2.31</span><span style="color:#9ECBFF"> KB</span><span style="color:#9ECBFF"> {</span><span style="color:#79B8FF">0</span><span style="color:#9ECBFF">}</span><span style="color:#E1E4E8"> [built]</span></span>
+<span class="line"><span style="color:#B392F0">    +</span><span style="color:#79B8FF"> 26</span><span style="color:#9ECBFF"> hidden</span><span style="color:#9ECBFF"> modules</span></span></code></pre>
+<p>Open this file to see that it contains all of the dependencies that were imported (React and ReactDOM), as well as the source code for <code>App.js</code>… except it looks a lot different!</p>
+<p>While a bit unsightly, this is actually the result we want. As promised, Babel turned our fancy ES2015+ class into an old school constructor function and JSX tags were replaced with calls to React <a href="https://reactjs.org/docs/react-api.html#creating-react-elements"><code>createElement</code></a>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#B392F0"> App</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">_Component</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">  _inherits</span><span style="color:#E1E4E8">(App, _Component);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  function</span><span style="color:#B392F0"> App</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">    _classCallCheck</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, App);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#B392F0"> _possibleConstructorReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, (App.</span><span style="color:#79B8FF">__proto__</span><span style="color:#F97583"> ||</span><span style="color:#E1E4E8"> Object.</span><span style="color:#B392F0">getPrototypeOf</span><span style="color:#E1E4E8">(App)).</span><span style="color:#B392F0">apply</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">arguments</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  _createClass</span><span style="color:#E1E4E8">(App, [{</span></span>
+<span class="line"><span style="color:#E1E4E8">    key: </span><span style="color:#9ECBFF">'render'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">    value</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">function</span><span style="color:#B392F0"> render</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> _react2.default.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">        'h1'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">        null</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        'Hello World!'</span></span>
+<span class="line"><span style="color:#E1E4E8">      );</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }]);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> App;</span></span>
+<span class="line"><span style="color:#E1E4E8">}(_react.Component);</span></span></code></pre>
+<p>The next step is to run our code in a browser. On every build, we’ll create a HTML file from a template and automatically add the relevant <code>&lt;script&gt;</code> tag pointing to the new bundle.</p>
+<p>First, let’s add a basic template in <code>public/index.html</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#6A737D">&lt;!-- public/index.html --&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;!</span><span style="color:#85E89D">DOCTYPE</span><span style="color:#B392F0"> html</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#85E89D">html</span><span style="color:#B392F0"> lang</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"en"</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> charset</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"viewport"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"width=device-width, initial-scale=1.0"</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> http-equiv</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"X-UA-Compatible"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"ie=edge"</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">&gt;Tiny React Environment Tutorial&lt;/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;/</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&lt;</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">  &lt;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"root"</span><span style="color:#E1E4E8">&gt;&lt;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">&lt;/</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&lt;/</span><span style="color:#85E89D">html</span><span style="color:#E1E4E8">&gt;</span></span></code></pre>
+<p>Next, we’ll add and configure a plugin that loads this template and outputs it at build time.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> html-webpack-plugin</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">/* webpack.config.js */</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> HtmlWebpackPlugin</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'html-webpack-plugin'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">exports</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">  plugins: [</span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#B392F0"> HtmlWebpackPlugin</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      template: path.</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">(__dirname, </span><span style="color:#9ECBFF">'public'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'index.html'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    })</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Perfect! Now you can start a new build with <code>npm start</code> and you should see an <code>index.html</code> file in your build directory. Open it and enjoy the fruits of your labor 🎉</p>
+<p>If you inspect it, you’ll notice that it loads <code>bundle.js</code>, even though we didn’t have any <code>&lt;script&gt;</code> tags in our template — <code>html-webpack-plugin</code> did it for us, what a nice fellow!</p>
+<h2 id="adding-hot-reload">Adding hot reload</h2>
+<p>We’ve set up a way to bundle a bunch of scripts and load them in a webpage. It’s not bad, but it also doesn’t set the world on fire. Also, it’s kind of a pain to manually run the build command every time we make a change.</p>
+<p>An easy fix for this is to tell Webpack to continue running in watch mode after finishing the build (pass <code>--watch</code> when calling it). Now, after every change to our code, the bundle will be rebuilt and we can refresh the page to see the changes.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">./node_modules/.bin/webpack</span><span style="color:#79B8FF"> --watch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Don't mind the first -- it's just a way to pass arguments to</span></span>
+<span class="line"><span style="color:#6A737D"># scripts from package.json</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> start</span><span style="color:#79B8FF"> --</span><span style="color:#79B8FF"> --watch</span></span></code></pre>
+<p><img alt="cold reload" loading="lazy" decoding="async" width="982" height="450" src="/_astro/cold-reload.WYzsGlHo_1pjqfy.webp">
+<em>Cold reloading</em></p>
+<p>Not bad. We can can make this whole process even smoother by having the page reload itself. So, instead of watch, let’s use <a href="https://webpack.js.org/configuration/dev-server/"><code>webpack-dev-server</code></a>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> webpack-dev-server</span></span></code></pre>
+<p>Let’s change the start script so that it calls the dev server. It will now be the server’s responsibility to manage Webpack and load our app.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#9ECBFF">"scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#9ECBFF">  "start"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"webpack-dev-server --inline --hot"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Now, every time we make a change, <code>webpack-dev-server</code> will notify the running app that is needs to update. We’re going to do a full reload when this happens.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">/* src/components/App.js */</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.hot) {</span></span>
+<span class="line"><span style="color:#79B8FF">  module</span><span style="color:#E1E4E8">.hot.</span><span style="color:#B392F0">accept</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Time to fire it up and witness the magic at <a href="http://localhost:8080/"><code>http://localhost:8080/</code></a> 👌</p>
+<p><img alt="hot reload" loading="lazy" decoding="async" width="982" height="450" src="/_astro/hot-reload.D2wpFBK1_ZxnQIR.webp">
+<em>Hot reloading</em></p>
+<blockquote>
+<p>For bonus points, you can make this process even smoother by using <a href="https://github.com/gaearon/react-hot-loader"><code>react-hot-loader</code></a>. Instead of a full reload, it will patch only the parts that change. You components will preserve their state between updates!</p>
+</blockquote>
+<h2 id="adding-styles-and-assets-to-our-bundle">Adding styles and assets to our bundle</h2>
+<p>We’ve made good progress so far. In the current state, someone could build a decent app by just crafting a few components and integrating a database service like <a href="https://firebase.google.com/">Firebase</a>. Let’s give them the power to make their app shine!</p>
+<p>Webpack has been a good friend so far, so of course we’ll be using it to load our styles as well. Let’s first add the Sass compiler and a couple of loaders.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#6A737D"># creates style tags from JS strings</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> style-loader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># translates CSS into JS strings</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> css-loader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># translates Sass into CSS</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> sass-loader</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Sass compiler used by the loader above</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#79B8FF"> --save</span><span style="color:#9ECBFF"> node-sass</span></span></code></pre>
+<p>As you can see, multiple loaders are required here and it’s actually kind of awesome that you can chain them together to create a style pipeline. To do this, just add the following rule to <code>webpack.config.js</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sh"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  test</span><span style="color:#9ECBFF">:</span><span style="color:#9ECBFF"> /</span><span style="color:#79B8FF">\.</span><span style="color:#9ECBFF">scss</span><span style="color:#E1E4E8">$</span><span style="color:#9ECBFF">/,</span></span>
+<span class="line"><span style="color:#B392F0">  use:</span><span style="color:#E1E4E8"> [</span><span style="color:#9ECBFF">'style-loader'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'css-loader',</span><span style="color:#9ECBFF"> 'sass-loader']</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Now, we can begin adding our styles. Create an <code>App.scss</code> file in <code>src/components/</code> and add some styles that will take advantage of the power that Sass provides.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="scss"><code><span class="line"><span style="color:#FFAB70">$navy</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#001e38</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#FFAB70">$green</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#15b78f</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">html</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">  background-color</span><span style="color:#E1E4E8">: </span><span style="color:#FFAB70">$navy</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">body</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">  margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  width</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">100</span><span style="color:#F97583">vw</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">100</span><span style="color:#F97583">vh</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">flex</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  justify-content</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  align-items</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  font-family</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">monospace</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">h1</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">  color</span><span style="color:#E1E4E8">: </span><span style="color:#FFAB70">$green</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  font-weight</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">bold</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">  font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3.5</span><span style="color:#F97583">rem</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">  &amp;</span><span style="color:#B392F0">:after</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#85E89D">    content</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'👋'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">inline-block</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    transform</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">rotate</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">-20</span><span style="color:#F97583">deg</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">    animation</span><span style="color:#E1E4E8">: wave </span><span style="color:#79B8FF">.75</span><span style="color:#F97583">s</span><span style="color:#79B8FF"> infinite</span><span style="color:#79B8FF"> linear</span><span style="color:#79B8FF"> alternate</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">@keyframes</span><span style="color:#B392F0"> wave</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  100%</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    transform</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">rotate</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">20</span><span style="color:#F97583">deg</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>In order for them to take effect, we’ll need to import new newly created styles in <code>App.js</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#9ECBFF"> './App.scss'</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<p>Our Style Pipeline™ should be working nicely now. Even better, there’s no need to worry about <code>module.hot</code> for styles because <a href="https://github.com/webpack-contrib/style-loader"><code>style-loader</code></a> supports Hot Module Replacement out of the box. So cool!</p>
+<p><img alt="styles hot reload" loading="lazy" decoding="async" width="982" height="450" src="/_astro/style-reload.DRmTWNzZ_2kSw8I.webp">
+<em>Reload styles without a page refresh</em></p>
+<p>That hand emoji is nice, but it might look a bit different when viewed on another OS. Consistency is key, so we’ll substitute it for an image (and learn how to load assets in the process).</p>
+<p>We don’t have any loaders for image assets, so let’s install some.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># adds an asset to the output directory</span></span>
+<span class="line"><span>npm install --save file-loader</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># loads small assets as dataURIs</span></span>
+<span class="line"><span># large assets get handled by file-loader</span></span>
+<span class="line"><span>npm install --save url-loader</span></span></code></pre>
+<p>These two loaders serve the same purpose — they allow us to reference an asset in our code and add it to the bundle. As the name implies, <code>file-loader</code> loads assets as files and <code>url-loader</code> tries to inline them as <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">dataURIs</a>.</p>
+<p>The reason we use both instead of just relying on <code>file-loader</code> is to save on HTTP requests. We inline small assets (under 10 KB) so they’ll be included in our bundle without dramatically increasing its size.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#6A737D">/* webpack.config.js */</span></span>
+<span class="line"><span style="color:#79B8FF">module</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">exports</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">  module: {</span></span>
+<span class="line"><span style="color:#E1E4E8">    rules: [</span></span>
+<span class="line"><span style="color:#6A737D">      /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#E1E4E8">        test:</span><span style="color:#9ECBFF"> /</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">(jpe</span><span style="color:#F97583">?</span><span style="color:#DBEDFF">g</span><span style="color:#F97583">|</span><span style="color:#DBEDFF">png</span><span style="color:#F97583">|</span><span style="color:#DBEDFF">gif)</span><span style="color:#F97583">$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        use: [{</span></span>
+<span class="line"><span style="color:#6A737D">          /* inline if smaller than 10 KB, otherwise load as a file */</span></span>
+<span class="line"><span style="color:#E1E4E8">          loader: </span><span style="color:#9ECBFF">'url-loader'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">          options: {</span></span>
+<span class="line"><span style="color:#E1E4E8">            limit: </span><span style="color:#79B8FF">10000</span></span>
+<span class="line"><span style="color:#E1E4E8">          }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }]</span></span>
+<span class="line"><span style="color:#E1E4E8">      },</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#E1E4E8">        test:</span><span style="color:#9ECBFF"> /</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">(eot</span><span style="color:#F97583">|</span><span style="color:#DBEDFF">svg</span><span style="color:#F97583">|</span><span style="color:#DBEDFF">ttf</span><span style="color:#F97583">|</span><span style="color:#DBEDFF">woff2</span><span style="color:#F97583">?|</span><span style="color:#DBEDFF">otf)</span><span style="color:#F97583">$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        use: </span><span style="color:#9ECBFF">'file-loader'</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<p>If we add an image in <code>src/assets</code>, it should now be possible to reference it in <code>App.scss</code>…</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="scss"><code><span class="line"><span style="color:#85E89D">h1</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#85E89D">  &amp;</span><span style="color:#B392F0">:after</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#85E89D">    content</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">''</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">inline-block</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    width</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#F97583">em</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#F97583">em</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">    background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">url</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'../assets/waving-hand-sign.png'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">                center/100</span><span style="color:#F97583">%</span></span>
+<span class="line"><span style="color:#79B8FF">                no-repeat</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>…or in <code>App.js</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> handWave </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '../assets/waving-hand-sign.png'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> App</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Component</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">  render</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> &lt;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">      Hello World!</span></span>
+<span class="line"><span style="color:#E1E4E8">      &lt;</span><span style="color:#85E89D">img</span><span style="color:#B392F0"> src</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{handWave} /&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    &lt;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">&gt;;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="ship-it">Ship it!</h2>
+<p>The last thing we’ll do today is deploy our app. Surge makes this process super easy, so let’s add it to our project.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>npm install --save surge</span></span></code></pre>
+<p>All that’s left is to add a script to our <code>package.json</code> that will build the bundle and call the Surge CLI to upload it.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#9ECBFF">"scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#9ECBFF">  "deploy"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"webpack &amp;&amp; surge -p ./build/ -d tiny-react-env.surge.sh"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Woohoo! We’re now up and running at <a href="http://tiny-react-env.surge.sh/">http://tiny-react-env.surge.sh/</a>. Good job!</p>
+<h2 id="whats-next">What’s next?</h2>
+<p>It wasn’t easy but we’ve managed to set up a workspace for our future project. Let’s do a quick recap:</p>
+<ul>
+<li>Our code is transpiled with Babel and we can use the latest ES2015+ features.</li>
+<li>We used Webpack to build our bundle and Webpack Dev Server to develop locally with hot reloading.</li>
+<li>We have a style pipeline that compiles our Sass code and we’re also bundling our assets.</li>
+</ul>
+<p>This is just the tip of the iceberg though — there is a lot more you can do to expand this setup. Here are some ideas for what to try next:</p>
+<ol>
+<li>Enable source maps by setting a <a href="https://webpack.js.org/configuration/devtool/"><code>devtool</code></a> field in the webpack config.</li>
+<li>Create a separate <strong>production</strong> config to be used when deploying, disable source maps for it, and minify the bundle with <a href="https://webpack.js.org/plugins/babel-minify-webpack-plugin/"><code>babel-minify-webpack-plugin</code></a>.</li>
+<li>Use <a href="https://github.com/webpack-contrib/extract-text-webpack-plugin"><code>extract-text-webpack-plugin</code></a> to output your style bundle as a separate file from the JS bundle.</li>
+</ol>
+<p>Good luck!</p>
+<blockquote>
+<p><strong>Attribution:</strong> This article was written by Valentin Radulescu and originally published on <a href="https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl">Codementor</a>. This page is maintained as an archival copy.</p>
+</blockquote>
+</div></article></main><!-- <footer>
+	&copy; {today.getFullYear()} Valentin Radulescu. All rights reserved.
+</footer> --></body></html>
