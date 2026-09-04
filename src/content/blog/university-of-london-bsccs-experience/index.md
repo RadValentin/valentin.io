@@ -2,7 +2,7 @@
 title: 'Pursuing a Computer Science degree with ~10 years of development experience'
 description: 'What I learned from completing a Computer Science degree while working as a developer.'
 pubDate: 'Sep 03 2026'
-heroImage: '../../assets/valentin-og-placeholder.jpg'
+heroImage: '../../../assets/valentin-og-placeholder.jpg'
 draft: false
 ---
 

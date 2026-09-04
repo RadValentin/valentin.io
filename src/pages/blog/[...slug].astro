@@ -1,11 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { getBlogPostSlug } from '../../consts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.filter((post) => import.meta.env.DEV || !post.data.draft).map((post) => ({
-		params: { slug: post.id },
+		params: { slug: getBlogPostSlug(post.id) },
 		props: post,
 	}));
 }
