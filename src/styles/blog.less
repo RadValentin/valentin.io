@@ -39,6 +39,8 @@ ul li:first-child .title {
 }
 
 ul li img {
+  max-width: 100%;
+ 	height: auto;
   margin-bottom: 0.5rem;
   border-radius: 12px;
 }
@@ -58,7 +60,7 @@ ul li a {
   color: rgb(var(--gray));
 }
 
-ul li a:hover h4,
+ul li a:hover h2,
 ul li a:hover .date {
   color: rgb(var(--accent));
 }
@@ -69,7 +71,7 @@ ul a:hover img {
 
 @media (max-width: 720px) {
   ul {
-    gap: 0.5em;
+    gap: 0.5rem;
   }
 
   ul li {
@@ -82,6 +84,6 @@ ul a:hover img {
   }
 
   ul li:first-child .title {
-    font-size: 1.563em;
+    font-size: 1.563rem;
   }
 }
