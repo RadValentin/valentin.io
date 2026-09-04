@@ -3,7 +3,9 @@ import rss from '@astrojs/rss';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
-	const posts = (await getCollection('blog')).sort(
+	const posts = (await getCollection('blog'))
+		.filter((post) => !post.data.draft)
+		.sort(
  		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
  	);
 	return rss({
