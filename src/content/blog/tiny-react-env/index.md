@@ -2,6 +2,7 @@
 title: 'Roll your own tiny React environment using Webpack, Babel and Sass'
 description: 'A practical walkthrough of building a front-end workflow with bundling, transpilation, live updates, and deployment.'
 pubDate: '2017-12-11'
+canonicalURL: 'https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl'
 heroImage: './tiny-react-env-header.png'
 draft: false
 ---
@@ -459,4 +460,4 @@ This is just the tip of the iceberg though — there is a lot more you can do to
 
 Good luck!
 
-> This article was originally published on [Codementor](https://www.codementor.io/valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl).
+> **Attribution:** This article was written by Valentin Radulescu and originally published on [Codementor](https://www.codementor.io/@valentinrad/roll-your-own-tiny-react-environment-using-webpack-babel-and-sass-ei70wyhjl). This page is maintained as an archival copy.
