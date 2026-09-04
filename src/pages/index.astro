@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import avatar from '../assets/valentin-radulescu.jpg';
+import resume from '../assets/valentin-radulescu-resume.pdf';
 import '../styles/index.less';
 ---
 
@@ -50,7 +51,7 @@ import '../styles/index.less';
 				<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
 					<i class="fa-brands fa-codepen" aria-hidden="true"></i> Codepen
 				</a>
-				<a class="intro-link intro-link-resume" href="/resume/">
+				<a class="intro-link intro-link-resume" href={resume}>
 					<i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Résumé
 				</a>
 			</nav>
