@@ -6,7 +6,7 @@
     "email": "hi@valentin.io",
     "phone": "+40 721 809 508",
     "url": "https://valentin.io",
-    "summary": "Front-end engineer with nearly 10 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React.",
+    "summary": "Front-end engineer with nearly 10 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React. Looking for in-office roles, willing to relocate, and open to remote work.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -81,7 +81,8 @@
     "score": "First-Class Honours",
     "courses": [
       "Academic direction: Goldsmiths, University of London",
-      "Final project: TasteMender, a music recommendation application and stateless API built with Django and React"
+      "Final project: TasteMender, a music recommendation application and stateless API built with Django and React",
+      "Final project DOI: 10.5281/zenodo.18661802"
     ]
   }],
   "awards": [],
@@ -109,7 +110,10 @@
       "REST APIs"
     ]
   }],
-  "languages": [],
+  "languages": [{
+    "language": "English",
+    "fluency": "Native or bilingual proficiency"
+  }],
   "interests": [],
   "references": [],
   "projects": [{
