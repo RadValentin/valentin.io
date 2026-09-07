@@ -1,110 +1,139 @@
 {
   "basics": {
-    "name": "John Doe",
-    "label": "Programmer",
+    "name": "Valentin Radulescu",
+    "label": "Front-End Engineer | React, TypeScript & React Native",
     "image": "",
-    "email": "john@gmail.com",
-    "phone": "(912) 555-4321",
-    "url": "https://johndoe.com",
-    "summary": "A summary of John Doe…",
+    "email": "hi@valentin.io",
+    "phone": "+40 721 809 508",
+    "url": "https://valentin.io",
+    "summary": "Front-end engineer with nearly 10 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "",
+      "postalCode": "",
+      "city": "Bucharest",
+      "countryCode": "RO",
+      "region": ""
     },
     "profiles": [{
-      "network": "Twitter",
-      "username": "john",
-      "url": "https://twitter.com/john"
+      "network": "GitHub",
+      "username": "RadValentin",
+      "url": "https://github.com/RadValentin"
+    }, {
+      "network": "LinkedIn",
+      "username": "valentinrad",
+      "url": "https://www.linkedin.com/in/valentinrad/"
     }]
   },
   "work": [{
-    "name": "Company",
-    "position": "President",
-    "url": "https://company.com",
+    "name": "Microsoft - Skype",
+    "position": "Software Engineer",
+    "url": "https://www.skype.com/",
+    "startDate": "2019-09-01",
+    "endDate": "2022-05-01",
+    "summary": "Built and maintained Skype's messaging interface using React Native and JavaScript.",
+    "highlights": [
+      "Implemented the ability to quote multiple messages in Skype chat",
+      "Took part in a cross-team effort to enable conversations between Skype and Microsoft Teams",
+      "Developed a Microsoft Teams feature for iOS and Android that allowed users to invite contacts by phone number"
+    ]
+  }, {
+    "name": "Memory.ai",
+    "position": "Front-End Developer",
+    "url": "https://memory.ai/",
+    "startDate": "2018-02-01",
+    "endDate": "2018-11-01",
+    "summary": "Helped craft the UI for Timely, a fully automatic time tracking solution that leverages the power of AI.",
+    "highlights": [
+      "Worked primarily with React, Redux, Reselect, Sass and Jest"
+    ]
+  }, {
+    "name": "Hootsuite",
+    "position": "Software Developer",
+    "url": "https://hootsuite.com/",
+    "startDate": "2014-05-01",
+    "endDate": "2017-07-01",
+    "summary": "Helped build the UI for Hootsuite Analytics from the ground up.",
+    "highlights": [
+      "Worked primarily with React, Redux, LESS, Webpack and Jest",
+      "Developed and maintained a reusable React components repository",
+      "Applied TDD practices, mentored interns, improved tooling and developer experience"
+    ]
+  }, {
+    "name": "Upwork",
+    "position": "Freelance Developer",
+    "url": "https://www.upwork.com/",
     "startDate": "2013-01-01",
-    "endDate": "2014-01-01",
-    "summary": "Description…",
+    "endDate": "2014-05-01",
+    "summary": "Built microsites, blogs and single-page applications for digital agencies and startups.",
     "highlights": [
-      "Started the company"
+      "Worked with JavaScript, jQuery, WordPress, Sass and PHP",
+      "Maintained an overall client rating of 4.97 out of 5"
     ]
   }],
-  "volunteer": [{
-    "organization": "Organization",
-    "position": "Volunteer",
-    "url": "https://organization.com/",
-    "startDate": "2012-01-01",
-    "endDate": "2013-01-01",
-    "summary": "Description…",
-    "highlights": [
-      "Awarded 'Volunteer of the Month'"
-    ]
-  }],
+  "volunteer": [],
   "education": [{
-    "institution": "University",
-    "url": "https://institution.com/",
-    "area": "Software Development",
-    "studyType": "Bachelor",
-    "startDate": "2011-01-01",
-    "endDate": "2013-01-01",
-    "score": "4.0",
+    "institution": "University of London",
+    "url": "https://www.london.ac.uk/",
+    "area": "Computer Science",
+    "studyType": "BSc",
+    "startDate": "2021-04-01",
+    "endDate": "2025-11-01",
+    "score": "First-Class Honours",
     "courses": [
-      "DB1101 - Basic SQL"
+      "Academic direction: Goldsmiths, University of London",
+      "Final project: TasteMender, a music recommendation application and stateless API built with Django and React"
     ]
   }],
-  "awards": [{
-    "title": "Award",
-    "date": "2014-11-01",
-    "awarder": "Company",
-    "summary": "There is no spoon."
-  }],
-  "certificates": [{
-    "name": "Certificate",
-    "date": "2021-11-07",
-    "issuer": "Company",
-    "url": "https://certificate.com"
-  }],
-  "publications": [{
-    "name": "Publication",
-    "publisher": "Company",
-    "releaseDate": "2014-10-01",
-    "url": "https://publication.com",
-    "summary": "Description…"
-  }],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
   "skills": [{
-    "name": "Web Development",
-    "level": "Master",
+    "name": "Front end",
+    "level": "",
     "keywords": [
+      "React",
+      "React Native",
+      "TypeScript",
+      "JavaScript",
       "HTML",
-      "CSS",
-      "JavaScript"
+      "CSS"
     ]
-  }],
-  "languages": [{
-    "language": "English",
-    "fluency": "Native speaker"
-  }],
-  "interests": [{
-    "name": "Wildlife",
+  }, {
+    "name": "Additional",
+    "level": "",
     "keywords": [
-      "Ferrets",
-      "Unicorns"
+      "Jest",
+      "TDD",
+      "Git",
+      "Django",
+      "REST APIs"
     ]
   }],
-  "references": [{
-    "name": "Jane Doe",
-    "reference": "Reference…"
-  }],
+  "languages": [],
+  "interests": [],
+  "references": [],
   "projects": [{
-    "name": "Project",
-    "startDate": "2019-01-01",
-    "endDate": "2021-01-01",
-    "description": "Description...",
+    "name": "postcss-prefix-selector",
+    "startDate": "",
+    "endDate": "",
+    "description": "Open-source PostCSS plugin for prefixing CSS selectors - used for style isolation.",
     "highlights": [
-      "Won award at AIHacks 2016"
+      "Maintained the package, documentation and compatibility with the PostCSS ecosystem",
+      "100k+ weekly downloads",
+      "200+ GitHub stars",
+      "Used by 73K projects"
     ],
-    "url": "https://project.com/"
+    "url": "https://github.com/RadValentin/postcss-prefix-selector"
+  }, {
+    "name": "TasteMender | Music Recommendation App",
+    "startDate": "",
+    "endDate": "",
+    "description": "Started as a university project and continued after graduation to explore more varied music recommendations than those offered by mainstream streaming platforms.",
+    "highlights": [
+      "React, Django, PostgreSQL, Python",
+      "Loads a dataset with 30M submissions and 7M unique tracks into memory and produces recommendations based on listening history in under 100ms",
+      "Live demo: https://taste-mender.com/"
+    ],
+    "url": "https://github.com/RadValentin/taste-mender"
   }]
 }
