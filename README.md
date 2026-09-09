@@ -2,21 +2,6 @@
 
 ![Welcome to my homepage](https://i.imgur.com/YRJL0bj.gif)
 
-```sh
-npm create astro@latest -- --template blog
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
@@ -43,6 +28,8 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
+The resume data in `src/data/resume.json` follows the [JSON Resume schema](https://jsonresume.org/schema).
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
@@ -56,10 +43,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
