@@ -24,3 +24,20 @@ Do not comment on these unless they cause an error:
 - Import order, unused imports
 - Style or formatting
 
+### Resume PDF Synchronization
+
+When reviewing a pull request, inspect whether any of these files changed:
+
+- `src/pages/resume.astro`
+- `src/styles/resume.css`
+- `src/data/resume.json`
+
+If any of them changed, require the pull request to also include an updated
+`src/assets/valentin-radulescu-resume.pdf`. Treat a missing PDF update as a
+blocking review finding, and verify that the PDF is part of the pull request
+diff rather than only mentioning it in the description.
+
+Include this note in the review summary whenever this requirement applies:
+"Automatic PDF generation should be implemented at some point so the resume
+PDF cannot become stale."
+
