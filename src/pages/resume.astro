@@ -4,6 +4,8 @@ import resumePdf from '../assets/valentin-radulescu-resume.pdf';
 import avatar from '../assets/valentin-radulescu.jpg';
 import data from '../data/resume.json';
 import '../styles/resume.css';
+
+const urlWithoutProtocol = (url: string) => new URL(url).host;
 ---
 
 <!doctype html>
@@ -21,13 +23,28 @@ import '../styles/resume.css';
           </div>
           <img class="avatar" src={avatar.src} alt="Valentin Radulescu"/>
         </h1>
+        <ul class="social" aria-label="resume links">
+          {data.basics.profiles.map(p => <li><a href={p.url} title={p.network}><i class={p.icon}></i> {p.username}</a></li>)}
+          <li><a href={data.basics.url} title="personal site"><i class="fa-solid fa-house"></i> {urlWithoutProtocol(data.basics.url)}</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot"></i> Bucharest, Romania</a></li>
+          <li><a href="mailto:hi@valentin.io"><i class="fa-solid fa-envelope"></i> hi&#64;valentin.io</a></li>
+          <li class="print-only"><a href="tel:+40721809508"><i class="fa-solid fa-phone"></i> +40 721 809 508</a></li>
+          <li class="screen-only"><a href={resumePdf}><i class="fa-solid fa-file-pdf"></i> PDF version</a></li>
+        </ul>
+        <p>{data.basics.summary}</p>
       </header>
       <section>
-        <h2>About</h2>
-        <p>{data.basics.summary}</p>
-      </section>
-      <section>
         <h2>Work Experience</h2>
+        {data.work.map(job =>
+          <div class="subsection">
+            <h3>{job.position} at <a href={job.url}>{job.name}</a></h3>
+            <p class="subsection-dates">{job.startDate} &mdash; {job.endDate}</p>
+            <p class="subsection-summary">{job.summary}</p>
+            <ul class="subsection-highlights">
+              {job.highlights.map(h => <li>{h}</li>)}
+            </ul>
+          </div>
+        )}
       </section>
     </main>
 	</body>
