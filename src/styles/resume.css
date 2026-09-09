@@ -1,0 +1,130 @@
+/* Variables */
+:root {
+  /* Colors */
+  --accent: #662BE7;
+  --border-color: #767171;
+
+  /* Spacing */
+  --resume-top-padding: calc(3 * var(--default-spacing));
+  --resume-side-padding: calc(2 * var(--default-spacing));
+}
+
+
+/* Utility classes */
+
+.print-only {
+  @media screen {
+    display: none;
+  }
+}
+
+.screen-only {
+  @media print {
+    display: none;
+  }
+}
+
+
+/* Print styles */
+
+@page {
+  size: A4 portrait;
+  margin: 0.5in;
+}
+
+@media print {
+  /* Prevent the table from breaking across pages */
+  table, figure {
+    page-break-inside: avoid;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+  }
+}
+
+
+/* Resume styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #eee;
+}
+
+body {
+  /* prevent child margins from overflowing outside parent */
+  display: flow-root;
+}
+
+main {
+  @media screen {
+    max-width: 950px;
+    margin: var(--resume-top-padding) auto;
+    padding: var(--resume-top-padding) var(--resume-side-padding);
+    background-color: #fff;
+    box-shadow: 0 0 10px #ccc;
+  }
+
+  @media screen and (width < 1000px) {
+    max-width: none;
+    margin: 0;
+  }
+}
+
+header {
+  h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: var(--default-spacing);
+    padding-bottom: var(--default-spacing);
+    border-bottom: 3px solid var(--border-color);
+  }
+
+  & .name {
+    color: var(--accent);
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  & .role {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+
+  img {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+  }
+}
+
+section {
+  h2 {
+    border-bottom: 2px solid var(--border-color);
+    margin: 0 0 var(--default-spacing);
+    padding-bottom: calc(var(--default-spacing) / 2);
+  }
+}
+
+
+/* #662BE7 — purple/blue-violet, used in the name/title.
+#8E7CC3 — muted lavender, used after the name/title.
+#3C78D8 — blue, used by the Title style.
+#999999 — gray, used by Heading 1.
+#434343 — dark gray, used by Heading 2, Heading 3, Subtitle, and some punctuation.
+#666666 — medium gray, used by Heading 4–6 and several contact/location links.
+#595959 — dark gray, used for several links.
+#1F497D — dark blue, used by the Caption style.
+#243F60 — dark navy, used by Heading 7.
+#272727 — near-black gray, used by Heading 8 and Heading 9.
+#4F81BD — blue, used by Intense Emphasis/Quote/Reference styles.
+#404040 — dark gray, used by Quote and Subtle Emphasis styles.
+#5A5A5A — dark gray, used by Subtle Reference.
+#365F91 — blue, used by TOC Heading.
+White — used as the table border color.
+Blue — default link color.
+Purple — default visited-link color. */

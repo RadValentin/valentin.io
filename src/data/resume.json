@@ -17,11 +17,13 @@
     "profiles": [{
       "network": "GitHub",
       "username": "RadValentin",
-      "url": "https://github.com/RadValentin"
+      "url": "https://github.com/RadValentin",
+      "icon": "fa-brands fa-github"
     }, {
       "network": "LinkedIn",
       "username": "valentinrad",
-      "url": "https://www.linkedin.com/in/valentinrad/"
+      "url": "https://www.linkedin.com/in/valentinrad/",
+      "icon": "fa-brands fa-linkedin"
     }]
   },
   "work": [{
