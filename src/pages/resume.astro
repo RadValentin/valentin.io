@@ -7,15 +7,36 @@ import data from '../data/resume.json';
 import '../styles/resume.css';
 
 const urlWithoutProtocol = (url: string) => new URL(url).host;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: data.basics.name,
+  url: data.basics.url,
+  image: new URL(avatar.src, Astro.site),
+  jobTitle: data.basics.label,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: data.basics.location.city,
+    addressCountry: data.basics.location.countryCode,
+  },
+  sameAs: data.basics.profiles.map(profile => profile.url),
+  knowsAbout: data.skills.flatMap(skill => skill.keywords),
+  alumniOf: {
+    '@type': 'CollegeOrUniversity',
+    name: data.education[0].institution,
+    url: data.education[0].url,
+  },
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-      title="Valentin Radulescu - Resume"
-      description="Resume of Valentin Radulescu, Front-End Developer."
+      title="Valentin Radulescu | Front-End Engineer Resume"
+      description="Resume of Valentin Radulescu, a front-end engineer specializing in React, React Native, TypeScript and JavaScript. Based in Bucharest, open to remote work and relocation."
     />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 	</head>
 	<body>
     <main>
