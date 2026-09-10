@@ -1,8 +1,8 @@
 /* Variables */
 :root {
   /* Colors */
-  --accent-color: #662BE7;
-  --border-color: #767171;
+  --accent-color: #5a2bbf;
+  --border-color: #8a8a8a;
   --text-primary-color: #272727;
   --text-secondary-color: #595959;
 
@@ -55,6 +55,8 @@ html {
 body {
   /* prevent child margins from overflowing outside parent */
   display: flow-root;
+  color: var(--text-primary-color);
+  line-height: 1.5;
 }
 
 a {
@@ -68,9 +70,9 @@ a {
 
 main {
   @media screen {
-    max-width: 950px;
+    max-width: 960px;
     margin: var(--resume-top-padding) auto;
-    padding: var(--resume-top-padding) var(--resume-side-padding);
+    padding: calc(1.5 * var(--resume-top-padding)) calc(1.5 * var(--resume-side-padding));
     background-color: #fff;
     box-shadow: 0 0 10px #ccc;
   }
@@ -97,14 +99,17 @@ main {
 
 /* Header section */
 header {
+  margin-bottom: 2.25rem;
+
   h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 0;
-    margin-bottom: var(--default-spacing);
-    padding-bottom: var(--default-spacing);
+    margin-bottom: calc(1.25 * var(--default-spacing));
+    padding-bottom: calc(1.25 * var(--default-spacing));
     border-bottom: 3px solid var(--border-color);
+    line-height: 1.2;
   }
 
   & .name {
@@ -142,13 +147,15 @@ header {
   & .social {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
     padding: 0;
-    margin: 0 0 var(--default-spacing);
+    margin: 0 0 calc(1.25 * var(--default-spacing));
     list-style-type: none;
   }
 
   & .skills {
-    margin-bottom: 1rem;
+    margin: 1.25rem 0 0;
   }
 
   & .skills p {
@@ -165,16 +172,19 @@ header {
 
 /* Sections */
 section {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   & h2 {
     border-bottom: 2px solid var(--border-color);
-    margin: 0 0 var(--default-spacing);
+    margin: 0 0 calc(1.25 * var(--default-spacing));
     padding-bottom: calc(var(--default-spacing) / 2);
+    font-size: 1.35rem;
+    line-height: 1.25;
   }
 
   & h3 {
-    margin-bottom: 0;
+    margin: 0;
+    line-height: 1.35;
   }
 
   & p {
@@ -182,17 +192,33 @@ section {
   }
 
   & ul {
-    margin: 0;
-    list-style-type: '⇢';
-    padding-left: 2rem;
+    margin: 0.45rem 0 0;
+    padding-left: 1.5rem;
+    line-height: 1.45;
   }
 
   & li {
-    padding-left: 1rem;
+    padding-left: 0.25rem;
+  }
+
+  & li::marker {
+    color: var(--accent-color);
   }
 
   & .subsection-dates {
     color: var(--text-secondary-color);
+    font-size: 0.92rem;
+    margin-top: 0.15rem;
+  }
+
+  & .subsection-summary {
+    margin-top: 0.45rem;
+  }
+
+  & .subsection + .subsection {
+    border-top: 1px solid #dedede;
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
   }
 
   & .subsection-cards {
@@ -205,26 +231,13 @@ section {
   }
 
   @media (width < 768px) {
+    & .subsection + .subsection {
+      margin-top: 1.1rem;
+      padding-top: 0.9rem;
+    }
+
     & ul {
       padding-left: 1.5rem;
     }
   }
-}
-
-/* Please ignore below, will be removed at the end. */
-.test {
-  color: #662BE7; /* purple/blue-violet, used in the name/title. */
-  color: #8E7CC3; /* muted lavender, used after the name/title. */
-  color: #3C78D8; /* blue, used by the Title style. */
-  color: #999999; /* gray, used by Heading 1. */
-  color: #434343; /* dark gray, used by Heading 2, Heading 3, Subtitle, and some punctuation. */
-  color: #666666; /* medium gray, used by Heading 4–6 and several contact/location links. */
-  color: #595959; /* dark gray, used for several links. */
-  color: #1F497D; /* dark blue, used by the Caption style. */
-  color: #243F60; /* dark navy, used by Heading 7. */
-  color: #272727; /* near-black gray, used by Heading 8 and Heading 9. */
-  color: #4F81BD; /* blue, used by Intense Emphasis/Quote/Reference styles. */
-  color: #404040; /* dark gray, used by Quote and Subtle Emphasis styles. */
-  color: #5A5A5A; /* dark gray, used by Subtle Reference. */
-  color: #365F91; /* blue, used by TOC Heading.  */
 }
