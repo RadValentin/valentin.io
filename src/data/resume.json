@@ -47,6 +47,8 @@
     "endDate": "2018-11-01",
     "summary": "Helped craft the UI for Timely, a fully automatic time tracking solution that leverages the power of AI.",
     "highlights": [
+      "Reimplemented the billing interface styles from designs provided by the product designer",
+      "Expanded the implementation of the calendar sync UI",
       "Worked primarily with React, Redux, Reselect, Sass and Jest"
     ]
   }, {
@@ -57,18 +59,19 @@
     "endDate": "2017-07-01",
     "summary": "Helped build the UI for Hootsuite Analytics from the ground up.",
     "highlights": [
-      "Developed and maintained a reusable React components repository",
-      "Applied TDD practices, mentored interns, improved tooling and developer experience",
+      "Started a reusable React components repository during a hackathon that was later used across the company",
+      "Applied TDD practices, mentored interns, improved tooling and developer experience, and helped organize a biannual React Meetup",
       "Worked primarily with React, Redux, LESS, Webpack and Jest"
     ]
   }, {
-    "name": "Upwork",
-    "position": "Freelance Developer",
+    "name": "Independent / Upwork",
+    "position": "Freelance Front-End Developer",
     "url": "https://www.upwork.com/",
     "startDate": "2013-01-01",
     "endDate": "2014-05-01",
-    "summary": "Built microsites, blogs and single-page applications for digital agencies and startups.",
+    "summary": "Built microsites, blogs and single-page applications for international clients through Upwork.",
     "highlights": [
+      "Delivered projects for international clients, including digital agencies, startups and businesses of varying sizes",
       "Worked with JavaScript, jQuery, WordPress, Sass and PHP",
       "Maintained an overall client rating of 4.97 out of 5"
     ]
@@ -128,9 +131,7 @@
     "description": "Open-source PostCSS plugin for prefixing CSS selectors - used for style isolation.",
     "highlights": [
       "Maintained the package, documentation and compatibility with the PostCSS ecosystem",
-      "100k+ weekly downloads",
-      "200+ GitHub stars",
-      "Used by 73K projects"
+      "100k+ weekly downloads, 200+ GitHub stars, used by 73K projects"
     ],
     "url": "https://github.com/RadValentin/postcss-prefix-selector"
   }, {
