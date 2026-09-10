@@ -6,7 +6,7 @@
     "email": "hi@valentin.io",
     "phone": "+40 721 809 508",
     "url": "https://valentin.io",
-    "summary": "Front-end engineer with nearly 10 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React. Looking for in-office roles, willing to relocate, and open to remote work.",
+    "summary": "Front-end engineer with 9 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React. Took a career break from 2022 to 2025 while pursuing a BSc in Computer Science. Now seeking for exciting work opportunities, open to in-office, relocation, and remote.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -57,9 +57,9 @@
     "endDate": "2017-07-01",
     "summary": "Helped build the UI for Hootsuite Analytics from the ground up.",
     "highlights": [
-      "Worked primarily with React, Redux, LESS, Webpack and Jest",
       "Developed and maintained a reusable React components repository",
-      "Applied TDD practices, mentored interns, improved tooling and developer experience"
+      "Applied TDD practices, mentored interns, improved tooling and developer experience",
+      "Worked primarily with React, Redux, LESS, Webpack and Jest"
     ]
   }, {
     "name": "Upwork",
