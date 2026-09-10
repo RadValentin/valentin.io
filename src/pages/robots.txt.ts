@@ -15,7 +15,7 @@ User-agent: Bytespider
 User-agent: CCBot
 User-agent: Applebot-Extended
 User-agent: Meta-ExternalAgent
-Disallow: /resume/
+Disallow: /resume
 
 User-agent: *
 Allow: /

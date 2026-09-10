@@ -134,7 +134,7 @@ const structuredData = {
         <h2>Projects</h2>
         {data.projects.map(pro =>
           <article class="subsection">
-            <h3>{pro.name} <a href={pro.url} class="screen-only"><i class="fa-solid fa-link"></i></a></h3>
+            <h3>{pro.name} <a href={pro.url} class="screen-only" aria-label={`Open ${pro.name} project link`}><i class="fa-solid fa-link" aria-hidden="true"></i></a></h3>
             <p class="subsection-links print-only">
               <a href={pro.url}>{pro.url}</a>
             </p>
