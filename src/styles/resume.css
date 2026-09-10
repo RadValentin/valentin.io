@@ -17,13 +17,13 @@
 
 .print-only {
   @media screen {
-    display: none;
+    display: none !important;
   }
 }
 
 .screen-only {
   @media print {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -80,7 +80,17 @@ main {
   @media screen and (width < 1000px) {
     max-width: none;
     margin: 0;
+    padding: var(--resume-top-padding) var(--resume-side-padding);
   }
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 .badge {
