@@ -13,6 +13,15 @@ frameworks or unnecessary layers for small features. Favor portable, easily
 understood solutions and deliberate upgrades over keeping up with a fast-moving
 ecosystem.
 
+### Resume Privacy and Source of Truth
+
+The downloadable PDF is the primary resume used when applying to jobs. The web
+resume is a maintainable single source of truth and a secondary public view.
+Sensitive contact information may intentionally remain obfuscated in the web
+version; do not replace that behavior with visible plain text for ATS or crawler
+compatibility unless explicitly requested. Recruiters and companies receive the
+PDF directly from Valentin.
+
 When starting the dev server, use background mode:
 
 ```
