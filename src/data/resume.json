@@ -83,16 +83,15 @@
     "endDate": "2025-11-01",
     "score": "First-Class Honours",
     "courses": [
-      "Academic direction: Goldsmiths, University of London",
-      "Final project: TasteMender, a music recommendation application and stateless API built with Django and React",
-      "Final project DOI: 10.5281/zenodo.18661802"
+      "Graduated with First-Class Honours",
+      "Final project: TasteMender, a music recommendation application and stateless API built with Django and React"
     ]
   }],
   "awards": [],
   "certificates": [],
   "publications": [],
   "skills": [{
-    "name": "Front end",
+    "name": "Front-End",
     "level": "",
     "keywords": [
       "React",
@@ -115,6 +114,9 @@
   }],
   "languages": [{
     "language": "English",
+    "fluency": "Native or bilingual proficiency"
+  }, {
+    "language": "Romanian",
     "fluency": "Native or bilingual proficiency"
   }],
   "interests": [],

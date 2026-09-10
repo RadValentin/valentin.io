@@ -64,6 +64,14 @@ const urlWithoutProtocol = (url: string) => new URL(url).host;
           </li>
         </ul>
         <p>{data.basics.summary}</p>
+        <div class="skills">
+          {data.skills.map(s =>
+            <p>
+              {s.name} skills:{" "}
+              {s.keywords.map(k => <span class="badge">{k}</span>)}
+            </p>
+          )}
+        </div>
       </header>
       <section>
         <h2>Work Experience</h2>
@@ -81,6 +89,48 @@ const urlWithoutProtocol = (url: string) => new URL(url).host;
             </ul>
           </article>
         )}
+      </section>
+      <section>
+        <h2>Education</h2>
+        {data.education.map(edu =>
+          <article class="subsection">
+            <h3>{edu.studyType} {edu.area} at <a href={edu.url}>{edu.institution}</a></h3>
+            <p class="subsection-dates">
+              <FormattedDate date={new Date(edu.startDate)} showDay={false} />
+              &nbsp;&mdash;&nbsp;
+              <FormattedDate date={new Date(edu.endDate)} showDay={false} />
+              </p>
+            <ul class="subsection-highlights">
+              {edu.courses.map(h => <li>{h}</li>)}
+            </ul>
+          </article>
+        )}
+      </section>
+      <section>
+        <h2>Projects</h2>
+        {data.projects.map(pro =>
+          <article class="subsection">
+            <h3>{pro.name} <a href={pro.url} class="screen-only"><i class="fa-solid fa-link"></i></a></h3>
+            <p class="subsection-links print-only">
+              <a href={pro.url}>{pro.url}</a>
+            </p>
+            <p class="subsection-summary">{pro.description}</p>
+            <ul class="subsection-highlights">
+              {pro.highlights.map(h => <li>{h}</li>)}
+            </ul>
+          </article>
+        )}
+      </section>
+      <section>
+        <h2>Languages</h2>
+        <div class="subsection-cards">
+          {data.languages.map(lang =>
+            <div>
+              <strong>{lang.language}</strong>
+              <span>{lang.fluency}</span>
+            </div>
+          )}
+        </div>
       </section>
     </main>
     <script>
