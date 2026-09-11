@@ -117,10 +117,16 @@
   }],
   "languages": [{
     "language": "English",
-    "fluency": "Native or bilingual proficiency"
+    "fluency": "Advanced (C2)"
   }, {
     "language": "Romanian",
-    "fluency": "Native or bilingual proficiency"
+    "fluency": "Native"
+  }, {
+    "language": "Italian",
+    "fluency": "Beginner (A2)"
+  }, {
+    "language": "Czech",
+    "fluency": "Beginner (A1)"
   }],
   "interests": [],
   "references": [],
