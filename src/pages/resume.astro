@@ -4,6 +4,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import resumePdf from '../assets/valentin-radulescu-resume.pdf';
 import avatar from '../assets/valentin-radulescu.jpg';
 import data from '../data/resume.json';
+import { marked } from 'marked';
 import '../styles/resume.css';
 
 const urlWithoutProtocol = (url: string) => new URL(url).host;
@@ -140,7 +141,7 @@ const structuredData = {
             </p>
             <p class="subsection-summary">{pro.description}</p>
             <ul class="subsection-highlights">
-              {pro.highlights.map(h => <li>{h}</li>)}
+              {pro.highlights.map(h => <li set:html={marked.parseInline(h)} />)}
             </ul>
           </article>
         )}

@@ -148,7 +148,7 @@
     "highlights": [
       "React, Django, PostgreSQL, Python",
       "Loads a dataset with 30M submissions and 7M unique tracks into memory and produces recommendations based on listening history in under 100ms",
-      "Live demo: https://taste-mender.com/"
+      "Live demo: [https://taste-mender.com/](https://taste-mender.com/)"
     ],
     "url": "https://github.com/RadValentin/taste-mender"
   }]
