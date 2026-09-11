@@ -4,6 +4,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import resumePdf from '../assets/valentin-radulescu-resume.pdf';
 import avatar from '../assets/valentin-radulescu.jpg';
 import data from '../data/resume.json';
+import { marked } from 'marked';
 import '../styles/resume.css';
 
 const urlWithoutProtocol = (url: string) => new URL(url).host;
@@ -49,11 +50,11 @@ const structuredData = {
             <div class="name">{data.basics.name}</div>
             <div class="role">{data.basics.label}</div>
           </div>
-          <img class="avatar" src={avatar.src} alt={data.basics.name}/>
+          <img class="avatar screen-only" src={avatar.src} alt={data.basics.name}/>
         </h1>
         <ul class="social" aria-label="resume links">
           {data.basics.profiles.map(p =>
-            <li>
+            <li class="screen-only">
               <a href={p.url} title={p.network}>
                 <i class={p.icon} aria-hidden="true"></i> {p.username}
               </a>
@@ -67,7 +68,7 @@ const structuredData = {
           </li>
           <li>
             <a href={data.basics.location.url}>
-              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+              <i class="fa-solid fa-location-dot" aria-hidden="true"></i>{" "}
               {data.basics.location.city}, {data.basics.location.countryCode}
             </a>
           </li>
@@ -140,7 +141,7 @@ const structuredData = {
             </p>
             <p class="subsection-summary">{pro.description}</p>
             <ul class="subsection-highlights">
-              {pro.highlights.map(h => <li>{h}</li>)}
+              {pro.highlights.map(h => <li set:html={marked.parseInline(h)} />)}
             </ul>
           </article>
         )}
