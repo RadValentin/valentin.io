@@ -49,11 +49,11 @@ const structuredData = {
             <div class="name">{data.basics.name}</div>
             <div class="role">{data.basics.label}</div>
           </div>
-          <img class="avatar" src={avatar.src} alt={data.basics.name}/>
+          <img class="avatar screen-only" src={avatar.src} alt={data.basics.name}/>
         </h1>
         <ul class="social" aria-label="resume links">
           {data.basics.profiles.map(p =>
-            <li>
+            <li class="screen-only">
               <a href={p.url} title={p.network}>
                 <i class={p.icon} aria-hidden="true"></i> {p.username}
               </a>
