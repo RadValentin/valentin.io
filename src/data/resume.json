@@ -6,7 +6,7 @@
     "email": "hi@valentin.io",
     "phone": "+40 721 809 508",
     "url": "https://valentin.io",
-    "summary": "Front-end engineer with 9 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React. Took a career break from 2022 to 2025 while pursuing a BSc in Computer Science. Now seeking for exciting work opportunities, open to in-office, relocation, and remote.",
+    "summary": "Front-end engineer with 9 years of experience building user interfaces and the systems that support them. Developed Skype's messaging interface with React Native and helped build Hootsuite Analytics from the ground up with React. Took a career break from 2022 to 2025 while pursuing a BSc in Computer Science. Now seeking new front-end opportunities and open to office-based roles, relocation, or remote work.",
     "location": {
       "address": "",
       "postalCode": "",
@@ -36,7 +36,7 @@
     "summary": "Built and maintained Skype's messaging interface using React Native and JavaScript.",
     "highlights": [
       "Implemented the ability to quote multiple messages in Skype chat",
-      "Took part in a cross-team effort to enable conversations between Skype and Microsoft Teams",
+      "Contributed to a cross-team effort that enabled conversations between Skype and Microsoft Teams",
       "Developed a Microsoft Teams feature for iOS and Android that allowed users to invite contacts by phone number"
     ]
   }, {
@@ -47,7 +47,7 @@
     "endDate": "2018-11-01",
     "summary": "Helped craft the UI for Timely, a fully automatic time tracking solution that leverages the power of AI.",
     "highlights": [
-      "Reimplemented the billing interface styles from designs provided by the product designer",
+      "Implemented a redesigned billing interface based on product designs",
       "Expanded the implementation of the calendar sync UI",
       "Worked primarily with React, Redux, Reselect, Sass and Jest"
     ]
@@ -64,7 +64,7 @@
       "Worked primarily with React, Redux, LESS, Webpack and Jest"
     ]
   }, {
-    "name": "Independent / Upwork",
+    "name": "Independent (via Upwork)",
     "position": "Freelance Front-End Developer",
     "url": "https://www.upwork.com/",
     "startDate": "2013-01-01",
