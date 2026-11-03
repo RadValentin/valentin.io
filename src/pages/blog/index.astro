@@ -19,31 +19,33 @@ const posts = (await getCollection('blog'))
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>Blog</h1>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<article>
-									<a href={`/blog/${getBlogPostSlug(post.id)}/`}>
-										{post.data.heroImage && (
-											<Image width={720} height={360} src={post.data.heroImage} alt="" />
-										)}
-										<h2 class="title">{post.data.title}</h2>
-										<p class="date">
-											<FormattedDate date={post.data.pubDate} />
-										</p>
-									</a>
-								</article>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
+		<div class="shell">
+			<Header />
+			<main>
+				<h1>Blog</h1>
+				<section>
+					<ul>
+						{
+							posts.map((post) => (
+								<li>
+									<article>
+										<a href={`/blog/${getBlogPostSlug(post.id)}/`}>
+											{post.data.heroImage && (
+												<Image width={720} height={360} src={post.data.heroImage} alt="" />
+											)}
+											<h2 class="title">{post.data.title}</h2>
+											<p class="date">
+												<FormattedDate date={post.data.pubDate} />
+											</p>
+										</a>
+									</article>
+								</li>
+							))
+						}
+					</ul>
+				</section>
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>

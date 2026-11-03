@@ -16,45 +16,44 @@ import '../styles/index.less';
 		/>
 	</head>
 	<body>
-		<Header />
-		<main class="index">
-			<section class="intro-left" aria-labelledby="intro-title">
-				<div class="intro-left-inner">
-					<img
-						src={avatar.src}
-						alt="Valentin Radulescu"
-						width="200"
-						height="200"
-					/>
-					<h1 id="intro-title">Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.</h1>
-					<h2><span aria-hidden="true">👉</span> <a href="mailto:hi@valentin.io">Get in touch</a></h2>
-				</div>
-			</section>
+		<div class="shell">
+			<Header />
+			<main class="index">
+				<section class="intro-left" aria-labelledby="intro-title">
+					<div class="intro-left-inner">
+						<img
+							src={avatar.src}
+							alt="Valentin Radulescu"
+							width="200"
+							height="200"
+						/>
+						<h1 id="intro-title">Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.</h1>
+						<h2><span aria-hidden="true">👉</span> <a href="mailto:hi@valentin.io">Get in touch</a></h2>
+					</div>
+				</section>
 
-			<nav class="intro-right" aria-label="Social links">
-				<!-- TODO: Enable the Blog link after the site reskin is complete: https://github.com/RadValentin/valentin.io/issues/11 -->
-				<!--
-				<a class="intro-link intro-link-blog" href="/blog/">
-					<i class="fa-solid fa-blog" aria-hidden="true"></i> Blog
-				</a>
-				-->
-				<a class="intro-link intro-link-resume" href="/resume">
-					<i class="fa-solid fa-file-lines" aria-hidden="true"></i> Résumé
-				</a>
-				<a class="intro-link intro-link-github" href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
-					<i class="fa-brands fa-github" aria-hidden="true"></i> Github
-				</a>
-				<a class="intro-link intro-link-linkedin" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer">
-					<i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
-				</a>
-				<a class="intro-link intro-link-youtube" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
-					<i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube
-				</a>
-				<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
-					<i class="fa-brands fa-codepen" aria-hidden="true"></i> Codepen
-				</a>
-			</nav>
-		</main>
-		<Footer />
+				<nav class="intro-right" aria-label="Social links">
+					<a class="intro-link intro-link-blog" href="/blog/">
+						<i class="fa-solid fa-blog" aria-hidden="true"></i> Blog
+					</a>
+					<a class="intro-link intro-link-resume" href="/resume">
+						<i class="fa-solid fa-file-lines" aria-hidden="true"></i> Résumé
+					</a>
+					<a class="intro-link intro-link-github" href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-github" aria-hidden="true"></i> Github
+					</a>
+					<a class="intro-link intro-link-linkedin" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
+					</a>
+					<a class="intro-link intro-link-youtube" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube
+					</a>
+					<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
+						<i class="fa-brands fa-codepen" aria-hidden="true"></i> Codepen
+					</a>
+				</nav>
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>

@@ -1,14 +1,37 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
 ---
 
-<!-- <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
+<header class="site-header">
+	<a class="brand" href="/" aria-label={SITE_TITLE}><span class="brand-mark" aria-hidden="true">vr.</span>valentin.io</a>
+	<div class="nav-tools">
+		<nav class="main-nav" aria-label="Main navigation">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
+		</nav>
+		<div class="tools">
+			<button
+				class="tool"
+				data-replay
+				aria-label="Replay page reveal"
+				title="Replay page reveal"
+			>
+				<i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+				<span>Replay</span>
+			</button>
+			<button
+				class="tool motion-toggle"
+				data-motion-toggle
+				role="switch"
+				aria-checked="true"
+				aria-label="Animations"
+				title="Disable animations"
+			>
+				<i class="fa-solid fa-pause motion-on" aria-hidden="true"></i>
+				<i class="fa-solid fa-play motion-off" aria-hidden="true"></i>
+				<span>Animations on</span>
+			</button>
 		</div>
-	</nav>
-</header> -->
+	</div>
+</header>
