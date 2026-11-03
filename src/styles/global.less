@@ -209,14 +209,6 @@ figure figcaption {
   font: 12px/1.4 var(--mono);
 }
 
-.tool svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  fill: none;
-}
-
 .tool:hover {
   color: var(--text);
 }
@@ -229,4 +221,17 @@ figure figcaption {
 .motion-toggle[aria-checked="true"] .motion-off,
 .motion-toggle[aria-checked="false"] .motion-on {
   display: none;
+}
+
+// FOOTER STYLES
+
+.site-footer {
+  margin-top: 38px;
+  padding: 22px 0 30px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--default-spacing);
+  color: var(--muted);
+  font: 11px/1.7 var(--mono);
 }
