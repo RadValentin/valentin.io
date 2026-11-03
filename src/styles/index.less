@@ -1,7 +1,103 @@
 @import './variables.less';
 
+h1, h2, h3, p {
+  margin: 0;
+}
+
 .link-list {
   .link-row {
     display: block;
   }
+}
+
+// MASONRY STYLES
+
+.masonry {
+  columns: 2;
+  column-gap: 30px;
+}
+
+.brick {
+  break-inside: avoid;
+  min-width: 0;
+  padding-top: 13px;
+  margin-bottom: var(--default-spacing);
+}
+
+@property --border-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.frame {
+  --brick-delay: calc((var(--brick-index) - 1) * 400ms);
+  --border-progress: 0%;
+
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+    to bottom,
+    var(--blue) 0%,
+    var(--blue) var(--border-progress),
+    transparent var(--border-progress),
+    transparent 100%
+  ) 1;
+  padding: 34px;
+  min-width: 0;
+  background: var(--page-bg);
+}
+
+.brick:nth-child(1) { --brick-index: 1; }
+.brick:nth-child(2) { --brick-index: 4; }
+.brick:nth-child(3) { --brick-index: 2; }
+.brick:nth-child(4) { --brick-index: 3; }
+.brick:nth-child(5) { --brick-index: 5; }
+
+@keyframes border-swipe {
+  10% {
+    --border-progress: 0%;
+  }
+
+  100% {
+    --border-progress: 100%;
+  }
+}
+
+:root.is-loaded[data-motion="off"] .frame {
+  --border-progress: 100%;
+}
+
+:root.is-loaded[data-motion="on"] .frame {
+  animation: 600ms border-swipe forwards;
+  animation-delay: var(--brick-delay, 0ms);
+}
+
+// Show full borders when JS is disabled
+@media (scripting: none) {
+  :root .frame {
+    --border-progress: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="on"]) .frame {
+    --border-progress: 100%;
+  }
+}
+
+.legend {
+  position: absolute;
+  z-index: 1;
+  top: -0.5em;
+  left: 22px;
+  margin: 0;
+  padding: 0 11px;
+  background: var(--page-bg);
+  color: var(--label);
+  font: 16px / 27px var(--serif);
+  letter-spacing: .3px;
+  line-height: 1;
+  font-weight: 400;
 }

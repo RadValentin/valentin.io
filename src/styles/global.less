@@ -138,6 +138,44 @@ figure figcaption {
   padding-top: 2rem;
 }
 
+.js:not(.is-loaded) .page {
+  visibility: hidden;
+}
+
+:root[data-motion="off"] *,
+:root[data-motion="off"] *::before,
+:root[data-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+:root[data-motion="off"]:not(.is-loaded) .page {
+  visibility: visible;
+}
+
+:root[data-motion="off"]::view-transition-old(root),
+:root[data-motion="off"]::view-transition-new(root) {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="on"]) *,
+  :root:not([data-motion="on"]) *::before,
+  :root:not([data-motion="on"]) *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  :root:not([data-motion="on"]):not(.is-loaded) .page {
+    visibility: visible;
+  }
+
+  :root:not([data-motion="on"])::view-transition-old(root),
+  :root:not([data-motion="on"])::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
 // HEADER STYLES
 
 .site-header {
@@ -238,56 +276,4 @@ figure figcaption {
   gap: var(--default-spacing);
   color: var(--muted);
   font: 11px/1.7 var(--mono);
-}
-
-// MASONRY STYLES
-
-.masonry {
-  columns: 2;
-  column-gap: 30px;
-}
-
-.brick {
-  break-inside: avoid;
-  min-width: 0;
-  padding-top: 13px;
-  margin-bottom: var(--default-spacing);
-}
-
-.frame {
-  position: relative;
-  border: 1.5px solid var(--blue);
-  padding: 34px;
-  min-width: 0;
-  background: var(--page);
-}
-
-.frame::before {
-  content: "";
-  position: absolute;
-  inset: -1.5px;
-  pointer-events: none;
-  opacity: 0;
-  background-image:
-    linear-gradient(var(--blue), var(--blue)),
-    linear-gradient(var(--blue), var(--blue)),
-    linear-gradient(var(--blue), var(--blue)),
-    linear-gradient(var(--blue), var(--blue));
-  background-repeat: no-repeat;
-  background-position: left top, right top, right bottom, left bottom;
-}
-
-.legend {
-  position: absolute;
-  z-index: 1;
-  top: -0.5em;
-  left: 22px;
-  margin: 0;
-  padding: 0 11px;
-  background: var(--page-bg);
-  color: var(--label);
-  font: 16px / 27px var(--serif);
-  letter-spacing: .3px;
-  line-height: 1;
-  font-weight: 400;
 }

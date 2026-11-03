@@ -35,3 +35,27 @@ import HeaderLink from "./HeaderLink.astro";
 		</div>
 	</div>
 </header>
+<script>
+	import { readMotionState, setMotionState } from '../scripts/utils';
+
+	const toggle = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+
+	if (toggle) {
+		const updateToggleUI = (enabled: boolean) => {
+			toggle.setAttribute('aria-checked', String(enabled));
+			toggle.title = enabled ? 'Disable animations' : 'Enable animations';
+			const label = toggle.querySelector('span');
+			if (label) {
+				label.textContent = enabled ? 'Animations on' : 'Animations off';
+			}
+		};
+
+		updateToggleUI(readMotionState());
+
+		toggle.addEventListener('click', () => {
+			const newValue: boolean = !readMotionState();
+			updateToggleUI(newValue);
+			setMotionState(newValue);
+		});
+	}
+</script>

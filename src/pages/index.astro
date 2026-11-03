@@ -41,7 +41,7 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 							<h2 class="legend" id="about-label">About</h2>
 							<div class="reveal">
 								<div class="identity">
-									<img class="portrait" src={avatar.src} alt="Valentin Radulescu" width="92" />
+									<img class="portrait" src={avatar.src} alt="Valentin Radulescu" width="92" height="92" />
 									<div>
 										<h1 class="name">
 											Valentin Radulescu
@@ -61,6 +61,19 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 						</div>
 					</section>
 
+					<article class="brick" aria-labelledby="taste-label taste-title">
+						<div class="frame">
+							<h2 class="legend" id="taste-label">Selected work</h2>
+							<div class="reveal">
+								<h3 class="project-title" id="taste-title">TasteMender</h3>
+								<p class="copy">A music discovery app that finds recommendations through acoustic similarity.</p>
+								<p class="copy">I built the React interface, Django API and pipeline for a large dataset of audio features.</p>
+								<div class="tags" aria-label="Technologies"><span>React</span><span>Django</span><span>PostgreSQL</span><span>Python</span></div>
+								<div class="project-actions"><a class="text-link" href="https://taste-mender.com/" target="_blank" rel="noreferrer">Try it <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/RadValentin/taste-mender" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+							</div>
+						</div>
+					</article>
+
 					<section class="brick" aria-labelledby="links-label">
 						<div class="frame">
 							<h2 class="legend" id="links-label">Links</h2>
@@ -74,19 +87,6 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 							</nav>
 						</div>
 					</section>
-
-					<article class="brick" aria-labelledby="taste-label taste-title">
-						<div class="frame">
-							<h2 class="legend" id="taste-label">Selected work</h2>
-							<div class="reveal">
-								<h3 class="project-title" id="taste-title">TasteMender</h3>
-								<p class="copy">A music discovery app that finds recommendations through acoustic similarity.</p>
-								<p class="copy">I built the React interface, Django API and pipeline for a large dataset of audio features.</p>
-								<div class="tags" aria-label="Technologies"><span>React</span><span>Django</span><span>PostgreSQL</span><span>Python</span></div>
-								<div class="project-actions"><a class="text-link" href="https://taste-mender.com/" target="_blank" rel="noreferrer">Try it <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/RadValentin/taste-mender" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
-							</div>
-						</div>
-					</article>
 
 					<section class="brick" aria-labelledby="writing-label">
 						<div class="frame article-preview">
@@ -115,5 +115,6 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 			</main>
 			<Footer />
 		</div>
+		<script src="../scripts/index.ts"></script>
 	</body>
 </html>

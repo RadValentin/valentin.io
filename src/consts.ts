@@ -5,6 +5,8 @@ export const SITE_TITLE = 'Valentin Radulescu - Front-End Developer';
 export const SITE_DESCRIPTION =
 	"Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.";
 
+export const MOTION_KEY = 'enable-motion';
+
 export function getBlogPostSlug(id: string) {
 	return id.replace(/\/index$/, '');
 }
