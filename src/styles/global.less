@@ -134,6 +134,10 @@ figure figcaption {
   margin: 0 auto;
 }
 
+.page {
+  padding-top: 2rem;
+}
+
 // HEADER STYLES
 
 .site-header {
@@ -226,7 +230,7 @@ figure figcaption {
 // FOOTER STYLES
 
 .site-footer {
-  margin-top: 38px;
+  margin-top: 2.5rem;
   padding: 22px 0 30px;
   border-top: 1px solid var(--rule);
   display: flex;
@@ -234,4 +238,56 @@ figure figcaption {
   gap: var(--default-spacing);
   color: var(--muted);
   font: 11px/1.7 var(--mono);
+}
+
+// MASONRY STYLES
+
+.masonry {
+  columns: 2;
+  column-gap: 30px;
+}
+
+.brick {
+  break-inside: avoid;
+  min-width: 0;
+  padding-top: 13px;
+  margin-bottom: var(--default-spacing);
+}
+
+.frame {
+  position: relative;
+  border: 1.5px solid var(--blue);
+  padding: 34px;
+  min-width: 0;
+  background: var(--page);
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  pointer-events: none;
+  opacity: 0;
+  background-image:
+    linear-gradient(var(--blue), var(--blue)),
+    linear-gradient(var(--blue), var(--blue)),
+    linear-gradient(var(--blue), var(--blue)),
+    linear-gradient(var(--blue), var(--blue));
+  background-repeat: no-repeat;
+  background-position: left top, right top, right bottom, left bottom;
+}
+
+.legend {
+  position: absolute;
+  z-index: 1;
+  top: -0.5em;
+  left: 22px;
+  margin: 0;
+  padding: 0 11px;
+  background: var(--page-bg);
+  color: var(--label);
+  font: 16px / 27px var(--serif);
+  letter-spacing: .3px;
+  line-height: 1;
+  font-weight: 400;
 }
