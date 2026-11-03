@@ -1,10 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getBlogPostSlug, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import avatar from '../assets/valentin-radulescu.jpg';
 import '../styles/index.less';
+
+const latestBlogPost = (await getCollection('blog'))
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
+
+if (!latestBlogPost) {
+	throw new Error('The homepage requires at least one published blog post.');
+}
+
+const latestBlogPostUrl = `/blog/${getBlogPostSlug(latestBlogPost.id)}/`;
+const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+});
 ---
 
 <!doctype html>
@@ -18,40 +34,82 @@ import '../styles/index.less';
 	<body>
 		<div class="shell">
 			<Header />
-			<main class="index">
-				<section class="intro-left" aria-labelledby="intro-title">
-					<div class="intro-left-inner">
-						<img
-							src={avatar.src}
-							alt="Valentin Radulescu"
-							width="200"
-							height="200"
-						/>
-						<h1 id="intro-title">Hi! I'm Valentin, a Front-End Developer with a passion for creating immersive visual experiences.</h1>
-						<h2><span aria-hidden="true">👉</span> <a href="mailto:hi@valentin.io">Get in touch</a></h2>
-					</div>
-				</section>
+			<main class="page" id="main">
+				<div class="masonry" aria-label="About Valentin, links, projects and writing">
+					<section class="brick" aria-labelledby="about-label">
+						<div class="frame">
+							<h2 class="legend" id="about-label">About</h2>
+							<div class="reveal">
+								<div class="identity">
+									<img class="portrait" src={avatar.src} alt="Valentin Radulescu" width="92" height="104" />
+									<div>
+										<h1 class="name"><span>Valentin</span><span>Radulescu.</span></h1>
+										<p class="role">Front-end engineer</p>
+									</div>
+								</div>
+								<p class="lead">I build interfaces.<br />And the systems behind them.</p>
+								<p class="copy">Over nine years, I've worked on Skype's messaging experience and helped build Hootsuite Analytics from the ground up.</p>
+								<p class="copy">Recently completed a BSc in Computer Science with First-Class Honours.</p>
+								<div class="intro-meta">
+									<p class="status">Open to front-end opportunities</p>
+									<p class="location">Bucharest, Romania</p>
+									<a class="text-link contact" href="mailto:hi@valentin.io">Get in touch <span aria-hidden="true">↗</span></a>
+								</div>
+							</div>
+						</div>
+					</section>
 
-				<nav class="intro-right" aria-label="Social links">
-					<a class="intro-link intro-link-blog" href="/blog/">
-						<i class="fa-solid fa-blog" aria-hidden="true"></i> Blog
-					</a>
-					<a class="intro-link intro-link-resume" href="/resume">
-						<i class="fa-solid fa-file-lines" aria-hidden="true"></i> Résumé
-					</a>
-					<a class="intro-link intro-link-github" href="https://github.com/RadValentin" target="_blank" rel="noreferrer">
-						<i class="fa-brands fa-github" aria-hidden="true"></i> Github
-					</a>
-					<a class="intro-link intro-link-linkedin" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer">
-						<i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
-					</a>
-					<a class="intro-link intro-link-youtube" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer">
-						<i class="fa-brands fa-youtube" aria-hidden="true"></i> YouTube
-					</a>
-					<a class="intro-link intro-link-codepen" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer">
-						<i class="fa-brands fa-codepen" aria-hidden="true"></i> Codepen
-					</a>
-				</nav>
+					<section class="brick" aria-labelledby="links-label">
+						<div class="frame">
+							<h2 class="legend" id="links-label">Links</h2>
+							<nav class="link-list reveal" aria-label="Résumé, blog and social profiles">
+								<a class="link-row" href="/resume"><span class="link-name"><span class="link-no" aria-hidden="true">01</span><span>Résumé</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+								<a class="link-row" href="/blog/"><span class="link-name"><span class="link-no" aria-hidden="true">02</span><span>Blog</span></span><span class="arrow" aria-hidden="true">→</span></a>
+								<a class="link-row" href="https://github.com/RadValentin" target="_blank" rel="noreferrer"><span class="link-name"><span class="link-no" aria-hidden="true">03</span><span>GitHub</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+								<a class="link-row" href="https://www.linkedin.com/in/valentinrad/" target="_blank" rel="noreferrer"><span class="link-name"><span class="link-no" aria-hidden="true">04</span><span>LinkedIn</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+								<a class="link-row" href="https://www.youtube.com/c/ValentinRad" target="_blank" rel="noreferrer"><span class="link-name"><span class="link-no" aria-hidden="true">05</span><span>YouTube</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+								<a class="link-row" href="https://codepen.io/valentin/" target="_blank" rel="noreferrer"><span class="link-name"><span class="link-no" aria-hidden="true">06</span><span>CodePen</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+							</nav>
+						</div>
+					</section>
+
+					<article class="brick" aria-labelledby="taste-label taste-title">
+						<div class="frame">
+							<h2 class="legend" id="taste-label">Selected work</h2>
+							<div class="reveal">
+								<h3 class="project-title" id="taste-title">TasteMender</h3>
+								<p class="copy">A music discovery app that finds recommendations through acoustic similarity.</p>
+								<p class="copy">I built the React interface, Django API and pipeline for a large dataset of audio features.</p>
+								<div class="tags" aria-label="Technologies"><span>React</span><span>Django</span><span>PostgreSQL</span><span>Python</span></div>
+								<div class="project-actions"><a class="text-link" href="https://taste-mender.com/" target="_blank" rel="noreferrer">Try it <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/RadValentin/taste-mender" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a></div>
+							</div>
+						</div>
+					</article>
+
+					<section class="brick" aria-labelledby="writing-label">
+						<div class="frame article-preview">
+							<h2 class="legend" id="writing-label">From the blog</h2>
+							<div class="reveal">
+								<p class="article-date"><time datetime={latestBlogPost.data.pubDate.toISOString()}>{latestBlogPostDate}</time></p>
+								<h3 class="article-title"><a href={latestBlogPostUrl}>{latestBlogPost.data.title}</a></h3>
+								<p class="copy">{latestBlogPost.data.description}</p>
+								<a class="writing-more" href="/blog/">All writing →</a>
+							</div>
+						</div>
+					</section>
+
+					<article class="brick" aria-labelledby="oss-label oss-title">
+						<div class="frame">
+							<h2 class="legend" id="oss-label">Open source</h2>
+							<div class="reveal">
+								<h3 class="project-title code-title" id="oss-title">postcss-prefix-selector</h3>
+								<p class="copy">A PostCSS plugin for scoping CSS selectors. I maintain the package, documentation and compatibility with the PostCSS ecosystem.</p>
+								<div class="tags" aria-label="Technologies"><span>JavaScript</span><span>CSS</span><span>Developer tooling</span></div>
+								<div class="project-actions"><a class="text-link" href="https://github.com/RadValentin/postcss-prefix-selector" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.npmjs.com/package/postcss-prefix-selector" target="_blank" rel="noreferrer">npm <span aria-hidden="true">↗</span></a></div>
+							</div>
+						</div>
+					</article>
+				</div>
 			</main>
 			<Footer />
 		</div>
