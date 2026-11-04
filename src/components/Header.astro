@@ -12,10 +12,11 @@ import HeaderLink from "./HeaderLink.astro";
 		</nav>
 		<div class="tools">
 			<button
-				class="tool"
+				class="tool replay-button"
 				data-replay
 				aria-label="Replay page reveal"
 				title="Replay page reveal"
+				disabled
 			>
 				<i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
 				<span>Replay</span>
@@ -36,26 +37,39 @@ import HeaderLink from "./HeaderLink.astro";
 	</div>
 </header>
 <script>
-	import { readMotionState, setMotionState } from '../scripts/utils';
+	import { readMotionState, setMotionState, replayMotion } from '../scripts/utils';
 
-	const toggle = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+	const motionToggle = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+	const replayButton = document.querySelector<HTMLButtonElement>('[data-replay]');
 
-	if (toggle) {
+	if (motionToggle) {
 		const updateToggleUI = (enabled: boolean) => {
-			toggle.setAttribute('aria-checked', String(enabled));
-			toggle.title = enabled ? 'Disable animations' : 'Enable animations';
-			const label = toggle.querySelector('span');
+			motionToggle.setAttribute('aria-checked', String(enabled));
+			motionToggle.title = enabled ? 'Disable animations' : 'Enable animations';
+			const label = motionToggle.querySelector('span');
 			if (label) {
 				label.innerHTML = enabled ? 'Animations on&nbsp;' : 'Animations off';
+			}
+
+			if (replayButton) {
+				replayButton.disabled = !enabled;
 			}
 		};
 
 		updateToggleUI(readMotionState());
 
-		toggle.addEventListener('click', () => {
+		motionToggle.addEventListener('click', () => {
 			const newValue: boolean = !readMotionState();
 			updateToggleUI(newValue);
 			setMotionState(newValue);
 		});
+	}
+
+	if (replayButton) {
+		if (readMotionState()) {
+			replayButton.disabled = false;
+		}
+
+		replayButton.addEventListener('click', replayMotion);
 	}
 </script>
