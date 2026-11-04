@@ -65,15 +65,6 @@ h1, h2, h3, p {
   }
 }
 
-:root.is-loaded[data-motion="off"] .frame {
-  --border-progress: 100%;
-}
-
-:root.is-loaded[data-motion="on"] .frame {
-  animation: 600ms border-swipe forwards;
-  animation-delay: var(--brick-delay, 0ms);
-}
-
 // Show full borders when JS is disabled
 @media (scripting: none) {
   :root .frame {
@@ -81,10 +72,20 @@ h1, h2, h3, p {
   }
 }
 
+// Show full borders for reduced motion if animations are disabled (default)
 @media (prefers-reduced-motion: reduce) {
-  :root:not([data-motion="on"]) .frame {
+  :root[data-motion="off"] .frame {
     --border-progress: 100%;
   }
+}
+
+:root[data-motion="off"] .frame {
+  --border-progress: 100%;
+}
+
+:root.is-loaded[data-motion="on"] .frame {
+  animation: 600ms border-swipe forwards;
+  animation-delay: var(--brick-delay, 0ms);
 }
 
 .legend {
