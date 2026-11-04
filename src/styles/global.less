@@ -271,7 +271,7 @@ h1, h2, h3, p {
   initial-value: 0%;
 }
 
-.frame {
+.brick-frame {
   --brick-anim-length: 400ms;
   --brick-child-anim-length: 200ms;
   // Delay for: time to draw previous boxes + time to draw prev boxes children
@@ -308,31 +308,31 @@ h1, h2, h3, p {
 
 // Show full borders when JS is disabled
 @media (scripting: none) {
-  :root .frame {
+  :root .brick-frame {
     --border-progress: 100%;
   }
 }
 
 // Show full borders for reduced motion if animations are disabled (default)
 @media (prefers-reduced-motion: reduce) {
-  :root[data-motion="off"] .frame {
+  :root[data-motion="off"] .brick-frame {
     --border-progress: 100%;
   }
 }
 
-:root[data-motion="off"] .frame {
+:root[data-motion="off"] .brick-frame {
   --border-progress: 100%;
 }
 
-:root.is-loaded[data-motion="on"] .frame {
+:root.is-loaded[data-motion="on"] .brick-frame {
   animation: var(--brick-anim-length) border-swipe forwards;
   animation-delay: var(--brick-delay, 0ms);
 }
 
 // BRICK CONTENT
 
-:root.is-loaded[data-motion="on"] .frame .reveal > *,
-:root.is-loaded[data-motion="on"] .frame .legend {
+:root.is-loaded[data-motion="on"] .brick-frame .reveal > *,
+:root.is-loaded[data-motion="on"] .brick-frame .brick-legend {
   animation: wipe-child var(--brick-child-anim-length) linear both;
   // delay for:
   // time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children
@@ -344,14 +344,14 @@ h1, h2, h3, p {
   );
 }
 
-.frame .reveal > :nth-child(1) { --child-index: 1; }
-.frame .reveal > :nth-child(2) { --child-index: 2; }
-.frame .reveal > :nth-child(3) { --child-index: 3; }
-.frame .reveal > :nth-child(4) { --child-index: 4; }
-.frame .reveal > :nth-child(5) { --child-index: 5; }
-.frame .reveal > :nth-child(6) { --child-index: 6; }
-.frame .reveal > :nth-child(7) { --child-index: 7; }
-.frame .reveal > :nth-child(8) { --child-index: 8; }
+.brick-frame .reveal > :nth-child(1) { --child-index: 1; }
+.brick-frame .reveal > :nth-child(2) { --child-index: 2; }
+.brick-frame .reveal > :nth-child(3) { --child-index: 3; }
+.brick-frame .reveal > :nth-child(4) { --child-index: 4; }
+.brick-frame .reveal > :nth-child(5) { --child-index: 5; }
+.brick-frame .reveal > :nth-child(6) { --child-index: 6; }
+.brick-frame .reveal > :nth-child(7) { --child-index: 7; }
+.brick-frame .reveal > :nth-child(8) { --child-index: 8; }
 
 @keyframes wipe-child {
   from {
@@ -363,7 +363,7 @@ h1, h2, h3, p {
   }
 }
 
-.legend {
+.brick-legend {
   position: absolute;
   z-index: 1;
   top: -0.5em;
@@ -398,17 +398,17 @@ h1, h2, h3, p {
   text-decoration: underline;
 }
 
-.article-preview .copy {
+.article-preview .brick-copy {
   font-size: 16px;
 }
 
-.copy {
+.brick-copy {
   color: var(--muted);
   font-size: 17px;
   line-height: 1.7;
 }
 
-.copy+.copy {
+.brick-copy+.brick-copy {
   margin-top: 12px;
 }
 
@@ -419,13 +419,13 @@ h1, h2, h3, p {
   text-decoration-color: var(--blue);
 }
 
-.project-actions {
+.brick-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 22px;
   margin-top: 25px;
 }
 
-.project-actions .text-link {
+.brick-actions .text-link {
   font-size: 14px;
 }

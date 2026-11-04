@@ -37,8 +37,8 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 			<main class="page" id="main">
 				<div class="masonry" aria-label="About Valentin, links, projects and writing">
 					<section class="brick" aria-labelledby="about-label">
-						<div class="frame">
-							<h2 class="legend" id="about-label">About</h2>
+						<div class="brick-frame">
+							<h2 class="brick-legend" id="about-label">About</h2>
 							<div class="reveal">
 								<div class="identity">
 									<img class="portrait" src={avatar.src} alt="Valentin Radulescu" width="92" height="92" />
@@ -49,14 +49,14 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 										<p class="role">Front-end engineer</p>
 									</div>
 								</div>
-								<p class="lead">I build interfaces.<br />And the systems behind them.</p>
-								<p class="copy">Over nine years, I've worked on Skype's messaging experience and helped build Hootsuite Analytics from the ground up.</p>
-								<p class="copy">Recently completed a BSc in Computer Science with First-Class Honours.</p>
+								<p class="brick-lead">I build interfaces.<br />And the systems behind them.</p>
+								<p class="brick-copy">Over nine years, I've worked on Skype's messaging experience and helped build Hootsuite Analytics from the ground up.</p>
+								<p class="brick-copy">Recently completed a BSc in Computer Science with First-Class Honours.</p>
 								<div class="intro-meta">
 									<p class="status">Open to front-end opportunities</p>
 									<p class="location">Bucharest, Romania</p>
-									<div class="project-actions">
-										<a class="text-link contact" href="mailto:hi@valentin.io">Get in touch <span aria-hidden="true">↗</span></a>
+									<div class="brick-actions">
+										<a class="text-link" href="mailto:hi@valentin.io">Get in touch <span aria-hidden="true">↗</span></a>
 									</div>
 								</div>
 							</div>
@@ -64,14 +64,14 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 					</section>
 
 					<article class="brick" aria-labelledby="taste-label taste-title">
-						<div class="frame">
-							<h2 class="legend" id="taste-label">Selected work</h2>
+						<div class="brick-frame">
+							<h2 class="brick-legend" id="taste-label">Selected work</h2>
 							<div class="reveal">
 								<h3 class="project-title" id="taste-title">TasteMender</h3>
-								<p class="copy">A music discovery app that finds recommendations through acoustic similarity.</p>
-								<p class="copy">I built the React interface, Django API and pipeline for a large dataset of audio features.</p>
-								<div class="tags" aria-label="Technologies"><span>React</span><span>Django</span><span>PostgreSQL</span><span>Python</span></div>
-								<div class="project-actions">
+								<p class="brick-copy">A music discovery app that finds recommendations through acoustic similarity.</p>
+								<p class="brick-copy">I built the React interface, Django API and pipeline for a large dataset of audio features.</p>
+								<div class="brick-tags" aria-label="Technologies"><span>React</span><span>Django</span><span>PostgreSQL</span><span>Python</span></div>
+								<div class="brick-actions">
 									<a class="text-link" href="https://taste-mender.com/" target="_blank" rel="noreferrer">Try it <span aria-hidden="true">↗</span></a>
 									<a class="text-link" href="https://github.com/RadValentin/taste-mender" target="_blank" rel="noreferrer">View source <span aria-hidden="true">↗</span></a>
 								</div>
@@ -80,8 +80,8 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 					</article>
 
 					<section class="brick" aria-labelledby="links-label">
-						<div class="frame">
-							<h2 class="legend" id="links-label">Links</h2>
+						<div class="brick-frame">
+							<h2 class="brick-legend" id="links-label">Links</h2>
 							<nav class="link-list reveal" aria-label="Résumé, blog and social profiles">
 								<a class="link-row" href="/resume"><span class="link-name"><span class="link-no" aria-hidden="true">01</span><span>Résumé</span></span><span class="arrow" aria-hidden="true">↗</span></a>
 								<a class="link-row" href="/blog/"><span class="link-name"><span class="link-no" aria-hidden="true">02</span><span>Blog</span></span><span class="arrow" aria-hidden="true">→</span></a>
@@ -94,13 +94,13 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 					</section>
 
 					<section class="brick" aria-labelledby="writing-label">
-						<div class="frame article-preview">
-							<h2 class="legend" id="writing-label">From the blog</h2>
+						<div class="brick-frame article-preview">
+							<h2 class="brick-legend" id="writing-label">From the blog</h2>
 							<div class="reveal">
 								<p class="article-date"><time datetime={latestBlogPost.data.pubDate.toISOString()}>{latestBlogPostDate}</time></p>
 								<h3 class="article-title"><a href={latestBlogPostUrl}>{latestBlogPost.data.title}</a></h3>
-								<p class="copy">{latestBlogPost.data.description}</p>
-								<div class="project-actions">
+								<p class="brick-copy">{latestBlogPost.data.description}</p>
+								<div class="brick-actions">
 									<a class="text-link" href="/blog/">All writing <span aria-hidden="true">→</span></a>
 								</div>
 							</div>
@@ -108,13 +108,13 @@ const latestBlogPostDate = latestBlogPost.data.pubDate.toLocaleDateString('en-GB
 					</section>
 
 					<article class="brick" aria-labelledby="oss-label oss-title">
-						<div class="frame">
-							<h2 class="legend" id="oss-label">Open source</h2>
+						<div class="brick-frame">
+							<h2 class="brick-legend" id="oss-label">Open source</h2>
 							<div class="reveal">
 								<h3 class="project-title code-title" id="oss-title">postcss-prefix-selector</h3>
-								<p class="copy">A PostCSS plugin for scoping CSS selectors. I maintain the package, documentation and compatibility with the PostCSS ecosystem.</p>
-								<div class="tags" aria-label="Technologies"><span>JavaScript</span><span>CSS</span><span>Developer tooling</span></div>
-								<div class="project-actions">
+								<p class="brick-copy">A PostCSS plugin for scoping CSS selectors. I maintain the package, documentation and compatibility with the PostCSS ecosystem.</p>
+								<div class="brick-tags" aria-label="Technologies"><span>JavaScript</span><span>CSS</span><span>Developer tooling</span></div>
+								<div class="brick-actions">
 									<a class="text-link" href="https://github.com/RadValentin/postcss-prefix-selector" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
 									<a class="text-link" href="https://www.npmjs.com/package/postcss-prefix-selector" target="_blank" rel="noreferrer">npm <span aria-hidden="true">↗</span></a>
 								</div>
