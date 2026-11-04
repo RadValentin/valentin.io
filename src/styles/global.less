@@ -168,15 +168,14 @@ h1, h2, h3, p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 112px;
-  gap: 24px;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--rule);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 1rem;
   text-decoration: none;
   font: 15px/1.4 var(--mono);
   white-space: nowrap;
@@ -262,4 +261,171 @@ h1, h2, h3, p {
   gap: var(--default-spacing);
   color: var(--muted);
   font: 11px/1.7 var(--mono);
+}
+
+// BRICK REVEAL STYLES
+
+@property --border-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.frame {
+  --brick-anim-length: 400ms;
+  --brick-child-anim-length: 200ms;
+  // Delay for: time to draw previous boxes + time to draw prev boxes children
+  --brick-delay: calc(
+    (var(--brick-index) - 1) * var(--brick-anim-length) +
+    (var(--brick-index) - 1) * var(--brick-child-anim-length) * 5
+  );
+  --border-progress: 0%;
+
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+    to bottom,
+    var(--blue) 0%,
+    var(--blue) var(--border-progress),
+    transparent var(--border-progress),
+    transparent 100%
+  ) 1;
+  padding: 34px;
+  min-width: 0;
+  background: var(--page-bg);
+}
+
+@keyframes border-swipe {
+  10% {
+    --border-progress: 0%;
+  }
+
+  100% {
+    --border-progress: 100%;
+  }
+}
+
+// Show full borders when JS is disabled
+@media (scripting: none) {
+  :root .frame {
+    --border-progress: 100%;
+  }
+}
+
+// Show full borders for reduced motion if animations are disabled (default)
+@media (prefers-reduced-motion: reduce) {
+  :root[data-motion="off"] .frame {
+    --border-progress: 100%;
+  }
+}
+
+:root[data-motion="off"] .frame {
+  --border-progress: 100%;
+}
+
+:root.is-loaded[data-motion="on"] .frame {
+  animation: var(--brick-anim-length) border-swipe forwards;
+  animation-delay: var(--brick-delay, 0ms);
+}
+
+// BRICK CONTENT
+
+:root.is-loaded[data-motion="on"] .frame .reveal > *,
+:root.is-loaded[data-motion="on"] .frame .legend {
+  animation: wipe-child var(--brick-child-anim-length) linear both;
+  // delay for:
+  // time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children
+  animation-delay: calc(
+    var(--brick-delay, 0ms) +
+    var(--brick-anim-length) +
+    var(--brick-child-anim-length) * var(--child-index, 1) +
+    100ms * var(--child-index, 1)
+  );
+}
+
+.frame .reveal > :nth-child(1) { --child-index: 1; }
+.frame .reveal > :nth-child(2) { --child-index: 2; }
+.frame .reveal > :nth-child(3) { --child-index: 3; }
+.frame .reveal > :nth-child(4) { --child-index: 4; }
+.frame .reveal > :nth-child(5) { --child-index: 5; }
+.frame .reveal > :nth-child(6) { --child-index: 6; }
+.frame .reveal > :nth-child(7) { --child-index: 7; }
+.frame .reveal > :nth-child(8) { --child-index: 8; }
+
+@keyframes wipe-child {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    clip-path: inset(0 0 -0.15em 0);
+  }
+}
+
+.legend {
+  position: absolute;
+  z-index: 1;
+  top: -0.5em;
+  left: 22px;
+  margin: 0;
+  padding: 0 11px;
+  background: var(--page-bg);
+  color: var(--label);
+  font: 16px / 27px var(--serif);
+  letter-spacing: .3px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.article-date {
+  color: var(--muted);
+  font: 11px/1.6 var(--mono);
+  margin-bottom: 13px;
+}
+
+.article-title {
+  font: 27px/1.3 var(--serif);
+  letter-spacing: -.35px;
+  margin-bottom: 15px;
+}
+
+.article-title a {
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  text-decoration: underline;
+}
+
+.article-preview .copy {
+  font-size: 16px;
+}
+
+.copy {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.copy+.copy {
+  margin-top: 12px;
+}
+
+.text-link {
+  color: var(--text);
+  font-size: 15px;
+  text-decoration: underline;
+  text-decoration-color: var(--blue);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 25px;
+}
+
+.project-actions .text-link {
+  font-size: 14px;
 }

@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
@@ -22,28 +21,36 @@ const posts = (await getCollection('blog'))
 		<div class="shell">
 			<Header />
 			<main class="page" id="main">
-				<h1>Blog</h1>
-				<section>
-					<ul>
-						{
-							posts.map((post) => (
-								<li>
-									<article>
-										<a href={`/blog/${getBlogPostSlug(post.id)}/`}>
-											{post.data.heroImage && (
-												<Image width={720} height={360} src={post.data.heroImage} alt="" />
-											)}
-											<h2 class="title">{post.data.title}</h2>
-											<p class="date">
-												<FormattedDate date={post.data.pubDate} />
-											</p>
-										</a>
-									</article>
-								</li>
-							))
-						}
-					</ul>
+				<div class="blog-intro page-heading">
+					<h1>Writing.</h1>
+					<p>Notes on front-end development and building things for the web.</p>
+				</div>
+				<section class="archive-list" aria-label="From the archive">
+					{
+						posts.map((post) => (
+							<article class="brick archive">
+								<div class="frame">
+									<h2 class="legend">From the archive</h2>
+									<div class="reveal">
+										<p class="article-date">
+											<FormattedDate date={post.data.pubDate} />
+										</p>
+										<h2 class="article-title">
+											<a href={`/blog/${getBlogPostSlug(post.id)}/`}>{post.data.title}</a>
+										</h2>
+										<p class="copy">{post.data.description}</p>
+										<div class="project-actions">
+											<a class="text-link" href={`/blog/${getBlogPostSlug(post.id)}/`}>
+												Read the article <span aria-hidden="true">↗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</article>
+						))
+					}
 				</section>
+				<p class="archive-note"><a href="/">← Back to homepage</a></p>
 			</main>
 			<Footer />
 		</div>
