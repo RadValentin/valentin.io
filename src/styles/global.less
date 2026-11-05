@@ -146,6 +146,13 @@ h1, h2, h3, p {
   visibility: hidden;
 }
 
+// Show page contents when JS is disabled
+@media (scripting: none) {
+  :root .page {
+    visibility: visible !important;
+  }
+}
+
 :root[data-motion="off"] *,
 :root[data-motion="off"] *::before,
 :root[data-motion="off"] *::after {
