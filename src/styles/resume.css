@@ -1,19 +1,38 @@
-/* Variables */
 :root {
-  /* Colors */
+  /* Spacing */
+  --default-spacing: 1rem;
+  --resume-top-margin: calc(3 * var(--default-spacing));
+  --resume-top-padding: calc(4.5 * var(--default-spacing));
+  --resume-side-padding: calc(3 * var(--default-spacing));
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --accent-color: #a9bfff;
+  --background-color: #0c1010;
+  --surface-color: #141d27;
+  --shadow-color: #000;
+  --inverse-text-color: #0c1010;
+  --border-primary-color: #52606a;
+  --border-secondary-color: #2b3437;
+
+  --text-primary-color: #f1eee7;
+  --text-secondary-color: #b5bcbf;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
   --accent-color: #5a2bbf;
+  --background-color: #eee;
+  --surface-color: #fff;
+  --shadow-color: #ccc;
+  --inverse-text-color: #fff;
   --border-primary-color: #8a8a8a;
   --border-secondary-color: #dedede;
 
   --text-primary-color: #272727;
   --text-secondary-color: #595959;
-
-
-  /* Spacing */
-  --resume-top-padding: calc(3 * var(--default-spacing));
-  --resume-side-padding: calc(2 * var(--default-spacing));
 }
-
 
 /* Utility classes */
 
@@ -50,17 +69,23 @@
 
 
 /* Resume styles */
+
 * {
   box-sizing: border-box;
 }
 
 html {
-  background: #eee;
+  background: var(--background-color);
 }
 
 body {
-  /* prevent child margins from overflowing outside parent */
+    /* prevent child margins from overflowing outside parent */
   display: flow-root;
+  font-family: var(--font-atkinson), sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--text-primary-color);
   line-height: 1.5;
 }
@@ -75,18 +100,22 @@ a {
 }
 
 main {
+  position: relative;
+
   @media screen {
     max-width: 960px;
-    margin: var(--resume-top-padding) auto;
-    padding: calc(1.5 * var(--resume-top-padding)) calc(1.5 * var(--resume-side-padding));
-    background-color: #fff;
-    box-shadow: 0 0 10px #ccc;
+    margin: var(--resume-top-margin) auto;
+    padding: var(--resume-top-padding) var(--resume-side-padding);
+    background-color: var(--surface-color);
+    box-shadow: 0 0 10px var(--shadow-color);
   }
 
   @media screen and (width < 1000px) {
+    --resume-top-padding: calc(3 * var(--default-spacing));
+    --resume-side-padding: calc(2 * var(--default-spacing));
+
     max-width: none;
     margin: 0;
-    padding: var(--resume-top-padding) var(--resume-side-padding);
   }
 }
 
@@ -97,6 +126,45 @@ main {
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
+}
+
+.theme-toggle {
+  position: absolute;
+  display: block;
+  top:  calc(var(--resume-top-padding) / 2);
+  right: var(--resume-side-padding);
+  padding: 0.3rem 0.5rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-primary-color);
+  border-radius: 0.3rem;
+  color: var(--text-secondary-color);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--inverse-text-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+}
+
+[data-theme="dark"] .theme-toggle__dark {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle:not(:hover) {
+  color: orange;
+}
+
+[data-theme="light"] .theme-toggle__light {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  color: yellow;
 }
 
 .badge {
@@ -155,7 +223,7 @@ header {
     white-space: nowrap;
 
     &:hover {
-      color: #fff;
+      color: var(--inverse-text-color);
       background-color: var(--accent-color);
     }
   }
