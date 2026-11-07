@@ -1,16 +1,16 @@
 :root {
   /* Make Astro's code-block theme (Shiki) follow the site palette. */
-  --astro-code-foreground: var(--text);
-  --astro-code-background: var(--wash);
-  --astro-code-token-constant: var(--label);
-  --astro-code-token-string: var(--label);
-  --astro-code-token-comment: var(--muted);
-  --astro-code-token-keyword: var(--red);
-  --astro-code-token-parameter: var(--text);
-  --astro-code-token-function: var(--label);
-  --astro-code-token-string-expression: var(--label);
-  --astro-code-token-punctuation: var(--muted);
-  --astro-code-token-link: var(--label);
+  --astro-code-foreground: var(--color-text);
+  --astro-code-background: var(--color-surface);
+  --astro-code-token-constant: var(--color-label);
+  --astro-code-token-string: var(--color-label);
+  --astro-code-token-comment: var(--color-muted);
+  --astro-code-token-keyword: var(--color-highlight);
+  --astro-code-token-parameter: var(--color-text);
+  --astro-code-token-function: var(--color-label);
+  --astro-code-token-string-expression: var(--color-label);
+  --astro-code-token-punctuation: var(--color-muted);
+  --astro-code-token-link: var(--color-label);
 }
 
 /* Article-only rules. Reuse the global palette, fonts, spacing and breakpoints. */
@@ -21,9 +21,9 @@
     top: var(--default-spacing);
     left: var(--default-spacing);
     padding: .5rem 1rem;
-    color: var(--text);
-    background: var(--page-bg);
-    border: 1px solid var(--blue);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-accent);
     transform: translateY(-200%);
 
     &:focus {
@@ -37,15 +37,15 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    color: var(--muted);
-    font: 12px/1.6 var(--mono);
+    color: var(--color-muted);
+    font: 12px/1.6 var(--font-mono);
     a { text-decoration: none; }
     a:hover { text-decoration: underline; }
   }
 
   .article-path {
     margin-bottom: 2rem;
-    > span { color: var(--red); }
+    > span { color: var(--color-highlight); }
   }
 
   .article-heading.brick-frame {
@@ -54,8 +54,8 @@
     h1 {
       max-width: 27ch;
       margin: 22px 0;
-      color: var(--text);
-      font: clamp(2.2rem, 4.5vw, 3.5rem)/1.1 var(--serif);
+      color: var(--color-text);
+      font: clamp(2.2rem, 4.5vw, 3.5rem)/1.1 var(--font-serif);
       letter-spacing: -.035em;
       text-wrap: balance;
       overflow-wrap: anywhere;
@@ -66,14 +66,14 @@
     display: flex;
     flex-wrap: wrap;
     gap: .6rem 1.5rem;
-    color: var(--muted);
-    font: 12px/1.6 var(--mono);
-    > span { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+    color: var(--color-muted);
+    font: 12px/1.6 var(--font-mono);
+    > span { padding-left: 1.5rem; border-left: 1px solid var(--color-border); }
   }
 
   .article-deck {
     max-width: 65ch;
-    color: var(--muted);
+    color: var(--color-muted);
     font-size: 18px;
     line-height: 1.7;
   }
@@ -95,25 +95,25 @@
     min-width: 0;
     width: 100%;
     max-width: 70ch;
-    color: var(--text);
-    font: 18px/1.85 var(--body);
+    color: var(--color-text);
+    font: 18px/1.85 var(--font-body);
     overflow-wrap: anywhere;
 
     > :first-child { margin-top: 0; }
     > :last-child { margin-bottom: 0; }
     p, ul, ol, blockquote, pre, figure, table, dl { margin: 0 0 1.3em; }
-    h2, h3, h4, h5, h6 { color: var(--text); scroll-margin-top: 2rem; }
+    h2, h3, h4, h5, h6 { color: var(--color-text); scroll-margin-top: 2rem; }
 
     h2 {
       margin: 2.2em 0 .7em;
       padding-top: .6em;
-      border-top: 1px solid var(--rule);
-      font: 34px/1.25 var(--serif);
+      border-top: 1px solid var(--color-border);
+      font: 34px/1.25 var(--font-serif);
       letter-spacing: -.025em;
     }
 
     h3 {
-      margin: 1.7em 0 .7em; font: 24px/1.35 var(--serif);
+      margin: 1.7em 0 .7em; font: 24px/1.35 var(--font-serif);
     }
 
     h4, h5, h6 {
@@ -137,23 +137,23 @@
     }
 
     li::marker {
-      color: var(--label);
+      color: var(--color-label);
     }
 
     a {
-      color: var(--label);
+      color: var(--color-label);
 
       &:hover {
-        color: var(--text);
+        color: var(--color-text);
       }
     }
 
     :not(pre) > code {
       padding: .12em .3em;
-      border: 1px solid var(--rule);
-      background: var(--wash);
-      color: var(--red);
-      font: .85em/1.5 var(--mono);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-highlight);
+      font: .85em/1.5 var(--font-mono);
       box-decoration-break: clone;
     }
 
@@ -161,11 +161,11 @@
       max-width: 100%;
       padding: 22px 24px;
       overflow-x: auto;
-      border: 1px solid var(--rule);
-      border-left: 2px solid var(--blue);
+      border: 1px solid var(--color-border);
+      border-left: 2px solid var(--color-accent);
       border-radius: 0;
-      background: var(--wash);
-      font: 13px/1.8 var(--mono);
+      background: var(--color-surface);
+      font: 13px/1.8 var(--font-mono);
       tab-size: 2;
 
       code {
@@ -176,8 +176,8 @@
     blockquote {
       margin-left: 0;
       padding: .2rem 0 .2rem 1.25rem;
-      border-left: 2px solid var(--red);
-      color: var(--muted);
+      border-left: 2px solid var(--color-highlight);
+      color: var(--color-muted);
 
       & > :last-child {
         margin-bottom: 0;
@@ -187,7 +187,7 @@
     hr {
       margin: 2rem 0;
       border: 0;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--color-border);
     }
 
     img, video {
@@ -197,7 +197,7 @@
     }
 
     img {
-      border: 1px solid var(--rule);
+      border: 1px solid var(--color-border);
     }
 
     figure {
@@ -207,8 +207,8 @@
 
     figcaption {
       margin-top: .65rem;
-      color: var(--muted);
-      font: 12px/1.6 var(--mono);
+      color: var(--color-muted);
+      font: 12px/1.6 var(--font-mono);
     }
 
     table {
@@ -220,12 +220,12 @@
 
     th, td {
       padding: .6em .8em;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--color-border);
       text-align: left;
     }
 
     th {
-      background: var(--wash);
+      background: var(--color-surface);
     }
 
     strong {
@@ -245,7 +245,7 @@
 
   .article-index {
     position: relative;
-    border: 1px solid var(--blue);
+    border: 1px solid var(--color-accent);
     padding: 26px 20px 20px;
 
     h2 {
@@ -253,9 +253,9 @@
       top: -.55em;
       left: 12px;
       padding: 0 8px;
-      background: var(--page-bg);
-      color: var(--label);
-      font: 16px/1 var(--serif);
+      background: var(--color-bg);
+      color: var(--color-label);
+      font: 16px/1 var(--font-serif);
     }
 
     ol {
@@ -277,19 +277,19 @@
       display: grid;
       grid-template-columns: 20px minmax(0, 1fr);
       gap: 10px;
-      color: var(--muted);
-      font: 14px/1.55 var(--body);
+      color: var(--color-muted);
+      font: 14px/1.55 var(--font-body);
       text-decoration: none;
 
       &::before {
         content: counter(section, decimal-leading-zero);
         padding-top: 2px;
-        color: var(--label);
-        font: 10px/1.9 var(--mono);
+        color: var(--color-label);
+        font: 10px/1.9 var(--font-mono);
       }
 
       &:hover {
-        color: var(--text);
+        color: var(--color-text);
         text-decoration: underline;
       }
     }
@@ -306,14 +306,14 @@
   .article-cover {
     margin-top: 26px;
     padding: 5px;
-    border: 1px solid var(--rule);
+    border: 1px solid var(--color-border);
     img { display: block; width: 100%; height: auto; }
   }
 
   .article-end {
     margin-top: 3rem;
     padding: 1.5rem 0;
-    border-top: 1px solid var(--blue);
+    border-top: 1px solid var(--color-accent);
   }
 
   @media (--lg) {

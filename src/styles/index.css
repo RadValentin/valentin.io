@@ -34,19 +34,19 @@
   width: 92px;
   height: 104px;
   object-fit: cover;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--color-border);
   image-rendering: auto;
 }
 
 .name {
-  font: 42px/1.06 var(--serif);
+  font: 42px/1.06 var(--font-serif);
   letter-spacing: -1.4px;
 }
 
 .role {
-  color: var(--red);
+  color: var(--color-highlight);
   margin-top: 14px;
-  font: 11px/1.5 var(--mono);
+  font: 11px/1.5 var(--font-mono);
   letter-spacing: 1.05px;
   text-transform: uppercase;
 }
@@ -59,7 +59,7 @@
 }
 
 .intro-meta {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--color-border);
   margin-top: 24px;
   padding-top: 20px;
 }
@@ -68,8 +68,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--red);
-  font: 12px/1.5 var(--mono);
+  color: var(--color-highlight);
+  font: 12px/1.5 var(--font-mono);
 }
 
 .status::before {
@@ -81,8 +81,8 @@
 
 
 .location {
-  color: var(--muted);
-  font: 12px/1.5 var(--mono);
+  color: var(--color-muted);
+  font: 12px/1.5 var(--font-mono);
   margin-top: 5px;
 }
 
@@ -96,7 +96,7 @@
   justify-content: space-between;
   gap: 20px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--color-border);
   text-decoration: none;
 }
 
@@ -117,12 +117,12 @@
 }
 
 .link-no {
-  color: var(--muted);
-  font: 10px/1 var(--mono);
+  color: var(--color-muted);
+  font: 10px/1 var(--font-mono);
 }
 
 .arrow {
-  color: var(--label);
+  color: var(--color-label);
   font-size: 20px;
   line-height: 1;
 }
@@ -133,14 +133,14 @@
 }
 
 .project-title {
-  font: 32px/1.25 var(--serif);
+  font: 32px/1.25 var(--font-serif);
   letter-spacing: -.6px;
   margin-bottom: 16px;
   overflow-wrap: anywhere;
 }
 
 .project-title.code-title {
-  font: 23px/1.4 var(--mono);
+  font: 23px/1.4 var(--font-mono);
   letter-spacing: -.8px;
 }
 
@@ -149,6 +149,6 @@
   flex-wrap: wrap;
   gap: 6px 14px;
   margin-top: 22px;
-  color: var(--label);
-  font: 11px/1.7 var(--mono);
+  color: var(--color-label);
+  font: 11px/1.7 var(--font-mono);
 }

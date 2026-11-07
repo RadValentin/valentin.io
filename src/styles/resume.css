@@ -16,8 +16,8 @@
   --border-primary-color: #52606a;
   --border-secondary-color: #2b3437;
 
-  --text-primary-color: #f1eee7;
-  --text-secondary-color: #b5bcbf;
+  --color-text-primary: #f1eee7;
+  --color-text-secondary: #b5bcbf;
 }
 
 [data-theme="light"] {
@@ -30,8 +30,8 @@
   --border-primary-color: #8a8a8a;
   --border-secondary-color: #dedede;
 
-  --text-primary-color: #272727;
-  --text-secondary-color: #595959;
+  --color-text-primary: #272727;
+  --color-text-secondary: #595959;
 }
 
 /* Utility classes */
@@ -86,12 +86,12 @@ body {
   padding: 0;
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-primary-color);
+  color: var(--color-text-primary);
   line-height: 1.5;
 }
 
 a {
-  color: var(--text-secondary-color);
+  color: var(--color-text-secondary);
   transition: color 0.3s ease;
 
   &:hover {
@@ -138,7 +138,7 @@ main {
   border-style: solid;
   border-color: var(--border-primary-color);
   border-radius: 0.3rem;
-  color: var(--text-secondary-color);
+  color: var(--color-text-secondary);
   background: transparent;
   font: inherit;
   cursor: pointer;
@@ -216,7 +216,7 @@ header {
   & a {
     display: block;
     text-decoration: none;
-    color: var(--text-secondary-color);
+    color: var(--color-text-secondary);
     padding: 0.3rem 0.5rem;
     border-radius: 0.3rem;
     transition: all 0.3s ease;
@@ -296,7 +296,7 @@ section {
   }
 
   & .subsection-dates {
-    color: var(--text-secondary-color);
+    color: var(--color-text-secondary);
     font-size: 0.92rem;
     margin-top: 0.15rem;
   }

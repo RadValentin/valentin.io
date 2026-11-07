@@ -4,14 +4,14 @@
 }
 
 .blog-intro h1 {
-  font: 52px/1.1 var(--serif);
+  font: 52px/1.1 var(--font-serif);
   letter-spacing: -1.5px;
   margin-bottom: 14px;
 }
 
 .blog-intro p {
   font-size: 18px;
-  color: var(--muted);
+  color: var(--color-muted);
 }
 
 .archive {
@@ -49,6 +49,6 @@
 .archive-note {
   max-width: 740px;
   margin-top: 28px;
-  color: var(--muted);
+  color: var(--color-muted);
   font-size: 15px;
 }
