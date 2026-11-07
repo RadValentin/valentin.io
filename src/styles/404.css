@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
 
-  @media (--lg) {
+  @media not (--lg) {
     font-size: 2rem;
   }
 }
