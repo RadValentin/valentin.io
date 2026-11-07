@@ -1,4 +1,4 @@
-// MASONRY STYLES
+/* MASONRY STYLES */
 
 .masonry {
   columns: 2;
@@ -12,7 +12,7 @@
   margin-bottom: var(--default-spacing);
 }
 
-// BRICK REVEAL STYLES
+/* BRICK REVEAL STYLES */
 
 .brick:nth-child(1) { --brick-index: 1; }
 .brick:nth-child(2) { --brick-index: 4; }
@@ -20,7 +20,7 @@
 .brick:nth-child(4) { --brick-index: 3; }
 .brick:nth-child(5) { --brick-index: 5; }
 
-// BRICK CONTENT
+/* BRICK CONTENT */
 
 .identity {
   display: flex;

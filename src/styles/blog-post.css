@@ -1,5 +1,5 @@
 :root {
-  // Make Astro's code-block theme (Shiki) follow the site palette.
+  /* Make Astro's code-block theme (Shiki) follow the site palette. */
   --astro-code-foreground: var(--text);
   --astro-code-background: var(--wash);
   --astro-code-token-constant: var(--label);
@@ -13,7 +13,7 @@
   --astro-code-token-link: var(--label);
 }
 
-// Article-only rules. Reuse the global palette, fonts, spacing and breakpoints.
+/* Article-only rules. Reuse the global palette, fonts, spacing and breakpoints. */
 .article-page {
   .article-skip-link {
     position: absolute;
@@ -429,8 +429,8 @@
   }
 }
 
-// Reuse the site's border/child wipe and Motion / Replay controls. The long
-// article gets one brief fade instead of a paragraph-by-paragraph sequence.
+/* Reuse the site's border/child wipe and Motion / Replay controls. The long */
+/* article gets one brief fade instead of a paragraph-by-paragraph sequence. */
 :root.is-loaded[data-motion="on"] .article-page .article-body {
   animation: article-arrival 260ms 700ms both;
 }

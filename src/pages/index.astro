@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { getBlogPostSlug, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import avatar from '../assets/valentin-radulescu.jpg';
-import '../styles/index.less';
+import '../styles/index.css';
 
 const latestBlogPost = (await getCollection('blog'))
 	.filter((post) => !post.data.draft)

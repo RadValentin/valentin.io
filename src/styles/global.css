@@ -1,16 +1,5 @@
 :root {
-  // Astro Starter Kit: Blog variables
-  // TODO: Remove them after site reskin https://github.com/RadValentin/valentin.io/issues/11
-  --accent: #2337ff;
-  --accent-dark: #000d8a;
-  --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
-  --gray-gradient: rgba(var(--gray-light), 50%), #fff;
-  --box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
-
-  // Plain CSS variables
+  /* Plain CSS variables */
   color-scheme: dark;
   --page-bg: #0c1010;
   --text: #f1eee7;
@@ -27,7 +16,7 @@
   --default-spacing: 1rem;
 }
 
-// GENERAL STYLES
+/* GENERAL STYLES */
 
 @view-transition {
   navigation: auto;
@@ -117,7 +106,7 @@ h1, h2, h3, p {
   margin: 0;
 }
 
-// REUSABLE STYLES
+/* REUSABLE STYLES */
 
 .sr-only {
   position: absolute;
@@ -144,7 +133,7 @@ h1, h2, h3, p {
   visibility: hidden;
 }
 
-// Show page contents when JS is disabled
+/* Show page contents when JS is disabled */
 @media (scripting: none) {
   :root .page {
     visibility: visible !important;
@@ -185,7 +174,7 @@ h1, h2, h3, p {
   }
 }
 
-// HEADER STYLES
+/* HEADER STYLES */
 
 .site-header {
   display: flex;
@@ -322,7 +311,7 @@ h1, h2, h3, p {
   }
 }
 
-// FOOTER STYLES
+/* FOOTER STYLES */
 
 .site-footer {
   margin-top: 2.5rem;
@@ -348,7 +337,7 @@ h1, h2, h3, p {
   }
 }
 
-// BRICK REVEAL STYLES
+/* BRICK REVEAL STYLES */
 
 @property --border-progress {
   syntax: '<percentage>';
@@ -359,7 +348,7 @@ h1, h2, h3, p {
 .brick-frame {
   --brick-anim-length: 400ms;
   --brick-child-anim-length: 200ms;
-  // Delay for: time to draw previous boxes + time to draw prev boxes children
+  /* Delay for: time to draw previous boxes + time to draw prev boxes children */
   --brick-delay: calc(
     (var(--brick-index) - 1) * var(--brick-anim-length) +
     (var(--brick-index) - 1) * var(--brick-child-anim-length) * 5
@@ -391,14 +380,14 @@ h1, h2, h3, p {
   }
 }
 
-// Show full borders when JS is disabled
+/* Show full borders when JS is disabled */
 @media (scripting: none) {
   :root .brick-frame {
     --border-progress: 100%;
   }
 }
 
-// Show full borders for reduced motion if animations are disabled (default)
+/* Show full borders for reduced motion if animations are disabled (default) */
 @media (prefers-reduced-motion: reduce) {
   :root[data-motion="off"] .brick-frame {
     --border-progress: 100%;
@@ -414,13 +403,13 @@ h1, h2, h3, p {
   animation-delay: var(--brick-delay, 0ms);
 }
 
-// BRICK CONTENT
+/* BRICK CONTENT */
 
 :root.is-loaded[data-motion="on"] .brick-frame .reveal > *,
 :root.is-loaded[data-motion="on"] .brick-frame .brick-legend {
   animation: wipe-child var(--brick-child-anim-length) linear both;
-  // delay for:
-  // time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children
+  /* delay for: */
+  /* time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children */
   animation-delay: calc(
     var(--brick-delay, 0ms) +
     var(--brick-anim-length) +
