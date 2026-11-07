@@ -1,5 +1,3 @@
-@import './variables.less';
-
 :root {
   // Make Astro's code-block theme (Shiki) follow the site palette.
   --astro-code-foreground: var(--text);
@@ -318,7 +316,7 @@
     border-top: 1px solid var(--blue);
   }
 
-  @media (max-width: @screen-max-lg) {
+  @media (--lg) {
     .article-body--with-aside {
       gap: 36px;
       grid-template-columns: minmax(0, 1fr) 200px;
@@ -330,7 +328,7 @@
     }
   }
 
-  @media (max-width: @screen-max-md) {
+  @media (--md) {
     .article-heading.brick-frame {
         padding: 28px 26px;
       }
@@ -372,7 +370,7 @@
       }
   }
 
-  @media (max-width: @screen-max-sm) {
+  @media (--sm) {
     .article-path {
         margin-bottom: 1.5rem;
       }
