@@ -82,10 +82,5 @@ const sections = headings.filter(({ depth }) => depth === 2 || depth === 3);
 			</main>
 			<Footer />
 		</div>
-		<script>
-			// Astro modules run after parsing. Do not wait for article images or
-			// analytics before revealing text. Reuse the site's Replay hook.
-			document.documentElement.classList.add('is-loaded');
-		</script>
 	</body>
 </html>

@@ -3,7 +3,7 @@
 (function() {
 	const root = document.documentElement;
 
-	window.addEventListener('load', () => {
+	window.addEventListener('DOMContentLoaded', () => {
 		root.classList.add('is-loaded');
 	});
 
