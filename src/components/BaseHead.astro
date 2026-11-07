@@ -2,7 +2,8 @@
 // Import global styles here so that they are included on
 // all pages through the use of the <BaseHead /> component.
 import '@fortawesome/fontawesome-free/css/all.css';
-import '../styles/global.less';
+import '../styles/breakpoints.css';
+import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/valentin-og-placeholder.jpg';
 import { SITE_TITLE } from '../consts';
@@ -60,3 +61,24 @@ const canonicalURL = canonicalURLProp ?? new URL(Astro.url.pathname, Astro.site)
 
   gtag('config', 'G-W429060K20');
 </script>
+
+<!-- Site scripts -->
+<script>
+	import { readMotionState } from '../scripts/utils';
+
+	// Flag so we can determine if JS enabled
+	document.documentElement.classList.add('js');
+
+	// Flag for determining if animations are enabled
+	let shouldEnableMotion = readMotionState();
+	document.documentElement.dataset.motion = shouldEnableMotion ? 'on' : 'off';
+
+	// Disable view transitions when animations are disabled
+	if (!shouldEnableMotion) {
+		let preferenceElement = document.createElement('style');
+		preferenceElement.id = 'motion-preference';
+		preferenceElement.textContent = '@view-transition { navigation: none; }';
+		document.head.appendChild(preferenceElement);
+	}
+</script>
+<script src="../scripts/global.ts"></script>

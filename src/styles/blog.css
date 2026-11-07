@@ -1,0 +1,54 @@
+.blog-intro {
+  padding: 19px 0 25px;
+  max-width: 650px;
+}
+
+.blog-intro h1 {
+  font: 52px/1.1 var(--font-serif);
+  letter-spacing: -1.5px;
+  margin-bottom: 14px;
+}
+
+.blog-intro p {
+  font-size: 18px;
+  color: var(--color-muted);
+}
+
+.archive {
+  max-width: 820px;
+}
+
+.archive-list {
+  display: grid;
+}
+
+.archive-list .brick:nth-child(1) { --brick-index: 1; }
+.archive-list .brick:nth-child(2) { --brick-index: 2; }
+.archive-list .brick:nth-child(3) { --brick-index: 3; }
+.archive-list .brick:nth-child(4) { --brick-index: 4; }
+.archive-list .brick:nth-child(5) { --brick-index: 5; }
+
+.archive .brick-frame {
+  padding: 40px;
+}
+
+.archive .article-title {
+  font-size: 34px;
+  max-width: 26ch;
+}
+
+.archive .brick-copy {
+  max-width: 59ch;
+  font-size: 18px;
+}
+
+.archive .brick-actions {
+  margin-top: 28px;
+}
+
+.archive-note {
+  max-width: 740px;
+  margin-top: 28px;
+  color: var(--color-muted);
+  font-size: 15px;
+}

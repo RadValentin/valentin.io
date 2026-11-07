@@ -1,14 +1,75 @@
 ---
-import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from "../consts";
+import HeaderLink from "./HeaderLink.astro";
 ---
 
-<!-- <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
+<header class="site-header">
+	<a class="brand" href="/" aria-label={SITE_TITLE}><span class="brand-mark" aria-hidden="true">vr.</span>valentin.io</a>
+	<div class="nav-tools">
+		<nav class="main-nav" aria-label="Main navigation">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
+		</nav>
+		<div class="tools">
+			<button
+				class="tool replay-button"
+				data-replay
+				aria-label="Replay page reveal"
+				title="Replay page reveal"
+				disabled
+			>
+				<i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+				<span>Replay</span>
+			</button>
+			<button
+				class="tool motion-toggle"
+				data-motion-toggle
+				role="switch"
+				aria-checked="true"
+				aria-label="Animations"
+				title="Disable animations"
+			>
+				<i class="fa-solid fa-pause motion-on" aria-hidden="true"></i>
+				<i class="fa-solid fa-play motion-off" aria-hidden="true"></i>
+				<span>Animations on&nbsp;</span>
+			</button>
 		</div>
-	</nav>
-</header> -->
+	</div>
+</header>
+<script>
+	import { readMotionState, setMotionState, replayMotion } from '../scripts/utils';
+
+	const motionToggle = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+	const replayButton = document.querySelector<HTMLButtonElement>('[data-replay]');
+
+	if (motionToggle) {
+		const updateToggleUI = (enabled: boolean) => {
+			motionToggle.setAttribute('aria-checked', String(enabled));
+			motionToggle.title = enabled ? 'Disable animations' : 'Enable animations';
+			const label = motionToggle.querySelector('span');
+			if (label) {
+				label.innerHTML = enabled ? 'Animations on&nbsp;' : 'Animations off';
+			}
+
+			if (replayButton) {
+				replayButton.disabled = !enabled;
+			}
+		};
+
+		updateToggleUI(readMotionState());
+
+		motionToggle.addEventListener('click', () => {
+			const newValue: boolean = !readMotionState();
+			updateToggleUI(newValue);
+			setMotionState(newValue);
+		});
+	}
+
+	if (replayButton) {
+		if (readMotionState()) {
+			replayButton.disabled = false;
+		}
+
+		replayButton.addEventListener('click', replayMotion);
+	}
+</script>

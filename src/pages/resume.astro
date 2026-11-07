@@ -1,10 +1,15 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+/** NOTE: We can consider the resume to be primarily print-oriented while the rest of the site
+  * is device-oriented. The resume layout is also unlikely to change in the near future, unlike
+  * the site's design. Hence the style/script/meta separation between the two.
+  */
+import { Font } from 'astro:assets';
 import FormattedDate from '../components/FormattedDate.astro';
 import resumePdf from '../assets/valentin-radulescu-resume.pdf';
 import avatar from '../assets/valentin-radulescu.jpg';
 import data from '../data/resume.json';
 import { marked } from 'marked';
+import '@fortawesome/fontawesome-free/css/all.css';
 import '../styles/resume.css';
 
 const urlWithoutProtocol = (url: string) => new URL(url).host;
@@ -33,17 +38,37 @@ const structuredData = {
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead
-      title="Valentin Radulescu | Front-End Engineer Resume"
-      description="Resume of Valentin Radulescu, a front-end engineer specializing in React, React Native, TypeScript and JavaScript. Based in Bucharest, open to remote work and relocation."
-    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href="https://valentin.io/resume/" />
+    <title>Valentin Radulescu | Front-End Engineer Resume</title>
+    <meta name="description" content="Resume of Valentin Radulescu, a front-end engineer specializing in React, React Native, TypeScript and JavaScript. Based in Bucharest, open to remote work and relocation." />
+    <Font cssVariable="--font-atkinson" preload />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script is:inline>
+      /* Set theme preference as dataset attribute before rendering markup. */
+      try {
+        const currentTheme = localStorage.getItem('resume-theme') || 'dark';
+        if (currentTheme === 'light' || currentTheme === 'dark') {
+          document.documentElement.dataset.theme = currentTheme;
+        } else {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      } catch {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
 	</head>
 	<body>
     <main>
       <a class="back-link screen-only" href="/">
         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to home
       </a>
+      <button class="theme-toggle screen-only" type="button" data-theme-toggle aria-pressed="false">
+        <span class="theme-toggle__light"><i class="fa-solid fa-sun"></i></span>
+        <span class="theme-toggle__dark"><i class="fa-solid fa-moon"></i></span>
+      </button>
       <header>
         <h1>
           <div>
@@ -159,6 +184,32 @@ const structuredData = {
       </section>
     </main>
     <script>
+      /* Initialize theme toggle with user preference. Update theme on click. */
+      const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+
+      if (themeToggle) {
+        const updateThemeToggle = () => {
+          const theme = document.documentElement.dataset.theme;
+          const nextTheme = theme === 'dark' ? 'light' : 'dark';
+          themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+          themeToggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+        };
+        updateThemeToggle();
+
+        themeToggle.addEventListener('click', () => {
+          const theme = document.documentElement.dataset.theme;
+          const nextTheme = theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = nextTheme;
+          updateThemeToggle();
+
+          try {
+            localStorage.setItem('resume-theme', nextTheme);
+          } catch {
+            // Keep the selected theme for the current page when storage is unavailable.
+          }
+        });
+      }
+
       /* Sensitive contact info is encoded in the raw HTML. Decode it after page loads. */
       document.addEventListener('DOMContentLoaded', function() {
         const elements = document.querySelectorAll('a[data-base64]') as NodeListOf<HTMLAnchorElement>;
@@ -174,6 +225,20 @@ const structuredData = {
           }
 
           el.append(document.createTextNode(` ${decodedData}`));
+        }
+      });
+
+      /* Force page to switch to light theme for printing. */
+      let themeBeforePrint: string | undefined;
+
+      window.addEventListener('beforeprint', () => {
+        themeBeforePrint = document.documentElement.dataset.theme;
+        document.documentElement.dataset.theme = 'light';
+      });
+
+      window.addEventListener('afterprint', () => {
+        if (themeBeforePrint) {
+          document.documentElement.dataset.theme = themeBeforePrint;
         }
       });
     </script>
