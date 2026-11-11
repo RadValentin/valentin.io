@@ -3,6 +3,16 @@
   max-width: 650px;
 }
 
+:root.is-loaded[data-motion="on"] .blog-intro {
+  animation: wipe-child 300ms ease-out both;
+}
+
+@media print {
+  .blog-intro {
+    animation: none !important;
+  }
+}
+
 .blog-intro h1 {
   font: 52px/1.1 var(--font-serif);
   letter-spacing: -1.5px;
