@@ -1,5 +1,5 @@
 :root {
-  /* Plain CSS variables */
+  scroll-behavior: smooth;
   color-scheme: dark;
   --color-bg: #0c1010;
   --color-text: #f1eee7;
@@ -104,6 +104,12 @@ figure figcaption {
 
 h1, h2, h3, p {
   margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
 }
 
 /* REUSABLE STYLES */
