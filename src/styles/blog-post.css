@@ -164,7 +164,7 @@
     border-left: 2px solid var(--color-accent);
     border-radius: 0;
     background: var(--color-surface);
-    font: 13px/1.8 var(--font-mono);
+    font: .85em/1.5 var(--font-mono);
     tab-size: 2;
 
     code {
@@ -385,7 +385,8 @@
     max-width: none;
   }
 
-  .article-page, .article-heading, .article-prose, .article-prose h2, .article-deck, .article-meta {
+  .article-page, .article-heading, .article-prose,
+  .article-prose h2, .article-deck, .article-meta {
     background: white;
     color: black;
   }
