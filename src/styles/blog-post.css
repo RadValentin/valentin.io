@@ -244,6 +244,7 @@
   }
 
   .article-index {
+    scroll-target-group: auto;
     position: relative;
     border: 1px solid var(--color-accent);
     padding: 24px 16px 18px;
@@ -291,6 +292,11 @@
       &:hover {
         color: var(--color-text);
         text-decoration: underline;
+      }
+
+      &:target-current {
+        color: var(--color-highlight);
+        &::before { color: inherit; }
       }
     }
 
