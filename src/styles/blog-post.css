@@ -338,7 +338,7 @@
 
 /* Reuse the site's border/child wipe and Motion / Replay controls. The long */
 /* article gets one brief fade instead of a paragraph-by-paragraph sequence. */
-:root.is-loaded[data-motion="on"] .article-body {
+:root.can-animate[data-motion="on"] .article-body {
   animation: article-arrival 260ms 700ms both;
 }
 
@@ -348,10 +348,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root.is-loaded[data-motion="on"] .article-heading,
-  :root.is-loaded[data-motion="on"] .article-heading .reveal > *,
-  :root.is-loaded[data-motion="on"] .article-heading .brick-legend,
-  :root.is-loaded[data-motion="on"] .article-body {
+  :root.can-animate[data-motion="on"] .article-heading,
+  :root.can-animate[data-motion="on"] .article-heading .reveal > *,
+  :root.can-animate[data-motion="on"] .article-heading .brick-legend,
+  :root.can-animate[data-motion="on"] .article-body {
     animation: none;
   }
 }

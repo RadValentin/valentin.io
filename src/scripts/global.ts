@@ -2,15 +2,11 @@
 
 const root = document.documentElement;
 
-// Mark page as loaded so animations can begin playing either on window event or after 2s.
-const addLoadedClass = () => {
-	root.classList.add('is-loaded');
+// Allow animations after the window loads or a 2-second fallback, whichever comes first.
+const allowAnimations = () => {
+	root.classList.add('can-animate');
 };
 
-const loadTimeout = setTimeout(() => {
-	addLoadedClass();
-}, 2000);
+setTimeout(allowAnimations, 2000);
 
-window.addEventListener('load', () => {
-	addLoadedClass();
-});
+window.addEventListener('load', allowAnimations);

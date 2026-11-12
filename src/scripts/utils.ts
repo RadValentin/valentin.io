@@ -23,7 +23,7 @@ export const setMotionState = (enabled: boolean) => {
 
   window.localStorage.setItem(MOTION_KEY, enabled ? 'on' : 'off');
 
-  if (enabled && !wasEnabled && root.classList.contains('is-loaded')) {
+  if (enabled && !wasEnabled && root.classList.contains('can-animate')) {
     replayMotion();
   }
 };
@@ -31,7 +31,7 @@ export const setMotionState = (enabled: boolean) => {
 export const replayMotion = () => {
   const root = document.documentElement;
 
-  root.classList.remove('is-loaded');
+  root.classList.remove('can-animate');
   void root.offsetWidth;
-  root.classList.add('is-loaded');
+  root.classList.add('can-animate');
 };

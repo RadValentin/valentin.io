@@ -135,7 +135,7 @@ h1, h2, h3, p {
   padding-top: 2rem;
 }
 
-:root:not(.is-loaded) .page {
+:root:not(.can-animate) .page {
   visibility: hidden;
 }
 
@@ -153,7 +153,7 @@ h1, h2, h3, p {
   transition: none !important;
 }
 
-:root[data-motion="off"]:not(.is-loaded) .page {
+:root[data-motion="off"]:not(.can-animate) .page {
   visibility: visible;
 }
 
@@ -404,15 +404,15 @@ h1, h2, h3, p {
   --border-progress: 100%;
 }
 
-:root.is-loaded[data-motion="on"] .brick-frame {
+:root.can-animate[data-motion="on"] .brick-frame {
   animation: var(--brick-anim-length) border-swipe forwards;
   animation-delay: var(--brick-delay, 0ms);
 }
 
 /* BRICK CONTENT */
 
-:root.is-loaded[data-motion="on"] .brick-frame .reveal > *,
-:root.is-loaded[data-motion="on"] .brick-frame .brick-legend {
+:root.can-animate[data-motion="on"] .brick-frame .reveal > *,
+:root.can-animate[data-motion="on"] .brick-frame .brick-legend {
   animation: wipe-child var(--brick-child-anim-length) linear both;
   /* delay for: */
   /* time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children */

@@ -3,7 +3,7 @@
   max-width: 650px;
 }
 
-:root.is-loaded[data-motion="on"] .blog-intro {
+:root.can-animate[data-motion="on"] .blog-intro {
   animation: wipe-child 300ms ease-out both;
 }
 
