@@ -135,7 +135,7 @@ h1, h2, h3, p {
   padding-top: 2rem;
 }
 
-:root:not(.can-animate) .page {
+:root:not(.can-animate):not(.page-visited) .page {
   visibility: hidden;
 }
 
@@ -360,7 +360,7 @@ h1, h2, h3, p {
     (var(--brick-index) - 1) * var(--brick-anim-length) +
     (var(--brick-index) - 1) * var(--brick-child-anim-length) * 5
   );
-  --border-progress: 0%;
+  --border-progress: 100%;
 
   position: relative;
   border-width: 2px;
@@ -378,6 +378,7 @@ h1, h2, h3, p {
 }
 
 @keyframes border-swipe {
+  0%,
   10% {
     --border-progress: 0%;
   }
@@ -387,26 +388,8 @@ h1, h2, h3, p {
   }
 }
 
-/* Show full borders when JS is disabled */
-@media (scripting: none) {
-  :root .brick-frame {
-    --border-progress: 100%;
-  }
-}
-
-/* Show full borders for reduced motion if animations are disabled (default) */
-@media (prefers-reduced-motion: reduce) {
-  :root[data-motion="off"] .brick-frame {
-    --border-progress: 100%;
-  }
-}
-
-:root[data-motion="off"] .brick-frame {
-  --border-progress: 100%;
-}
-
 :root.can-animate[data-motion="on"] .brick-frame {
-  animation: var(--brick-anim-length) border-swipe forwards;
+  animation: var(--brick-anim-length) border-swipe both;
   animation-delay: var(--brick-delay, 0ms);
 }
 

@@ -23,7 +23,7 @@ export const setMotionState = (enabled: boolean) => {
 
   window.localStorage.setItem(MOTION_KEY, enabled ? 'on' : 'off');
 
-  if (enabled && !wasEnabled && root.classList.contains('can-animate')) {
+  if (enabled && !wasEnabled && (root.classList.contains('can-animate') || root.classList.contains('page-visited'))) {
     replayMotion();
   }
 };
