@@ -1,0 +1,1 @@
+import{t as e}from"./utils.BgFVX0VG.js";var t=e();if(document.documentElement.dataset.motion=t?`on`:`off`,!t){let e=document.createElement(`style`);e.id=`motion-preference`,e.textContent=`@view-transition { navigation: none; }`,document.head.appendChild(e)}
