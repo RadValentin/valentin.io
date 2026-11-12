@@ -135,15 +135,8 @@ h1, h2, h3, p {
   padding-top: 2rem;
 }
 
-:root:not(.can-animate):not(.page-visited) .page {
+.js:not(.can-animate):not(.page-visited) .page {
   visibility: hidden;
-}
-
-/* Show page contents when JS is disabled */
-@media (scripting: none) {
-  :root .page {
-    visibility: visible !important;
-  }
 }
 
 :root[data-motion="off"] *,

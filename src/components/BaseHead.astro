@@ -80,11 +80,43 @@ const imageURL = new URL(image.src, Astro.site);
 </script>
 
 <!-- Site scripts -->
+<script is:inline>
+	(() => {
+		const root = document.documentElement;
+
+		try {
+			const visitKey = `visited:${window.location.pathname}`;
+			if (window.sessionStorage.getItem(visitKey)) {
+				root.classList.add('page-visited');
+			}
+			window.sessionStorage.setItem(visitKey, '1');
+		} catch {
+			// Keep the normal reveal when sessionStorage is unavailable.
+		}
+
+		const allowAnimations = () => {
+			if (!root.classList.contains('page-visited')) {
+				// Show static content if motion preferences haven't loaded in time.
+				root.classList.add(root.dataset.motion === 'on' ? 'can-animate' : 'page-visited');
+			}
+		};
+
+		// Reveal on load or after two seconds, even if the other scripts fail.
+		setTimeout(allowAnimations, 2000);
+		window.addEventListener('load', allowAnimations, { once: true });
+		window.addEventListener('pageshow', (event) => {
+			if (event.persisted) {
+				root.classList.add('page-visited');
+				root.classList.remove('can-animate');
+			}
+		});
+
+		// Opt into hiding before the body renders, after the fallback is installed.
+		root.classList.add('js');
+	})();
+</script>
 <script>
 	import { readMotionState } from '../scripts/utils';
-
-	// Flag so we can determine if JS enabled
-	document.documentElement.classList.add('js');
 
 	// Flag for determining if animations are enabled
 	let shouldEnableMotion = readMotionState();
@@ -98,4 +130,3 @@ const imageURL = new URL(image.src, Astro.site);
 		document.head.appendChild(preferenceElement);
 	}
 </script>
-<script src="../scripts/global.ts"></script>
