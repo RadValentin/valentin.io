@@ -1,10 +1,16 @@
 // Logic for all pages
 
-(function() {
-	const root = document.documentElement;
+const root = document.documentElement;
 
-	window.addEventListener('DOMContentLoaded', () => {
-		root.classList.add('is-loaded');
-	});
+// Mark page as loaded so animations can begin playing either on window event or after 2s.
+const addLoadedClass = () => {
+	root.classList.add('is-loaded');
+};
 
-})();
+const loadTimeout = setTimeout(() => {
+	addLoadedClass();
+}, 2000);
+
+window.addEventListener('load', () => {
+	addLoadedClass();
+});
