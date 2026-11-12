@@ -7,7 +7,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://valentin.io/',
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			// This archived article uses the original Codementor publication as its canonical URL.
+			filter: (page) => new URL(page).pathname !== '/blog/tiny-react-env/',
+		}),
+	],
 	fonts: [
 		{
 			provider: fontProviders.local(),

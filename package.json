@@ -22,11 +22,15 @@
     "@astrojs/sitemap": "^3.7.4",
     "@fortawesome/fontawesome-free": "^7.3.1",
     "astro": "^7.4.2",
-    "less": "^4.9.1",
     "marked": "^15.0.12",
     "sharp": "^0.35.5"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "^4.0.0",
+    "postcss": "^8.5.32",
+    "postcss-custom-media": "^12.0.3"
   }
 }

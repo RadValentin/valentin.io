@@ -1,0 +1,7 @@
+@custom-media --gte-sm (width >= 576px);
+@custom-media --gte-md (width >= 768px);
+@custom-media --gte-lg (width >= 1000px);
+
+@custom-media --lt-sm (width < 576px);
+@custom-media --lt-md (width < 768px);
+@custom-media --lt-lg (width < 1000px);
