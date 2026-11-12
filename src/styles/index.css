@@ -1,7 +1,7 @@
 /* MASONRY STYLES */
 
 .masonry {
-  columns: 2;
+  columns: 24rem 2;
   column-gap: 30px;
 }
 
@@ -12,21 +12,48 @@
   margin-bottom: var(--default-spacing);
 }
 
-/* BRICK REVEAL STYLES */
 
+/* HACK: CSS columns are rendered top-down first. The DOM ordering is done in a non-intuitive
+ * manner to make the 2nd column appear on the right of the 1st. We want to animate the bricks in
+ * a similar sequence so we track which column shows at what time with an index.
+ */
 .brick:nth-child(1) { --brick-index: 1; }
 .brick:nth-child(2) { --brick-index: 4; }
 .brick:nth-child(3) { --brick-index: 2; }
 .brick:nth-child(4) { --brick-index: 3; }
 .brick:nth-child(5) { --brick-index: 5; }
 
+/* On smaller screens the bricks are rendered in a single column but we still need to account for
+ * the non-intuitive DOM ordering
+ */
+@media (--lt-lg) {
+  .masonry {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .masonry .brick-frame {
+    padding: 24px;
+  }
+
+  .masonry > .brick:nth-child(1) { order: -2; }
+  .masonry > .brick:nth-child(3) { order: -1; }
+  .masonry > .brick:nth-child(2) { --brick-index: 3; }
+  .masonry > .brick:nth-child(4) { --brick-index: 4; }
+}
+
 /* BRICK CONTENT */
 
 .identity {
   display: flex;
+  flex-wrap: wrap;
   gap: 22px;
   align-items: center;
   margin-bottom: 26px;
+}
+
+.identity > div {
+  flex: 1 1 12rem;
 }
 
 .portrait {
@@ -39,7 +66,7 @@
 }
 
 .name {
-  font: 42px/1.06 var(--font-serif);
+  font: clamp(2rem, 4vw, 2.625rem)/1.06 var(--font-serif);
   letter-spacing: -1.4px;
 }
 
