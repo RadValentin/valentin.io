@@ -3,16 +3,20 @@
   * is device-oriented. The resume layout is also unlikely to change in the near future, unlike
   * the site's design. Hence the style/script/meta separation between the two.
   */
-import { Font } from 'astro:assets';
+import { Font, Image } from 'astro:assets';
 import FormattedDate from '../components/FormattedDate.astro';
 import resumePdf from '../assets/valentin-radulescu-resume.pdf';
 import avatar from '../assets/valentin-radulescu.jpg';
+import shareImage from '../assets/valentin-og-placeholder.jpg';
 import data from '../data/resume.json';
 import { marked } from 'marked';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '../styles/resume.css';
 
 const urlWithoutProtocol = (url: string) => new URL(url).host;
+const title = `${data.basics.name} | Front-End Engineer Resume`;
+const description = `Resume of ${data.basics.name}, a front-end engineer specializing in React, React Native, TypeScript and JavaScript. Based in Bucharest, open to remote work and relocation.`;
+const canonicalURL = new URL('/resume/', Astro.site);
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -41,9 +45,18 @@ const structuredData = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="canonical" href="https://valentin.io/resume/" />
-    <title>Valentin Radulescu | Front-End Engineer Resume</title>
-    <meta name="description" content="Resume of Valentin Radulescu, a front-end engineer specializing in React, React Native, TypeScript and JavaScript. Based in Bucharest, open to remote work and relocation." />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(shareImage.src, Astro.site)} />
+    <meta property="og:image:width" content={shareImage.width.toString()} />
+    <meta property="og:image:height" content={shareImage.height.toString()} />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
     <Font cssVariable="--font-atkinson" preload />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <script is:inline>
@@ -75,7 +88,7 @@ const structuredData = {
             <div class="name">{data.basics.name}</div>
             <div class="role">{data.basics.label}</div>
           </div>
-          <img class="avatar screen-only" src={avatar.src} alt={data.basics.name}/>
+          <Image class="avatar screen-only" src={avatar} alt={data.basics.name} width={90} height={90} densities={[1, 2]} loading="eager" />
         </h1>
         <ul class="social" aria-label="resume links">
           {data.basics.profiles.map(p =>

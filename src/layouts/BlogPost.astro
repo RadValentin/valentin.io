@@ -6,6 +6,8 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import FallbackImage from '../assets/valentin-og-placeholder.jpg';
+import { SITE_AUTHOR } from '../consts';
 import '../styles/blog-post.css';
 
 type Props = CollectionEntry<'blog'>['data'] & {
@@ -19,12 +21,36 @@ const {
 	headings = [], readingMinutes,
 } = Astro.props;
 const sections = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	url: canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href,
+	image: new URL((heroImage ?? FallbackImage).src, Astro.site).href,
+	datePublished: pubDate.toISOString(),
+	dateModified: updatedDate?.toISOString(),
+	author: {
+		'@type': 'Person',
+		name: SITE_AUTHOR,
+		url: Astro.site?.href,
+	},
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} canonicalURL={canonicalURL} />
+		<BaseHead
+			title={title}
+			description={description}
+			canonicalURL={canonicalURL}
+			image={heroImage}
+			type="article"
+			pubDate={pubDate}
+			updatedDate={updatedDate}
+		/>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />
 	</head>
 	<body class="article-page" id="top">
 		<a class="article-skip-link" href="#main">Skip to article</a>
