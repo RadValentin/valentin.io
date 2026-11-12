@@ -21,7 +21,11 @@ export const setMotionState = (enabled: boolean) => {
   const wasEnabled = root.dataset.motion === 'on';
   root.dataset.motion = enabled ? 'on' : 'off';
 
-  window.localStorage.setItem(MOTION_KEY, enabled ? 'on' : 'off');
+  try {
+    window.localStorage.setItem(MOTION_KEY, enabled ? 'on' : 'off');
+  } catch {
+    // Keep the current page state when localStorage is unavailable.
+  }
 
   if (enabled && !wasEnabled && (root.classList.contains('can-animate') || root.classList.contains('page-visited'))) {
     replayMotion();

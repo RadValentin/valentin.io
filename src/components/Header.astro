@@ -59,7 +59,7 @@ import HeaderLink from "./HeaderLink.astro";
 		updateToggleUI(readMotionState());
 
 		motionToggle.addEventListener('click', () => {
-			const newValue: boolean = !readMotionState();
+			const newValue = document.documentElement.dataset.motion !== 'on';
 			updateToggleUI(newValue);
 			setMotionState(newValue);
 		});
