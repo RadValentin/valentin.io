@@ -321,7 +321,7 @@
   border-top: 1px solid var(--color-accent);
 }
 
-@media (--md) {
+@media (--lt-md) {
   .article-body--with-aside {
     display: flex;
     flex-direction: column;

@@ -110,7 +110,7 @@ main {
     box-shadow: 0 0 10px var(--shadow-color);
   }
 
-  @media screen and (--lg) {
+  @media screen and (--lt-lg) {
     --resume-top-padding: calc(3 * var(--default-spacing));
     --resume-side-padding: calc(2 * var(--default-spacing));
 
@@ -246,7 +246,7 @@ header {
     margin: 0 0 .5rem;
   }
 
-  @media (--sm) {
+  @media (--lt-sm) {
     & .social {
       grid-template-columns: 1fr 1fr;
     }
@@ -324,7 +324,7 @@ section {
     display: block;
   }
 
-  @media (--md) {
+  @media (--lt-md) {
     & .subsection + .subsection {
       margin-top: 1.1rem;
       padding-top: 0.9rem;

@@ -162,13 +162,13 @@ h1, h2, h3, p {
   animation: none !important;
 }
 
-@media (--md) {
+@media (--lt-md) {
   .shell {
     width: calc(100% - 40px);
   }
 }
 
-@media (--sm) {
+@media (--lt-sm) {
   .shell {
     width: calc(100% - 32px);
   }
@@ -268,7 +268,7 @@ h1, h2, h3, p {
   display: none;
 }
 
-@media (--md) {
+@media (--lt-md) {
   .site-header {
     flex-wrap: wrap;
     gap: 24px;
@@ -287,7 +287,7 @@ h1, h2, h3, p {
   }
 }
 
-@media (--sm) {
+@media (--lt-sm) {
   .brand {
     font-size: 14px;
   }
@@ -330,7 +330,7 @@ h1, h2, h3, p {
   font: 11px/1.7 var(--font-mono);
 }
 
-@media (--md) {
+@media (--lt-md) {
   .site-footer {
     flex-wrap: wrap;
     gap: 12px;
