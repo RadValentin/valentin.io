@@ -390,7 +390,7 @@ h1, h2, h3, p {
 
 :root.can-animate[data-motion="on"] .brick-frame .reveal > *,
 :root.can-animate[data-motion="on"] .brick-frame .brick-legend {
-  animation: wipe-child var(--brick-child-anim-length) linear both;
+  animation: wipe-child var(--brick-child-anim-length) linear backwards;
   /* delay for: */
   /* time to draw previous box + time to draw current box border + time to draw previous siblings + delay between children */
   animation-delay: calc(
