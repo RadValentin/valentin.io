@@ -1,10 +1,14 @@
+:root {
+  --blog-intro-duration: 300ms;
+}
+
 .blog-intro {
   padding: 19px 0 25px;
   max-width: 650px;
 }
 
 :root.can-animate[data-motion="on"] .blog-intro {
-  animation: wipe-child 300ms ease-out both;
+  animation: wipe-child var(--blog-intro-duration) ease-out both;
 }
 
 @media print {
@@ -29,6 +33,7 @@
 }
 
 .archive-list {
+  --brick-start-delay: var(--blog-intro-duration);
   display: grid;
 }
 

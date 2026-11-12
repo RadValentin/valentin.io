@@ -354,8 +354,9 @@ h1, h2, h3, p {
 .brick-frame {
   --brick-anim-length: 400ms;
   --brick-child-anim-length: 200ms;
-  /* Delay for: time to draw previous boxes + time to draw prev boxes children */
+  /* Optional starting delay + time to draw previous boxes and their children */
   --brick-delay: calc(
+    var(--brick-start-delay, 0ms) +
     (var(--brick-index) - 1) * var(--brick-anim-length) +
     (var(--brick-index) - 1) * var(--brick-child-anim-length) * 5
   );
